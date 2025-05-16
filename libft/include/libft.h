@@ -79,6 +79,7 @@ char				*ft_itoa(int n);
 char				*get_next_line(int fd);
 char				*ft_strdup(const char *s);
 char				*my_strdup(const char *s);
+char				*skipwhitespace(char *str);
 char				*my_strjoin(char *s1, char *s2);
 char				*ft_strchr(const char *s, int c);
 char				**ft_split(char const *s, char c);

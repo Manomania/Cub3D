@@ -34,6 +34,7 @@ SRC_FILES			=	ft_atoi \
 						ft_putendl_fd \
 						ft_putnbr_fd \
 						ft_putstr_fd \
+						ft_skipwhitespace \
 						ft_split \
 						ft_strchr \
 						ft_strdup \
