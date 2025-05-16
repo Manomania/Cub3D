@@ -6,7 +6,7 @@
 /*   By: elagouch <elagouch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/28 12:05:19 by maximart          #+#    #+#             */
-/*   Updated: 2025/05/16 17:53:33 by elagouch         ###   ########.fr       */
+/*   Updated: 2025/05/16 18:37:41 by elagouch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,8 +30,11 @@
 # define YELLOW "\033[093m"
 # define CYAN "\033[36m"
 
-# define MAP_W 10
-# define MAP_H 10
+# define MAP_W 24
+# define MAP_H 17
+
+# define WIN_H 600
+# define WIN_W 800
 
 // *************************************************************************** #
 //                                 Structures                                  #
@@ -135,6 +138,18 @@ typedef struct s_textures
 }				t_textures;
 
 /*
+** Image structure for MLX
+*/
+typedef struct s_img
+{
+	void		*img;
+	char		*addr;
+	int			bits_per_pixel;
+	int			line_length;
+	int			endian;
+}				t_img;
+
+/*
 ** Global application data
 */
 typedef struct s_data
@@ -154,12 +169,12 @@ typedef struct s_data
 	void		*win;
 	int			win_width;
 	int			win_height;
-	void		*img;
-	t_player	*player;
-	t_textures	*textures;
+	t_player	player;
+	t_textures	textures;
 	// TODO: Change these to a union type
-	char		floor_color;
-	char		ceil_color;
+	int			floor_color;
+	int			ceil_color;
+	t_img		img;
 }				t_data;
 
 // *************************************************************************** #
@@ -167,13 +182,10 @@ typedef struct s_data
 // *************************************************************************** #
 
 /**
- * @brief Initializes the player structure from app state
+ * @brief Renders a frame. Duh.
  *
- * @param data App state
- *
- * @note There are no checks for empty data struct, so passing a NULL *will*
- *       segfault.
+ * @param data App data
  */
-void			init_player(t_data *data);
+void			render_frame(t_data *data);
 
 #endif

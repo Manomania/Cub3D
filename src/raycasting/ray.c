@@ -6,7 +6,7 @@
 /*   By: elagouch <elagouch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/15 18:44:59 by elagouch          #+#    #+#             */
-/*   Updated: 2025/05/16 17:53:09 by elagouch         ###   ########.fr       */
+/*   Updated: 2025/05/16 18:26:24 by elagouch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ void	raycasting(t_data *data)
 	while (++x < data->win_width)
 	{
 		// Cast ray
-		cast_ray(&ray, data->player, data->map, x, data->win_width,
+		cast_ray(&ray, &data->player, data->map, x, data->win_width,
 			data->win_height);
 		// Draw ceiling
 		draw_ceiling(data, x, ray.draw_start, data->ceil_color);

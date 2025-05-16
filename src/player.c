@@ -6,7 +6,7 @@
 /*   By: elagouch <elagouch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/15 18:49:24 by elagouch          #+#    #+#             */
-/*   Updated: 2025/05/16 17:19:12 by elagouch         ###   ########.fr       */
+/*   Updated: 2025/05/16 18:36:48 by elagouch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,8 +30,8 @@ void	init_player(t_data *data)
 				|| data->map[y][x] == 'E' || data->map[y][x] == 'W')
 			{
 				// Save player position (centered in the tile)
-				data->player->pos_x = x + 0.5;
-				data->player->pos_y = y + 0.5;
+				data->player.pos_x = x + 0.5;
+				data->player.pos_y = y + 0.5;
 				// Save player direction
 				dir = data->map[y][x];
 				// Set the map tile to empty
@@ -45,49 +45,46 @@ void	init_player(t_data *data)
 	// Set initial direction and camera plane based on starting direction
 	if (dir == 'N')
 	{
-		data->player->dir_x = 0;
-		data->player->dir_y = -1;
-		data->player->plane_x = 0.66;
-		data->player->plane_y = 0;
+		data->player.dir_x = 0;
+		data->player.dir_y = -1;
+		data->player.plane_x = 0.66;
+		data->player.plane_y = 0;
 	}
 	else if (dir == 'S')
 	{
-		data->player->dir_x = 0;
-		data->player->dir_y = 1;
-		data->player->plane_x = -0.66;
-		data->player->plane_y = 0;
+		data->player.dir_x = 0;
+		data->player.dir_y = 1;
+		data->player.plane_x = -0.66;
+		data->player.plane_y = 0;
 	}
 	else if (dir == 'E')
 	{
-		data->player->dir_x = 1;
-		data->player->dir_y = 0;
-		data->player->plane_x = 0;
-		data->player->plane_y = 0.66;
+		data->player.dir_x = 1;
+		data->player.dir_y = 0;
+		data->player.plane_x = 0;
+		data->player.plane_y = 0.66;
 	}
 	else if (dir == 'W')
 	{
-		data->player->dir_x = -1;
-		data->player->dir_y = 0;
-		data->player->plane_x = 0;
-		data->player->plane_y = -0.66;
+		data->player.dir_x = -1;
+		data->player.dir_y = 0;
+		data->player.plane_x = 0;
+		data->player.plane_y = -0.66;
 	}
 	// Set movement and rotation speeds
-	data->player->move_speed = 0.05;
-	data->player->rot_speed = 0.03;
+	data->player.move_speed = 0.05;
+	data->player.rot_speed = 0.03;
 	// Initialize movement flags
-	data->player->move_forward = 0;
-	data->player->move_backward = 0;
-	data->player->move_left = 0;
-	data->player->move_right = 0;
-	data->player->rotate_left = 0;
-	data->player->rotate_right = 0;
+	data->player.move_forward = 0;
+	data->player.move_backward = 0;
+	data->player.move_left = 0;
+	data->player.move_right = 0;
+	data->player.rotate_left = 0;
+	data->player.rotate_right = 0;
 	// Set camera height
-	data->player->cam_height = data->win_height / 2.0;
+	data->player.cam_height = data->win_height / 2.0;
 }
 
-/*
-** Move the player based on the current control state and collision detection
-*/
 void	move_player(t_player *player, char **map)
 {
 	double	new_pos_x;

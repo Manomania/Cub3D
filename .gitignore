@@ -4,3 +4,5 @@ obj
 minilibx-linux/
 cub3d
 .vscode/
+*.xml
+*.txt

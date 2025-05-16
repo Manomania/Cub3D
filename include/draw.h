@@ -6,7 +6,7 @@
 /*   By: elagouch <elagouch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/16 16:32:13 by elagouch          #+#    #+#             */
-/*   Updated: 2025/05/16 17:53:09 by elagouch         ###   ########.fr       */
+/*   Updated: 2025/05/16 18:01:52 by elagouch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 # define DRAW_H
 
 # include "cub3d.h"
-# include "mlx_int.h"
 
 // *************************************************************************** #
 //                            Function Prototypes                              #
@@ -56,7 +55,7 @@ void	draw_floor(t_data *data, int x, int end_y, int floor_color);
 /**
  * @brief Puts a pixel to a MLX image
  *
- * @param data App data
+ * @param img MLX image
  * @param x Pixel X coordinate
  * @param y Pixel Y coordinate
  * @param color Pixel color
@@ -64,6 +63,6 @@ void	draw_floor(t_data *data, int x, int end_y, int floor_color);
  * @note Replacement for vanilla pixel put counterpart
  * @todo Change this to allow for uniontype color
  */
-void	my_mlx_pixel_put(t_data *data, int x, int y, unsigned int color);
+void	my_mlx_pixel_put(t_img *img, int x, int y, unsigned int color);
 
 #endif
