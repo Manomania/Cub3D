@@ -50,9 +50,14 @@ int	main (int argc, char **argv)
 	data = init_data();
 	if (!data)
 	{
-		//TODO error msg
+		clean_data(data);
 		return (1);
 	}
 	if (read_file(data, argv[1]))
+	{
+		clean_data(data);
+		return (1);
+	}
+	clean_data(data);
 	return (0);
 }
