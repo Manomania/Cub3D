@@ -56,8 +56,8 @@ typedef struct s_data
 	char	*texture_s;
 	char	*texture_w;
 	char	*texture_e;
-	char	*floor_color;
-	char	*ceil_color;
+	int		floor_color[3];
+	int		ceil_color[3];
 	int		bits_per_pixel;
 	int		map_height;
 	int		map_width;
@@ -72,6 +72,9 @@ typedef struct s_data
 /*******************************************************************************
 *                             Function Prototypes                              *
 *******************************************************************************/
+
+// clear_exit.c
+void	clean_data(t_data *data);
 
 // parsing.c
 int		read_file(t_data *data, const char *file);
