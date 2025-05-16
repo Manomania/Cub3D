@@ -39,6 +39,8 @@ typedef struct s_format
 	char			conversion;
 }					t_format;
 
+long				ft_strtol(const char *nptr, char **endptr, int base);
+
 int					ft_putnbr(int n);
 int					ft_toupper(int c);
 int					ft_tolower(int c);
@@ -59,6 +61,7 @@ int					ft_handle_char(int fd, const char c);
 int					ft_printmemory(int fd, unsigned long n);
 int					ft_handle_ptr(int fd, unsigned long ptr);
 int					ft_printf(const char *format, ...);
+int					ft_strcmp(const char *s1, const char *s2);
 int					ft_printf_fd(int fd, const char *format, ...);
 int					ft_putnbr_unsigned(int fd, unsigned int n);
 int					ft_puthexa(int fd, unsigned int n, int upper);
@@ -78,6 +81,7 @@ char				*ft_itoa(int n);
 char				*get_next_line(int fd);
 char				*ft_strdup(const char *s);
 char				*my_strdup(const char *s);
+char				*skipwhitespace(char *str);
 char				*my_strjoin(char *s1, char *s2);
 char				*ft_strchr(const char *s, int c);
 char				**ft_split(char const *s, char c);

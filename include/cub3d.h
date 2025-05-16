@@ -10,17 +10,17 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef CUBE3D_H
-#define CUBE3D_H
+#ifndef CUB3D_H
+#define CUB3D_H
 
-#include "libft.h"
-# include "../minilibx-linux/mlx.h"
-# include "../libft/include/libft.h"
 # include <stdbool.h>
+# include "libft.h"
+# include "../libft/include/libft.h"
+# include "../minilibx-linux/mlx.h"
 
-// *************************************************************************** #
-//                                   Macros                                    #
-// *************************************************************************** #
+/*******************************************************************************
+*                                    Macros                                    *
+*******************************************************************************/
 
 # define TITLE "cub3d"
 # define RESET "\033[039m"
@@ -30,9 +30,9 @@
 # define YELLOW "\033[093m"
 # define CYAN "\033[36m"
 
-// *************************************************************************** #
-//                                 Structures                                  #
-// *************************************************************************** #
+/*******************************************************************************
+*                                  Structures                                  *
+*******************************************************************************/
 
 typedef enum e_keyboard
 {
@@ -50,19 +50,34 @@ typedef enum e_key
 
 typedef struct s_data
 {
-	char	**grid;
+	char	**map;
 	char	*adrr;
-	char	*N_texture;
-	char	*S_texture;
-	char	*W_texture;
-	char	*E_texture;
-	char	*floor_color;
-	char	*ceil_color;
+	char	*texture_n;
+	char	*texture_s;
+	char	*texture_w;
+	char	*texture_e;
+	int		floor_color[3];
+	int		ceil_color[3];
 	int		bits_per_pixel;
+	int		map_height;
+	int		map_width;
 	int		line_length;
 	int		endian;
+	int		win_height;
+	int		win_width;
 	void	*mlx;
 	void	*win;
 }			t_data;
+
+/*******************************************************************************
+*                             Function Prototypes                              *
+*******************************************************************************/
+
+// clear_exit.c
+void	clean_data(t_data *data);
+
+// parsing.c
+int		read_file(t_data *data, const char *file);
+t_data	*init_data();
 
 #endif

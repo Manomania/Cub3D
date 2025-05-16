@@ -1,1 +1,3 @@
-SRC_F	=	main
+SRC_F	=	clean_exit \
+			main \
+			parsing
