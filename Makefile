@@ -3,10 +3,11 @@
 ########################################################################################################################\
 
 AUTHOR				=	maximart && elagouch
-NAME				=	cube3d
-HEADER				=	$(INC_DIR)cube3d.h
+NAME				=	cub3d
+HEADER				=	$(INC_DIR)cub3d.h
 CC 					= 	cc
 CFLAGS 				= 	-Wall -Wextra -Werror
+CFLAGS 				+= 	-g3
 MLX_FLAGS			=	-L$(MLX_DIR) -l:libmlx_Linux.a -lXext -lX11 -lm
 AR					=	ar rcs
 RM					=	rm -f
@@ -90,7 +91,7 @@ $(MLX):
 							@$(MAKE) --silent -C $(MLX_DIR)
 
 $(OBJ_DIR)%.o: 			$(SRC_DIR)%.c $(HEADER)
-							@mkdir -p $(OBJ_DIR)
+							@mkdir -p $(dir $@)
 							@$(CC) $(CFLAGS) -I$(INC_DIR) -I$(LIBFT_DIR)$(INC_DIR) -I$(MLX_DIR) -c $< -o $@
 							$(call PROGRESS_BAR_PERCENTAGE)
 							$(if $(filter $(COMPILED_SRCS),$(SRCS_TO_COMPILE)),$(call SEPARATOR))

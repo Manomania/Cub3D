@@ -1,0 +1,6 @@
+obj
+*.a
+*.o
+minilibx-linux/
+cub3d
+.vscode/
