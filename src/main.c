@@ -6,7 +6,7 @@
 /*   By: elagouch <elagouch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/09 16:06:00 by maximart          #+#    #+#             */
-/*   Updated: 2025/05/16 18:39:27 by elagouch         ###   ########.fr       */
+/*   Updated: 2025/05/16 18:43:18 by elagouch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,6 +91,10 @@ t_data	*init_data(void)
 	data->map_height = MAP_H;     // WARN !!!
 	data->floor_color = 0x555555; // WARN !!!
 	data->ceil_color = 0xAAAAAA;  // WARN !!!
+	data->win = mlx_new_window(data->mlx, data->win_width, data->win_height,
+			"cub3D");
+	if (!data->win)
+		return (free_data(data));
 	data->img.img = mlx_new_image(data->mlx, data->win_width, data->win_height);
 	data->img.addr = mlx_get_data_addr(data->img.img, &data->img.bits_per_pixel,
 			&data->img.line_length, &data->img.endian);
@@ -133,7 +137,7 @@ int	main(int argc, char **argv)
 		return (1);
 	data = init_data();
 	init_player(data);
-	mlx_loop_hook(data->mlx, (int (*)())render_frame, &data);
+	mlx_loop_hook(data->mlx, (int (*)())render_frame, data);
 	mlx_loop(data->mlx);
 	data = free_data(data);
 	ft_printf("########################### END! ###########################\n");
