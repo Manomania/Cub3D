@@ -73,11 +73,19 @@ typedef struct s_data
 *                             Function Prototypes                              *
 *******************************************************************************/
 
-// clear_exit.c
-void	clean_data(t_data *data);
+// color_parser.c
+bool	parse_color_line(t_data *data, char *line, const char *identifier);
 
-// parsing.c
+// file_parser.c
 int		read_file(t_data *data, const char *file);
-t_data	*init_data();
 
+// main.c
+
+// texture_parser.c
+bool	parse_texture_path(t_data *data, char *line, const char *cardinal);
+
+// utils.c
+bool	check_args(int argc, char **argv);
+t_data	*init_data(void);
+void	free_ressources(t_data *data);
 #endif

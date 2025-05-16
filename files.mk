@@ -1,3 +1,5 @@
-SRC_F	=	clean_exit \
+SRC_F	=	color_parser \
+			file_parser \
 			main \
-			parsing
+			texture_parser \
+			utils
