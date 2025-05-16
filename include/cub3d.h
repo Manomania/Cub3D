@@ -13,14 +13,14 @@
 #ifndef CUB3D_H
 #define CUB3D_H
 
-#include "libft.h"
-# include "../minilibx-linux/mlx.h"
-# include "../libft/include/libft.h"
 # include <stdbool.h>
+# include "libft.h"
+# include "../libft/include/libft.h"
+# include "../minilibx-linux/mlx.h"
 
-// *************************************************************************** #
-//                                   Macros                                    #
-// *************************************************************************** #
+/*******************************************************************************
+*                                    Macros                                    *
+*******************************************************************************/
 
 # define TITLE "cub3d"
 # define RESET "\033[039m"
@@ -30,9 +30,9 @@
 # define YELLOW "\033[093m"
 # define CYAN "\033[36m"
 
-// *************************************************************************** #
-//                                 Structures                                  #
-// *************************************************************************** #
+/*******************************************************************************
+*                                  Structures                                  *
+*******************************************************************************/
 
 typedef enum e_keyboard
 {
@@ -50,7 +50,7 @@ typedef enum e_key
 
 typedef struct s_data
 {
-	char	**grid;
+	char	**map;
 	char	*adrr;
 	char	*texture_n;
 	char	*texture_s;
@@ -59,6 +59,8 @@ typedef struct s_data
 	char	*floor_color;
 	char	*ceil_color;
 	int		bits_per_pixel;
+	int		map_height;
+	int		map_width;
 	int		line_length;
 	int		endian;
 	int		win_height;
@@ -66,5 +68,13 @@ typedef struct s_data
 	void	*mlx;
 	void	*win;
 }			t_data;
+
+/*******************************************************************************
+*                             Function Prototypes                              *
+*******************************************************************************/
+
+// parsing.c
+int		read_file(t_data *data, const char *file);
+t_data	*init_data();
 
 #endif

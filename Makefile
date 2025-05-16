@@ -7,6 +7,7 @@ NAME				=	cub3d
 HEADER				=	$(INC_DIR)cub3d.h
 CC 					= 	cc
 CFLAGS 				= 	-Wall -Wextra -Werror
+CFLAGS 				+= 	-g3
 MLX_FLAGS			=	-L$(MLX_DIR) -l:libmlx_Linux.a -lXext -lX11 -lm
 AR					=	ar rcs
 RM					=	rm -f
