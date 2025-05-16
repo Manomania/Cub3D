@@ -10,12 +10,12 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cube3d.h"
+#include "cub3d.h"
 #include <limits.h>
 
 bool	check_error(int argc, char **argv)
 {
-	const char	*ptr;
+	size_t	len;
 
 	if (argc != 2)
 	{
@@ -24,8 +24,8 @@ bool	check_error(int argc, char **argv)
 	}
 	else
 	{
-		ptr = ft_strnstr(argv[1], ".cub", INT_MAX);
-		if (!ptr || ptr[4] != '\0')
+		len = ft_strlen(argv[1]);
+		if (len < 4 || ft_strcmp(&argv[1][len - 4], ".cub") != 0)
 		{
 			ft_printf("%sError:\nInvalid extension\n%s", RED, RESET);
 			return (true);

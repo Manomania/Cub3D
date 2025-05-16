@@ -10,8 +10,8 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef CUBE3D_H
-#define CUBE3D_H
+#ifndef CUB3D_H
+#define CUB3D_H
 
 #include "libft.h"
 # include "../minilibx-linux/mlx.h"
@@ -52,15 +52,17 @@ typedef struct s_data
 {
 	char	**grid;
 	char	*adrr;
-	char	*N_texture;
-	char	*S_texture;
-	char	*W_texture;
-	char	*E_texture;
+	char	*texture_n;
+	char	*texture_s;
+	char	*texture_w;
+	char	*texture_e;
 	char	*floor_color;
 	char	*ceil_color;
 	int		bits_per_pixel;
 	int		line_length;
 	int		endian;
+	int		win_height;
+	int		win_width;
 	void	*mlx;
 	void	*win;
 }			t_data;
