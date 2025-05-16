@@ -44,6 +44,7 @@ SRC_FILES			=	ft_atoi \
 						ft_strlen \
 						ft_strmapi \
 						ft_strncmp \
+						ft_strcmp \
 						ft_strnstr \
 						ft_strrchr \
 						ft_strtrim \

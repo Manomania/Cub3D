@@ -59,6 +59,7 @@ int					ft_handle_char(int fd, const char c);
 int					ft_printmemory(int fd, unsigned long n);
 int					ft_handle_ptr(int fd, unsigned long ptr);
 int					ft_printf(const char *format, ...);
+int					ft_strcmp(const char *s1, const char *s2);
 int					ft_printf_fd(int fd, const char *format, ...);
 int					ft_putnbr_unsigned(int fd, unsigned int n);
 int					ft_puthexa(int fd, unsigned int n, int upper);
