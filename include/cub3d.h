@@ -6,12 +6,12 @@
 /*   By: elagouch <elagouch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/28 12:05:19 by maximart          #+#    #+#             */
-/*   Updated: 2025/05/16 18:37:41 by elagouch         ###   ########.fr       */
+/*   Updated: 2025/05/16 19:03:42 by elagouch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef CUB3D_H
-# define CUB3D_H
+#ifndef cub3d_H
+# define cub3d_H
 
 # include "libft.h"
 # include <math.h>
@@ -56,27 +56,32 @@ typedef enum e_key
 
 /*
 ** Raycasting implementation using DDA algorithm
-** This is the core of the 3D rendering engine for cub3D
+** This is the core of the 3D rendering engine for cub3d
 */
 
 typedef struct s_ray
 {
-	double ray_dir_x;      // X component of ray direction vector
-	double ray_dir_y;      // Y component of ray direction vector
-	int map_x;             // Current map cell X position
-	int map_y;             // Current map cell Y position
-	double side_dist_x;    // Distance to next X side
-	double side_dist_y;    // Distance to next Y side
-	double delta_dist_x;   // Distance between X sides
-	double delta_dist_y;   // Distance between Y sides
-	double perp_wall_dist; // Perpendicular wall distance
-	int step_x;            // X step direction (-1 or 1)
-	int step_y;            // Y step direction (-1 or 1)
-	int hit;               // Flag if a wall was hit
-	int side;              // Which side was hit (NS or EW)
-	int line_height;       // Height of wall line to draw
-	int draw_start;        // Start y position to draw wall
-	int draw_end;          // End y position to draw wall
+	// Components of ray direction vector
+	double		ray_dir_x;
+	double		ray_dir_y;
+	int			map_x;
+	int			map_y;
+	double		side_dist_x;
+	double		side_dist_y;
+	double		delta_dist_x;
+	double		delta_dist_y;
+	double		perp_wall_dist;
+	// Step dirs are -1 or 1
+	int			step_x;
+	int			step_y;
+	// Flag
+	bool		hit;
+	// Which side was hit
+	int			side;
+	int			line_height;
+	// Start and end Y positions
+	int			draw_start;
+	int			draw_end;
 }				t_ray;
 
 /*
@@ -85,8 +90,8 @@ typedef struct s_ray
 typedef struct s_player
 {
 	/* Position */
-	double pos_x; // Player x position on the map
-	double pos_y; // Player y position on the map
+	double		pos_x;
+	double		pos_y;
 
 	/* Direction */
 	double dir_x; // X component of direction vector (where player is looking)
@@ -139,6 +144,9 @@ typedef struct s_textures
 
 /*
 ** Image structure for MLX
+**
+** Most of the info you would stick in the data struct normally are actually
+** stored here for convenience
 */
 typedef struct s_img
 {
@@ -154,27 +162,29 @@ typedef struct s_img
 */
 typedef struct s_data
 {
+	// Whole map
 	char		**map;
-	char		*adrr;
+	// Textures
 	char		*texture_n;
 	char		*texture_s;
 	char		*texture_e;
 	char		*texture_w;
-	int			bits_per_pixel;
-	int			line_length;
-	int			endian;
-	int			map_height;
-	int			map_width;
+	// MLX stuff
+	t_img		img;
 	void		*mlx;
 	void		*win;
+	// Sizes
+	int			map_height;
+	int			map_width;
 	int			win_width;
 	int			win_height;
+	// Pointers
 	t_player	player;
 	t_textures	textures;
+	// Colors
 	// TODO: Change these to a union type
 	int			floor_color;
 	int			ceil_color;
-	t_img		img;
 }				t_data;
 
 // *************************************************************************** #

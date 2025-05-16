@@ -6,7 +6,7 @@
 /*   By: elagouch <elagouch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/09 16:06:00 by maximart          #+#    #+#             */
-/*   Updated: 2025/05/16 18:43:18 by elagouch         ###   ########.fr       */
+/*   Updated: 2025/05/16 19:03:42 by elagouch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,7 +92,7 @@ t_data	*init_data(void)
 	data->floor_color = 0x555555; // WARN !!!
 	data->ceil_color = 0xAAAAAA;  // WARN !!!
 	data->win = mlx_new_window(data->mlx, data->win_width, data->win_height,
-			"cub3D");
+			"cub3d");
 	if (!data->win)
 		return (free_data(data));
 	data->img.img = mlx_new_image(data->mlx, data->win_width, data->win_height);

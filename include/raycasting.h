@@ -6,7 +6,7 @@
 /*   By: elagouch <elagouch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/16 16:40:53 by elagouch          #+#    #+#             */
-/*   Updated: 2025/05/16 17:50:43 by elagouch         ###   ########.fr       */
+/*   Updated: 2025/05/16 19:03:42 by elagouch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,15 +45,11 @@ void	calculate_wall_distance(t_ray *ray);
 /**
  * @brief Cast a single ray for a given x coordinate on the screen
  *
+ * @param data App data
  * @param ray Ray
- * @param player Player
- * @param map Map
  * @param x X coordinte
- * @param screen_width Screen width
- * @param screen_height Screen height
  */
-void	cast_ray(t_ray *ray, t_player *player, char **map, int x,
-			int screen_width, int screen_height);
+void	cast_ray(t_data *data, t_ray *ray, int x);
 
 /**
  * @brief Initialize a ray structure for a specific screen x coordinate
@@ -74,7 +70,8 @@ void	perform_dda(t_ray *ray, char **map);
 
 /**
  * @brief Main raycasting function
- * To be called in the main loop.
+ * To be called in the main loop. Loops through each vertical stripe of the
+ * screen.
  *
  * @param data App data
  */

@@ -6,7 +6,7 @@
 /*   By: elagouch <elagouch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/16 16:31:43 by elagouch          #+#    #+#             */
-/*   Updated: 2025/05/16 18:24:57 by elagouch         ###   ########.fr       */
+/*   Updated: 2025/05/16 19:03:42 by elagouch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,6 @@ void	draw_textured_line(t_data *data, t_ray *ray, int x)
 	int				y;
 
 	int tex_x, tex_y;
-	// Determine which wall texture to use
 	texture = get_wall_texture(&data->textures, ray);
 	// Calculate where exactly the wall was hit (wall_x)
 	if (ray->side == 0)
@@ -43,7 +42,6 @@ void	draw_textured_line(t_data *data, t_ray *ray, int x)
 	// Starting texture coordinate
 	tex_pos = (ray->draw_start - data->win_height / 2 + ray->line_height / 2)
 		* step;
-	// Draw the pixels of the stripe
 	for (y = ray->draw_start; y < ray->draw_end; y++)
 	{
 		// Calculate y coordinate on the texture
@@ -55,7 +53,6 @@ void	draw_textured_line(t_data *data, t_ray *ray, int x)
 		if (ray->side == 1)
 			color = (color >> 1) & 8355711; // Darker color by bit shifting
 		// TODO: Change that /\ for union type
-		// Draw pixel to image buffer
 		my_mlx_pixel_put(&data->img, x, y, color);
 	}
 }
