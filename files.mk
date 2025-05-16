@@ -1,2 +1,1 @@
-SRC_F	=	parsing \
-			main
+SRC_F	=	main
