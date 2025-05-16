@@ -39,6 +39,8 @@ typedef struct s_format
 	char			conversion;
 }					t_format;
 
+long				ft_strtol(const char *nptr, char **endptr, int base);
+
 int					ft_putnbr(int n);
 int					ft_toupper(int c);
 int					ft_tolower(int c);
