@@ -21,6 +21,8 @@ static bool	process_line(t_data *data, char *line)
 		|| !parse_texture_path(data, line, "WE ")
 		|| !parse_texture_path(data, line, "EA "))
 		return (false);
+	if (!process_map(data, line))
+		return (false);
 	if (!parse_color_line(data, line, "F ")
 		&& !parse_color_line(data, line, "C "))
 		return (false);
@@ -44,7 +46,7 @@ static int	parse_config_file(t_data *data, int fd)
 		free(line);
 		line = get_next_line(fd);
 	}
-	printf(YELLOW"DEBUG: texture_north: %s\n"RESET, data->texture_n);
+	printf(YELLOW"\nDEBUG: texture_north: %s\n"RESET, data->texture_n);
 	printf(YELLOW"DEBUG: texture_south: %s\n"RESET, data->texture_s);
 	printf(YELLOW"DEBUG: texture_west: %s\n"RESET, data->texture_w);
 	printf(YELLOW"DEBUG: texture_east: %s\n"RESET, data->texture_e);

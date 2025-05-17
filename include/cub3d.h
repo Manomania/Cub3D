@@ -51,6 +51,8 @@ typedef enum e_key
 typedef struct s_data
 {
 	char	**map;
+	int		map_x;
+	int		map_y;
 	char	*adrr;
 	char	*texture_n;
 	char	*texture_s;
@@ -74,12 +76,15 @@ typedef struct s_data
 *******************************************************************************/
 
 // color_parser.c
-bool	parse_color_line(t_data *data, char *line, const char *identifier);
+bool	parse_color_line(t_data *data, char *line, const char *id);
 
 // file_parser.c
 int		read_file(t_data *data, const char *file);
 
 // main.c
+
+// map_parser.c
+bool	process_map(t_data	*data, char *line);
 
 // texture_parser.c
 bool	parse_texture_path(t_data *data, char *line, const char *cardinal);

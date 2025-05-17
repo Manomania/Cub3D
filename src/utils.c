@@ -54,4 +54,5 @@ void	free_ressources(t_data *data)
 	if (data->texture_e)
 		free(data->texture_e);
 	free(data);
+	exit(1);
 }

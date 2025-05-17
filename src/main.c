@@ -21,15 +21,9 @@ int	main(int argc, char **argv)
 		return (1);
 	data = init_data();
 	if (!data)
-	{
 		free_ressources(data);
-		return (1);
-	}
 	if (read_file(data, argv[1]))
-	{
 		free_ressources(data);
-		return (1);
-	}
 	free_ressources(data);
 	return (0);
 }
