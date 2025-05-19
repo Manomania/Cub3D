@@ -1,23 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_skipwhitespace.c                                :+:      :+:    :+:   */
+/*   d_shadow.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: elagouch <elagouch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/04 14:51:48 by maximart          #+#    #+#             */
-/*   Updated: 2025/05/19 19:04:38 by elagouch         ###   ########.fr       */
+/*   Created: 2025/05/19 16:13:47 by elagouch          #+#    #+#             */
+/*   Updated: 2025/05/19 18:52:34 by elagouch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/libft.h"
+#include "draw.h"
 
-char	*skipwhitespace(char *str)
+t_color	apply_shadow(t_color color, int side)
 {
-	if (!str)
-		return (NULL);
-	while (*str && (*str == ' ' || *str == '\t' || *str == '\n' || *str == '\r'
-			|| *str == '\v' || *str == '\f'))
-		str++;
-	return (str);
+	t_color	c;
+
+	c = color;
+	if (side == 1)
+	{
+		c.red /= 2;
+		c.green /= 2;
+		c.blue /= 2;
+	}
+	return (c);
 }

@@ -1,34 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   m_utils.c                                          :+:      :+:    :+:   */
+/*   r_dda.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: elagouch <elagouch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/05/16 17:59:05 by maximart          #+#    #+#             */
-/*   Updated: 2025/05/19 19:11:35 by elagouch         ###   ########.fr       */
+/*   Created: 2025/05/16 16:45:32 by elagouch          #+#    #+#             */
+/*   Updated: 2025/05/19 18:54:05 by elagouch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-bool	check_args(int argc, char **argv)
+/*
+** Memo: The first if is for E/W wall hit, and the second for N/S.
+*/
+void	perform_dda(t_ray *ray, char **map)
 {
-	size_t	len;
-
-	if (argc != 2)
+	while (ray->hit == 0)
 	{
-		ft_printf_fd(2, RED "Usage: %s <map_file>\n" RESET, argv[0]);
-		return (true);
-	}
-	else
-	{
-		len = ft_strlen(argv[1]);
-		if (len < 4 || ft_strcmp(&argv[1][len - 4], ".cub") != 0)
+		if (ray->side_dist_x < ray->side_dist_y)
 		{
-			ft_printf("%sError:\nInvalid extension\n%s", RED, RESET);
-			return (true);
+			ray->side_dist_x += ray->delta_dist_x;
+			ray->map_x += ray->step_x;
+			ray->side = 0;
 		}
+		else
+		{
+			ray->side_dist_y += ray->delta_dist_y;
+			ray->map_y += ray->step_y;
+			ray->side = 1;
+		}
+		if (map[ray->map_y][ray->map_x] == '1')
+			ray->hit = 1;
 	}
-	return (false);
 }
