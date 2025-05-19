@@ -38,6 +38,12 @@ t_data	*init_data(void)
 	t_data	*data;
 
 	data = ft_calloc(1, sizeof(t_data));
+	data->floor_color[0] = -1;
+	data->floor_color[1] = -1;
+	data->floor_color[2] = -1;
+	data->ceil_color[0] = -1;
+	data->ceil_color[1] = -1;
+	data->ceil_color[2] = -1;
 	return (data);
 }
 
@@ -54,4 +60,5 @@ void	free_ressources(t_data *data)
 	if (data->texture_e)
 		free(data->texture_e);
 	free(data);
+	exit(1);
 }

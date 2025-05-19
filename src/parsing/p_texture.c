@@ -26,13 +26,13 @@ bool	parse_texture_path(t_data *data, char *line, const char *cardinal)
 		while (*path && (*path == ' ' || *path == '\t'))
 			path++;
 		if (ft_strcmp(cardinal, "NO ") == 0)
-			data->texture_n = ft_strdup(path);
+			data->texture_n = ft_strtrim(path, "\n");
 		else if (ft_strcmp(cardinal, "SO ") == 0)
-			data->texture_s = ft_strdup(path);
+			data->texture_s = ft_strtrim(path, "\n");
 		else if (ft_strcmp(cardinal, "WE ") == 0)
-			data->texture_w = ft_strdup(path);
+			data->texture_w = ft_strtrim(path, "\n");
 		else if (ft_strcmp(cardinal, "EA ") == 0)
-			data->texture_e = ft_strdup(path);
+			data->texture_e = ft_strtrim(path, "\n");
 		return (false);
 	}
 	return (true);
