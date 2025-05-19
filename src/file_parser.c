@@ -21,7 +21,7 @@ static bool	process_line(t_data *data, char *line)
 		|| !parse_texture_path(data, line, "WE ")
 		|| !parse_texture_path(data, line, "EA "))
 		return (false);
-	if (!process_map(data, line))
+	if (!process_map_dimension(data, line))
 		return (false);
 	if (!parse_color_line(data, line, "F ")
 		&& !parse_color_line(data, line, "C "))
@@ -43,6 +43,16 @@ static int	parse_config_file(t_data *data, int fd)
 			free(line);
 			return (1);
 		}
+		if (process_map_dimension(data, line))
+		{
+			free(line);
+			return (1);
+		}
+		// if (process_fill_map(data, line))
+		// {
+		// 	free(line);
+		// 	return (1);
+		// }
 		free(line);
 		line = get_next_line(fd);
 	}
@@ -56,6 +66,8 @@ static int	parse_config_file(t_data *data, int fd)
 	printf(YELLOW"DEBUG: C color[r]: %d\n"RESET, data->ceil_color[0]);
 	printf(YELLOW"DEBUG: C color[g]: %d\n"RESET, data->ceil_color[1]);
 	printf(YELLOW"DEBUG: C color[b]: %d\n"RESET, data->ceil_color[2]);
+	printf(YELLOW"DEBUG: HEIGHT: %d\n"RESET, data->map_width);
+	printf(YELLOW"DEBUG: WIDTH: %d\n"RESET, data->map_height);
 	return (0);
 }
 

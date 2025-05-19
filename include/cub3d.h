@@ -84,7 +84,7 @@ int		read_file(t_data *data, const char *file);
 // main.c
 
 // map_parser.c
-bool	process_map(t_data	*data, char *line);
+bool	process_map_dimension(t_data	*data, char *line);
 
 // texture_parser.c
 bool	parse_texture_path(t_data *data, char *line, const char *cardinal);
