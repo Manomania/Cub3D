@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   texture.c                                          :+:      :+:    :+:   */
+/*   t_texture.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: elagouch <elagouch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/16 15:20:52 by elagouch          #+#    #+#             */
-/*   Updated: 2025/05/16 19:29:38 by elagouch         ###   ########.fr       */
+/*   Updated: 2025/05/19 16:15:53 by elagouch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 #include "mlx.h"
 #include "texture.h"
 
-bool	load_textures_ns(t_textures *textures, void *mlx_ptr, char *north_path,
-		char *south_path)
+static bool	load_textures_ns(t_textures *textures, void *mlx_ptr,
+		char *north_path, char *south_path)
 {
 	textures->north.img = mlx_xpm_file_to_image(mlx_ptr, north_path,
 			&textures->north.width, &textures->north.height);
@@ -31,14 +31,12 @@ bool	load_textures_ns(t_textures *textures, void *mlx_ptr, char *north_path,
 	textures->south.addr = mlx_get_data_addr(textures->south.img,
 			&textures->south.bits_per_pixel, &textures->south.line_length,
 			&textures->south.endian);
+	return (true);
 }
 
-bool	load_textures(t_textures *textures, void *mlx_ptr, char *north_path,
-		char *south_path, char *east_path, char *west_path)
+static bool	load_textures_ew(t_textures *textures, void *mlx_ptr,
+		char *east_path, char *west_path)
 {
-	if (!load_textures_ns(textures, mlx_ptr, north_path, south_path))
-		retuen(false);
-	// Load east texture
 	textures->east.img = mlx_xpm_file_to_image(mlx_ptr, east_path,
 			&textures->east.width, &textures->east.height);
 	if (!textures->east.img)
@@ -46,7 +44,6 @@ bool	load_textures(t_textures *textures, void *mlx_ptr, char *north_path,
 	textures->east.addr = mlx_get_data_addr(textures->east.img,
 			&textures->east.bits_per_pixel, &textures->east.line_length,
 			&textures->east.endian);
-	// Load west texture
 	textures->west.img = mlx_xpm_file_to_image(mlx_ptr, west_path,
 			&textures->west.width, &textures->west.height);
 	if (!textures->west.img)
@@ -54,6 +51,20 @@ bool	load_textures(t_textures *textures, void *mlx_ptr, char *north_path,
 	textures->west.addr = mlx_get_data_addr(textures->west.img,
 			&textures->west.bits_per_pixel, &textures->west.line_length,
 			&textures->west.endian);
+	return (true);
+}
+
+/*
+** Values in `paths` are stored in the crescent order of azimuth (or clockwise
+** hortizontal angle), meaing N, E, S, W.
+** See the function prototype in the header file.
+*/
+bool	load_textures(t_textures *textures, void *mlx_ptr, char *paths[4])
+{
+	if (!load_textures_ns(textures, mlx_ptr, paths[0], paths[2]))
+		return (false);
+	if (!load_textures_ew(textures, mlx_ptr, paths[1], paths[3]))
+		return (false);
 	return (true);
 }
 
@@ -68,23 +79,17 @@ unsigned int	get_pixel_color(t_texture *texture, int x, int y)
 
 t_texture	*get_wall_texture(t_textures *textures, t_ray *ray)
 {
-	// If ray hit a north or south facing wall
-	if (ray->side == 1)
+	if (ray->side == SIDE_NORTH_SHOUTH)
 	{
-		// North-facing wall (ray direction is negative y)
 		if (ray->ray_dir_y < 0)
 			return (&textures->north);
-		// South-facing wall (ray direction is positive y)
 		else
 			return (&textures->south);
 	}
-	// If ray hit an east or west facing wall
 	else
 	{
-		// West-facing wall (ray direction is negative x)
 		if (ray->ray_dir_x < 0)
 			return (&textures->west);
-		// East-facing wall (ray direction is positive x)
 		else
 			return (&textures->east);
 	}

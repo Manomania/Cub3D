@@ -6,7 +6,7 @@
 /*   By: elagouch <elagouch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/16 18:36:18 by elagouch          #+#    #+#             */
-/*   Updated: 2025/05/16 19:03:42 by elagouch         ###   ########.fr       */
+/*   Updated: 2025/05/18 11:54:38 by elagouch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@
  * @note There are no checks for empty data struct, so passing a NULL *will*
  *       segfault.
  */
-void			init_player(t_data *data);
+void	init_player(t_data *data);
 
 /**
  * @brief Move the player
@@ -31,6 +31,9 @@ void			init_player(t_data *data);
  *
  * @param player Player
  * @param map Map
+ *
+ * @see Comments in `player_move.c`, they give context for the collision
+ *      detection system.
  */
 void	move_player(t_player *player, char **map);
 

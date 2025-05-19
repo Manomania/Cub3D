@@ -6,7 +6,7 @@
 /*   By: elagouch <elagouch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/16 15:22:00 by elagouch          #+#    #+#             */
-/*   Updated: 2025/05/16 19:03:42 by elagouch         ###   ########.fr       */
+/*   Updated: 2025/05/18 11:48:29 by elagouch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,12 +20,14 @@
 // *************************************************************************** #
 
 /**
- * @brief Get RGB color from image data at specific position
+ * @brief Get RGB color from image data at a specific screen position
  *
  * @param texture Pointer to texture struct
- * @param x X coordinate
- * @param y Y coordinate
+ * @param x X screen coordinate
+ * @param y Y screen coordinate
  * @return unsigned int Pixel color
+ *
+ * @todo Change this to allow for uniontype color
  */
 unsigned int	get_pixel_color(t_texture *texture, int x, int y);
 
@@ -39,18 +41,18 @@ unsigned int	get_pixel_color(t_texture *texture, int x, int y);
 t_texture		*get_wall_texture(t_textures *textures, t_ray *ray);
 
 /**
- * @brief Load textures from XPM files
+ * @brief Load textures needed for cub3d from XPM texture files paths
  *
  * @param textures Pointer to textures struct
  * @param mlx_ptr Pointer to MLX struct
- * @param north_path Path to northern texture
- * @param south_path Path to southern texture
- * @param east_path Path to eastern texture
- * @param west_path Path to western texture
+ * @param paths Each path to each cardinal direction texture
  * @return bool Whether the function succeeded or not
+ *
+ * @note Values in `paths` are stored in the crescent order of azimuth (or
+ *       clockwise hortizontal angle), meaing N, E, S, W.
+ * @see https://en.wikipedia.org/wiki/Cardinal_direction
  */
 bool			load_textures(t_textures *textures, void *mlx_ptr,
-					char *north_path, char *south_path, char *east_path,
-					char *west_path);
+					char *paths[4]);
 
 #endif

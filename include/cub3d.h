@@ -6,12 +6,12 @@
 /*   By: elagouch <elagouch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/28 12:05:19 by maximart          #+#    #+#             */
-/*   Updated: 2025/05/16 19:03:42 by elagouch         ###   ########.fr       */
+/*   Updated: 2025/05/19 16:39:41 by elagouch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef cub3d_H
-# define cub3d_H
+#ifndef CUB3D_H
+# define CUB3D_H
 
 # include "libft.h"
 # include <math.h>
@@ -49,6 +49,12 @@ typedef enum e_keyboard
 	D = 97,
 }				t_keyboard;
 
+typedef enum e_hit_sides
+{
+	SIDE_NORTH_SHOUTH = 1,
+	SIDE_EAST_WEST = 0,
+}				t_hit_sides;
+
 typedef enum e_key
 {
 	ON_DESTROY = 17,
@@ -77,11 +83,13 @@ typedef struct s_ray
 	// Flag
 	bool		hit;
 	// Which side was hit
-	int			side;
+	t_hit_sides	side;
 	int			line_height;
 	// Start and end Y positions
 	int			draw_start;
 	int			draw_end;
+	/* Texture width */
+	int			tex_x;
 }				t_ray;
 
 /*
@@ -94,27 +102,31 @@ typedef struct s_player
 	double		pos_y;
 
 	/* Direction */
-	double dir_x; // X component of direction vector (where player is looking)
-	double dir_y; // Y component of direction vector
+	/* Components of direction vector (where player is looking) */
+	double		dir_x;
+	double		dir_y;
 
 	/* Camera plane */
-	double plane_x; // X component of camera plane (perpendicular to direction)
-	double plane_y; // Y component of camera plane
+	/* Components of camera plane (perpendicular to direction) */
+	double		plane_x;
+	double		plane_y;
 
 	/* Movement */
-	double move_speed; // Movement speed (can be adjusted for frame time)
-	double rot_speed;  // Rotation speed (can be adjusted for frame time)
+	double		move_speed;
+	double		rot_speed;
 
 	/* Controls state */
-	int move_forward;  // Flag for moving forward (W key)
-	int move_backward; // Flag for moving backward (S key)
-	int move_left;     // Flag for moving left (A key)
-	int move_right;    // Flag for moving right (D key)
-	int rotate_left;   // Flag for rotating left (left arrow)
-	int rotate_right;  // Flag for rotating right (right arrow)
+	/* Those are all on/off flags */
+	bool		move_forward;
+	bool		move_backward;
+	bool		move_left;
+	bool		move_right;
+	bool		rotate_left;
+	bool		rotate_right;
 
 	/* Screen properties */
-	double cam_height; // Camera height (usually screen_height/2)
+	/* Camera height (usually screen_height/2) */
+	double		cam_height;
 }				t_player;
 
 /*
@@ -122,13 +134,16 @@ typedef struct s_player
 */
 typedef struct s_texture
 {
-	void *img;          // MLX image pointer
-	char *addr;         // Image data address
-	int width;          // Texture width
-	int height;         // Texture height
-	int bits_per_pixel; // Bits per pixel
-	int line_length;    // Line length
-	int endian;         // Endian format
+	/* MLX inage */
+	void		*img;
+	/* Texture data */
+	char		*addr;
+	int			width;
+	int			height;
+	/* Other MLX info */
+	int			bits_per_pixel;
+	int			line_length;
+	int			endian;
 }				t_texture;
 
 /*
@@ -186,16 +201,5 @@ typedef struct s_data
 	int			floor_color;
 	int			ceil_color;
 }				t_data;
-
-// *************************************************************************** #
-//                            Function Prototypes                              #
-// *************************************************************************** #
-
-/**
- * @brief Renders a frame. Duh.
- *
- * @param data App data
- */
-void			render_frame(t_data *data);
 
 #endif
