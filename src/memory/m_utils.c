@@ -1,27 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   d_shadow.c                                         :+:      :+:    :+:   */
+/*   m_utils.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: elagouch <elagouch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/05/19 16:13:47 by elagouch          #+#    #+#             */
-/*   Updated: 2025/05/19 18:52:34 by elagouch         ###   ########.fr       */
+/*   Created: 2025/05/16 17:59:05 by maximart          #+#    #+#             */
+/*   Updated: 2025/05/19 18:28:58 by elagouch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "draw.h"
+#include "cub3d.h"
 
-t_color	apply_shadow(t_color color, int side)
+bool	check_args(int argc, char **argv)
 {
-	t_color	c;
+	size_t	len;
 
-	c = color;
-	if (side == 1)
+	if (argc != 2)
 	{
-		c.red /= 2;
-		c.green /= 2;
-		c.blue /= 2;
+		ft_printf_fd(2, RED "Usage: %s <map_file>\n" RESET, argv[0]);
+		return (true);
 	}
-	return (c);
+	else
+	{
+		len = ft_strlen(argv[1]);
+		if (len < 4 || ft_strcmp(&argv[1][len - 4], ".cub") != 0)
+		{
+			ft_printf("%sError:\nInvalid extension\n%s", RED, RESET);
+			return (true);
+		}
+	}
+	return (false);
 }

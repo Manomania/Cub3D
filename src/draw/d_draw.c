@@ -6,7 +6,7 @@
 /*   By: elagouch <elagouch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/16 16:31:43 by elagouch          #+#    #+#             */
-/*   Updated: 2025/05/19 16:40:41 by elagouch         ###   ########.fr       */
+/*   Updated: 2025/05/19 18:50:19 by elagouch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,11 +17,11 @@
 static void	draw_line_pixels(t_data *data, t_ray *ray, t_texture *texture,
 		int x)
 {
-	double			step;
-	double			tex_pos;
-	unsigned int	color;
-	int				y;
-	int				tex_y;
+	double	step;
+	double	tex_pos;
+	t_color	color;
+	int		y;
+	int		tex_y;
 
 	step = 1.0 * texture->height / ray->line_height;
 	tex_pos = (ray->draw_start - data->win_height / 2 + ray->line_height / 2)
@@ -49,7 +49,7 @@ void	draw_textured_line(t_data *data, t_ray *ray, int x)
 	draw_line_pixels(data, ray, texture, x);
 }
 
-void	draw_ceiling(t_data *data, int x, int start_y, int ceil_color)
+void	draw_ceiling(t_data *data, int x, int start_y, t_color ceil_color)
 {
 	int	y;
 
@@ -58,7 +58,7 @@ void	draw_ceiling(t_data *data, int x, int start_y, int ceil_color)
 		my_mlx_pixel_put(&data->img, x, y, ceil_color);
 }
 
-void	draw_floor(t_data *data, int x, int end_y, int floor_color)
+void	draw_floor(t_data *data, int x, int end_y, t_color floor_color)
 {
 	int	y;
 
@@ -67,10 +67,10 @@ void	draw_floor(t_data *data, int x, int end_y, int floor_color)
 		my_mlx_pixel_put(&data->img, x, y, floor_color);
 }
 
-void	my_mlx_pixel_put(t_img *img, int x, int y, unsigned int color)
+void	my_mlx_pixel_put(t_img *img, int x, int y, t_color color)
 {
 	char	*dst;
 
 	dst = img->addr + (y * img->line_length + x * (img->bits_per_pixel / 8));
-	*(unsigned int *)dst = color;
+	*(unsigned int *)dst = color.val;
 }

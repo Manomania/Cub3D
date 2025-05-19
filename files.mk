@@ -4,8 +4,12 @@ SRC_F	=	3_main				\
 			draw/d_draw			\
 			draw/d_render		\
 			draw/d_shadow		\
-			m_free				\
-			p_parsing			\
+			memory/m_free		\
+			memory/m_utils		\
+			parsing/p_color		\
+			parsing/p_file		\
+			parsing/p_map		\
+			parsing/p_texture	\
 			player/l_init		\
 			player/l_move		\
 			raycasting/r_dda	\

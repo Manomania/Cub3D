@@ -6,7 +6,7 @@
 /*   By: elagouch <elagouch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/09 16:06:00 by maximart          #+#    #+#             */
-/*   Updated: 2025/05/19 16:10:33 by elagouch         ###   ########.fr       */
+/*   Updated: 2025/05/19 18:44:58 by elagouch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,8 +46,8 @@ static void	this_will_be_removed_eventually(t_data *data)
 	data->win_height = WIN_H;
 	data->map_width = MAP_W;
 	data->map_height = MAP_H;
-	data->floor_color = 0x555555;
-	data->ceil_color = 0xAAAAAA;
+	data->floor_color.val = 0x555555;
+	data->ceil_color.val = 0xAAAAAA;
 }
 
 t_data	*init_data(void)

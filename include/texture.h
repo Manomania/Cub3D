@@ -6,7 +6,7 @@
 /*   By: elagouch <elagouch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/16 15:22:00 by elagouch          #+#    #+#             */
-/*   Updated: 2025/05/18 11:48:29 by elagouch         ###   ########.fr       */
+/*   Updated: 2025/05/19 18:48:30 by elagouch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,11 +25,11 @@
  * @param texture Pointer to texture struct
  * @param x X screen coordinate
  * @param y Y screen coordinate
- * @return unsigned int Pixel color
+ * @return t_color Pixel color
  *
  * @todo Change this to allow for uniontype color
  */
-unsigned int	get_pixel_color(t_texture *texture, int x, int y);
+t_color		get_pixel_color(t_texture *texture, int x, int y);
 
 /**
  * @brief Determine which texture to use based on wall orientation
@@ -38,7 +38,7 @@ unsigned int	get_pixel_color(t_texture *texture, int x, int y);
  * @param ray Pointer to ray
  * @return t_texture* Pointer to a newly initialized texture object
  */
-t_texture		*get_wall_texture(t_textures *textures, t_ray *ray);
+t_texture	*get_wall_texture(t_textures *textures, t_ray *ray);
 
 /**
  * @brief Load textures needed for cub3d from XPM texture files paths
@@ -52,7 +52,6 @@ t_texture		*get_wall_texture(t_textures *textures, t_ray *ray);
  *       clockwise hortizontal angle), meaing N, E, S, W.
  * @see https://en.wikipedia.org/wiki/Cardinal_direction
  */
-bool			load_textures(t_textures *textures, void *mlx_ptr,
-					char *paths[4]);
+bool		load_textures(t_textures *textures, void *mlx_ptr, char *paths[4]);
 
 #endif

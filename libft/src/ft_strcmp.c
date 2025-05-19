@@ -1,27 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   d_shadow.c                                         :+:      :+:    :+:   */
+/*   ft_strncmp.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: elagouch <elagouch@student.42.fr>          +#+  +:+       +#+        */
+/*   By: maximart <maximart@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/05/19 16:13:47 by elagouch          #+#    #+#             */
-/*   Updated: 2025/05/19 18:52:34 by elagouch         ###   ########.fr       */
+/*   Created: 2024/11/04 14:51:48 by maximart          #+#    #+#             */
+/*   Updated: 2024/11/04 13:43:35 by maximart         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "draw.h"
+#include "../include/libft.h"
 
-t_color	apply_shadow(t_color color, int side)
+int	ft_strcmp(const char *s1, const char *s2)
 {
-	t_color	c;
+	size_t	i;
 
-	c = color;
-	if (side == 1)
+	i = 0;
+	while (s1[i] || s2[i])
 	{
-		c.red /= 2;
-		c.green /= 2;
-		c.blue /= 2;
+		if ((unsigned char)s1[i] != (unsigned char)s2[i])
+			return ((unsigned char)s1[i] - (unsigned char)s2[i]);
+		i++;
 	}
-	return (c);
+	return (0);
 }

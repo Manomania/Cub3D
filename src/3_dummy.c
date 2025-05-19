@@ -6,7 +6,7 @@
 /*   By: elagouch <elagouch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/16 18:22:49 by elagouch          #+#    #+#             */
-/*   Updated: 2025/05/19 16:10:29 by elagouch         ###   ########.fr       */
+/*   Updated: 2025/05/19 18:41:43 by elagouch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -167,8 +167,5 @@ int	generate_dummy_map(t_data *data)
 	// Set map dimensions
 	data->map_height = map_height;
 	data->map_width = ft_strlen(dummy_map[0]);
-	// Set floor and ceiling colors
-	data->floor_color = 0x555555; // Gray
-	data->ceil_color = 0xAAAAAA;  // Light gray
 	return (1);
 }

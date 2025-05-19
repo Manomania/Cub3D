@@ -1,13 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   p_parsing.c                                        :+:      :+:    :+:   */
+/*   ft_skipwhitespace.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: elagouch <elagouch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/05/09 16:05:54 by maximart          #+#    #+#             */
-/*   Updated: 2025/05/19 16:11:31 by elagouch         ###   ########.fr       */
+/*   Created: 2024/11/04 14:51:48 by maximart          #+#    #+#             */
+/*   Updated: 2025/05/19 18:15:06 by elagouch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
+#include "../include/libft.h"
+
+char	*skipwhitespace(char *str)
+{
+	if (!str)
+		return (NULL);
+	while (*str && (*str == ' ' || *str == '\t' || *str == '\n' || *str == '\r'
+			|| *str == '\v' || *str == '\f'))
+		str++;
+	return (str);
+}
