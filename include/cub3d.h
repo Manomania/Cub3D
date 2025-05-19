@@ -6,7 +6,7 @@
 /*   By: elagouch <elagouch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/28 12:05:19 by maximart          #+#    #+#             */
-/*   Updated: 2025/05/19 18:44:38 by elagouch         ###   ########.fr       */
+/*   Updated: 2025/05/19 18:59:34 by elagouch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -171,6 +171,8 @@ typedef struct s_img
 
 /*
 ** Union type for easily manipulating color
+** This is way more convenient than an unsigned integer.
+** Also we're using uint8_t because we need a type of 8 bytes long of
 */
 typedef union u_color
 {
