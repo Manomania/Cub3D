@@ -6,7 +6,7 @@
 /*   By: elagouch <elagouch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/09 16:06:00 by maximart          #+#    #+#             */
-/*   Updated: 2025/05/19 19:05:40 by elagouch         ###   ########.fr       */
+/*   Updated: 2025/05/19 19:31:39 by elagouch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 #include "draw.h"
 #include "mem.h"
 #include "mlx.h"
+#include "parsing.h"
 #include "player.h"
 #include <limits.h>
 
@@ -68,46 +69,24 @@ t_data	*init_data(void)
 	data->img.img = mlx_new_image(data->mlx, data->win_width, data->win_height);
 	data->img.addr = mlx_get_data_addr(data->img.img, &data->img.bits_per_pixel,
 			&data->img.line_length, &data->img.endian);
-	generate_dummy_map(data);
-	if (!data->map)
-		return (free_data(data));
 	generate_dummy_textures(data);
-	display_map(data);
 	return (data);
-}
-
-bool	check_error(int argc, char **argv)
-{
-	const char	*ptr;
-
-	if (argc != 2)
-	{
-		ft_printf_fd(2, RED "Usage: %s <map_file>\n" RESET, argv[0]);
-		return (true);
-	}
-	else
-	{
-		ptr = ft_strnstr(argv[1], ".cub", INT_MAX);
-		if (!ptr || ptr[4] != '\0')
-		{
-			ft_printf("%sError:\nInvalid extension\n%s", RED, RESET);
-			return (true);
-		}
-	}
-	return (false);
 }
 
 int	main(int argc, char **argv)
 {
 	t_data	*data;
 
-	if (check_error(argc, argv))
-		return (1);
+	if (check_args(argc, argv))
+		return (STDERR_FILENO);
 	data = init_data();
+	generate_dummy_map(data);
+	// if (read_file(data, argv[1]))
+	// 	free_data(data);
+	display_map(data);
 	init_player(data);
 	mlx_loop_hook(data->mlx, (int (*)())render_frame, data);
 	mlx_loop(data->mlx);
 	data = free_data(data);
-	ft_printf("########################### END! ###########################\n");
 	return (0);
 }
