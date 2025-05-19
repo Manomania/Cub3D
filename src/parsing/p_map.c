@@ -12,11 +12,12 @@
 
 #include "cub3d.h"
 
-void	get_dimension(t_data *data, char *line, bool is_map_line, char *og_tmp)
+static void	get_dimension(t_data *data, char *line, bool is_line, char *og_tmp)
 {
-	int	len = 0;
+	int	len;
 
-	if (is_map_line)
+	len = 0;
+	if (is_line)
 	{
 		len = (int)ft_strlen(line);
 		if (len > data->map_width)
@@ -26,12 +27,13 @@ void	get_dimension(t_data *data, char *line, bool is_map_line, char *og_tmp)
 	free(og_tmp);
 }
 
-bool process_map_dimension(t_data *data, char *line)
+bool	process_map_dimension(t_data *data, char *line)
 {
 	char	*tmp;
 	char	*original_tmp;
-	bool	is_map_line = true;
+	bool	is_map_line;
 
+	is_map_line = true;
 	if (line[0] == '\0')
 		return (false);
 	original_tmp = ft_strtrim(line, "\n");

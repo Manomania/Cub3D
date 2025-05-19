@@ -1,4 +1,4 @@
-SRC_F	=	main \
+SRC_F	=	3_main \
 			memory/m_utils \
 			parsing/p_color \
 			parsing/p_file \

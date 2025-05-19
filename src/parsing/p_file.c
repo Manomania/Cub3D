@@ -12,7 +12,7 @@
 
 #include "cub3d.h"
 
-static bool process_line(t_data *data, char *line)
+static bool	process_line(t_data *data, char *line)
 {
 	if (line[0] == '\0')
 		return (false);
@@ -28,6 +28,8 @@ static bool process_line(t_data *data, char *line)
 		return (true);
 	if (!parse_color_line(data, line, "C "))
 		return (true);
+	if (!process_map_dimension(data, line))
+		return (true);
 	return (false);
 }
 
@@ -40,17 +42,11 @@ static bool	parse_config_file(t_data *data, int fd)
 		return (true);
 	while (line)
 	{
-		if (process_map_dimension(data, line))
-		{
-			free(line);
-			line = get_next_line(fd);
-			continue;
-		}
 		if (process_line(data, line))
 		{
 			free(line);
 			line = get_next_line(fd);
-			continue;
+			continue ;
 		}
 		free(line);
 		line = get_next_line(fd);
