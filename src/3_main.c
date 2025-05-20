@@ -6,12 +6,11 @@
 /*   By: elagouch <elagouch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/09 16:06:00 by maximart          #+#    #+#             */
-/*   Updated: 2025/05/19 19:31:39 by elagouch         ###   ########.fr       */
+/*   Updated: 2025/05/20 18:09:40 by elagouch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
-#include "draw.h"
 #include "mem.h"
 #include "mlx.h"
 #include "parsing.h"
@@ -85,7 +84,7 @@ int	main(int argc, char **argv)
 	// 	free_data(data);
 	display_map(data);
 	init_player(data);
-	mlx_loop_hook(data->mlx, (int (*)())render_frame, data);
+	setup_mlx_hooks(data);
 	mlx_loop(data->mlx);
 	data = free_data(data);
 	return (0);

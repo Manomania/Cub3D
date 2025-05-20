@@ -11,6 +11,7 @@ SRC_F	=	3_main				\
 			parsing/p_map		\
 			parsing/p_texture	\
 			player/l_init		\
+			player/l_mlx		\
 			player/l_move		\
 			raycasting/r_dda	\
 			raycasting/r_init	\
