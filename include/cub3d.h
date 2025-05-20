@@ -75,27 +75,27 @@ typedef struct s_data
 *                             Function Prototypes                              *
 *******************************************************************************/
 
-// color_parser.c
+// m_utils.c
+bool	check_args(int argc, char **argv);
+t_data	*init_data(void);
+bool	init_map_array(t_data *data);
+void	free_ressources(t_data *data);
+void	free_map(t_data *data);
+
+// p_color.c
 bool	parse_color_line(t_data *data, char *line, const char *id);
 
-// file_parser.c
+// p_file.c
 int		read_file(t_data *data, const char *file);
+
+// p_map.c
+bool	process_map_dimension(t_data *data, char *line);
+bool	fill_map(t_data *data, int fd);
+
+// p_texture.c
+bool	parse_texture_path(t_data *data, char *line, const char *cardinal);
 
 // main.c
 
-// map_parser.c
-bool	process_map_dimension(t_data	*data, char *line);
-bool	fill_map(t_data *data, int fd);
-
-// texture_parser.c
-bool	parse_texture_path(t_data *data, char *line, const char *cardinal);
-
-// utils.c
-bool	check_args(int argc, char **argv);
-t_data	*init_data(void);
-void	free_ressources(t_data *data);
-
-
-void	free_map(t_data *data);
 
 #endif

@@ -12,13 +12,11 @@
 
 #include "cub3d.h"
 
-static bool is_map_line_valid(char *line)
+static bool	is_map_line_valid(char *line)
 {
 	char	*tmp;
 	char	*original_tmp;
-	bool	is_map_line;
 
-	is_map_line = true;
 	if (!line || line[0] == '\0')
 		return (false);
 	original_tmp = ft_strtrim(line, "\n");
@@ -33,7 +31,10 @@ static bool is_map_line_valid(char *line)
 	while (*tmp)
 	{
 		if (!ft_strchr("01 \tNSEW", *tmp))
+		{
+			free(original_tmp);
 			return (true);
+		}
 		tmp++;
 	}
 	free(original_tmp);
@@ -83,15 +84,12 @@ bool	process_map_dimension(t_data *data, char *line)
 	return (false);
 }
 
-bool fill_map(t_data *data, int fd)
+static bool	read_map_content(t_data *data, int fd)
 {
 	char	*line;
 	int		i;
 
 	i = 0;
-	data->map = ft_calloc(1, sizeof(char *) * data->map_height + 1);
-	if (!data->map)
-		return (true);
 	line = get_next_line(fd);
 	if (!line)
 		return (true);
@@ -111,5 +109,14 @@ bool fill_map(t_data *data, int fd)
 		line = get_next_line(fd);
 	}
 	data->map[i] = NULL;
+	return (false);
+}
+
+bool	fill_map(t_data *data, int fd)
+{
+	if (init_map_array(data))
+		return (true);
+	if (read_map_content(data, fd))
+		return (true);
 	return (false);
 }

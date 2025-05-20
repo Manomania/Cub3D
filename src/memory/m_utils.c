@@ -47,10 +47,20 @@ t_data	*init_data(void)
 	return (data);
 }
 
+bool	init_map_array(t_data *data)
+{
+	data->map = ft_calloc(data->map_height + 1,
+			sizeof(char *) * data->map_height + 1);
+	if (!data->map)
+		return (true);
+	return (false);
+}
+
 void	free_ressources(t_data *data)
 {
 	if (!data)
 		return ;
+	free_map(data);
 	if (data->texture_n)
 		free(data->texture_n);
 	if (data->texture_s)
@@ -65,10 +75,10 @@ void	free_ressources(t_data *data)
 
 void	free_map(t_data *data)
 {
-	int i;
+	int	i;
 
 	if (!data->map)
-		return;
+		return ;
 	i = 0;
 	while (data->map[i])
 	{
