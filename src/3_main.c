@@ -27,12 +27,14 @@ static bool check_data(t_data *data)
 		return (true);
 	if (data->ceil_color[1] < 0 || data->ceil_color[1] > 255)
 		return (true);
+	if (data->map_height <= 0 || data->map_width <= 0)
+		return (true);
 	return (false);
 }
 
 int	main(int argc, char **argv)
 {
-	t_data	*data;
+	t_data	*data = NULL;
 
 	if (check_args(argc, argv))
 		return (1);
@@ -57,7 +59,13 @@ int	main(int argc, char **argv)
 		printf(RED"DEBUG: WIDTH: %d\n"RESET, data->map_width);
 		free_ressources(data);
 	}
-	printf(YELLOW"DEBUG: texture_north: %s\n"RESET, data->texture_n);
+	int i = 0;
+	while (i < data->map_height)
+	{
+		printf(YELLOW"DEBUG: map: %s"RESET, data->map[i]);
+		i++;
+	}
+	printf(YELLOW"\nDEBUG: texture_north: %s\n"RESET, data->texture_n);
 	printf(YELLOW"DEBUG: texture_south: %s\n"RESET, data->texture_s);
 	printf(YELLOW"DEBUG: texture_west: %s\n"RESET, data->texture_w);
 	printf(YELLOW"DEBUG: texture_east: %s\n"RESET, data->texture_e);
