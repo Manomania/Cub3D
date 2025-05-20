@@ -70,5 +70,17 @@ int	read_file(t_data *data, const char *file)
 		return (1);
 	}
 	close(fd);
+	fd = open(file, O_RDONLY);
+	if (fd < 0)
+	{
+		close(fd);
+		return (1);
+	}
+	if (fill_map(data, fd))
+	{
+		close(fd);
+		return (1);
+	}
+	close(fd);
 	return (0);
 }
