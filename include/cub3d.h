@@ -6,7 +6,7 @@
 /*   By: elagouch <elagouch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/28 12:05:19 by maximart          #+#    #+#             */
-/*   Updated: 2025/05/20 18:21:25 by elagouch         ###   ########.fr       */
+/*   Updated: 2025/05/20 19:31:37 by elagouch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@
 # include <stdbool.h>
 # include <stdio.h>
 # include <stdlib.h>
+# include <sys/time.h>
 
 /*******************************************************************************
  *                                    Macros                                   *
@@ -30,11 +31,18 @@
 # define YELLOW "\033[093m"
 # define CYAN "\033[36m"
 
+// TODO: Destroy
 # define MAP_W 24
 # define MAP_H 17
 
 # define WIN_H 600
 # define WIN_W 800
+
+# define FPS_COUNTER_TEXT_HEIGHT 20
+# define FPS_COUNTER_TEXT_WIDTH 80
+
+# define BASE_MOVE_SPEED 5.0
+# define BASE_ROT_SPEED 3.0
 
 /*******************************************************************************
  *                                  Structures                                 *
@@ -203,6 +211,15 @@ typedef struct s_data
 	// Colors
 	t_color			floor_color;
 	t_color			ceil_color;
+	// Frame timing
+	struct timeval	last_frame;
+	struct timeval	current_frame;
+	double			delta_time;
+	double			fps;
+	int				frame_count;
+	double			fps_timer;
+	double			target_fps;
+	double			time_accumulator;
 }					t_data;
 
 /*******************************************************************************

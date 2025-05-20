@@ -2,6 +2,7 @@ SRC_F	=	3_main				\
 			3_dummy				\
 			draw/d_math			\
 			draw/d_draw			\
+			draw/d_fps			\
 			draw/d_render		\
 			draw/d_shadow		\
 			memory/m_free		\

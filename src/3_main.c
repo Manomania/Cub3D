@@ -6,7 +6,7 @@
 /*   By: elagouch <elagouch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/09 16:06:00 by maximart          #+#    #+#             */
-/*   Updated: 2025/05/20 18:09:40 by elagouch         ###   ########.fr       */
+/*   Updated: 2025/05/20 19:17:06 by elagouch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,18 @@
 
 int			generate_dummy_textures(t_data *data);
 int			generate_dummy_map(t_data *data);
+
+/*
+** Initialize frame timing variables
+*/
+static void	init_fps(t_data *data)
+{
+	gettimeofday(&data->last_frame, NULL);
+	data->fps = 0.0;
+	data->frame_count = 0;
+	data->fps_timer = 0.0;
+	data->target_fps = 60.0;
+}
 
 void	display_map(t_data *data)
 {
@@ -69,6 +81,7 @@ t_data	*init_data(void)
 	data->img.addr = mlx_get_data_addr(data->img.img, &data->img.bits_per_pixel,
 			&data->img.line_length, &data->img.endian);
 	generate_dummy_textures(data);
+	init_fps(data);
 	return (data);
 }
 
