@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   color_parser.c                                     :+:      :+:    :+:   */
+/*   p_color.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: maximart <maximart@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: elagouch <elagouch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/16 21:46:59 by maximart          #+#    #+#             */
-/*   Updated: 2025/05/16 21:46:59 by maximart         ###   ########.fr       */
+/*   Updated: 2025/05/19 19:12:04 by elagouch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../include/cub3d.h"
+#include "parsing.h"
 
 static bool	check_color_line(char *color)
 {
@@ -25,7 +25,8 @@ static bool	check_color_line(char *color)
 			count_comma++;
 		if ((!ft_isdigit(*check) && *check != ',' && *check != '\n'))
 		{
-			printf(RED"Error: Invalid character in color: '%c'\n"RESET, *check);
+			printf(RED "Error: Invalid character in color: '%c'\n" RESET,
+				*check);
 			return (true);
 		}
 		check++;
@@ -37,51 +38,37 @@ static bool	check_color_line(char *color)
 
 static bool	get_color_floor(t_data *data, char *color)
 {
-	int	r;
-	int	g;
-	int	b;
-
-	r = ft_atoi(color);
+	data->floor_color.red = ft_atoi(color);
 	while (*color && *color != ',')
 		color++;
 	if (!*color)
 		return (true);
 	color++;
-	g = ft_atoi(color);
+	data->floor_color.green = ft_atoi(color);
 	while (*color && *color != ',')
 		color++;
 	if (!*color)
 		return (true);
 	color++;
-	b = ft_atoi(color);
-	data->floor_color[0] = r;
-	data->floor_color[1] = g;
-	data->floor_color[2] = b;
+	data->floor_color.blue = ft_atoi(color);
 	return (false);
 }
 
 static bool	get_color_ceil(t_data *data, char *color)
 {
-	int	r;
-	int	g;
-	int	b;
-
-	r = ft_atoi(color);
+	data->floor_color.red = ft_atoi(color);
 	while (*color && *color != ',')
 		color++;
 	if (!*color)
 		return (true);
 	color++;
-	g = ft_atoi(color);
+	data->floor_color.green = ft_atoi(color);
 	while (*color && *color != ',')
 		color++;
 	if (!*color)
 		return (true);
 	color++;
-	b = ft_atoi(color);
-	data->ceil_color[0] = r;
-	data->ceil_color[1] = g;
-	data->ceil_color[2] = b;
+	data->floor_color.green = ft_atoi(color);
 	return (false);
 }
 

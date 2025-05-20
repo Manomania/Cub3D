@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   file_parser.c                                      :+:      :+:    :+:   */
+/*   p_file.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: maximart <maximart@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: elagouch <elagouch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/16 21:44:41 by maximart          #+#    #+#             */
-/*   Updated: 2025/05/16 21:44:41 by maximart         ###   ########.fr       */
+/*   Updated: 2025/05/19 19:13:30 by elagouch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
+#include "parsing.h"
 
 static bool	process_line(t_data *data, char *line)
 {

@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   texture_parser.c                                   :+:      :+:    :+:   */
+/*   p_texture.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: maximart <maximart@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: elagouch <elagouch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/16 21:46:09 by maximart          #+#    #+#             */
-/*   Updated: 2025/05/16 21:46:09 by maximart         ###   ########.fr       */
+/*   Updated: 2025/05/19 19:13:37 by elagouch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
+#include "parsing.h"
 
 bool	parse_texture_path(t_data *data, char *line, const char *cardinal)
 {

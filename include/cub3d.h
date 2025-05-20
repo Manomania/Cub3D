@@ -3,26 +3,26 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: maximart <maximart@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: elagouch <elagouch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/28 12:05:19 by maximart          #+#    #+#             */
-/*   Updated: 2025/05/16 11:48:10 by maximart         ###   ########.fr       */
+/*   Updated: 2025/05/19 19:01:08 by elagouch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef CUB3D_H
-#define CUB3D_H
+# define CUB3D_H
 
-# include <stdbool.h>
 # include "libft.h"
-# include "../libft/include/libft.h"
-# include "../minilibx-linux/mlx.h"
+# include <math.h>
+# include <stdbool.h>
+# include <stdio.h>
+# include <stdlib.h>
 
-/*******************************************************************************
-*                                    Macros                                    *
-*******************************************************************************/
+// *************************************************************************** #
+//                                   Macros                                    #
+// *************************************************************************** #
 
-# define TITLE "cub3d"
 # define RESET "\033[039m"
 # define RED "\033[091m"
 # define BLUE "\033[034m"
@@ -30,9 +30,15 @@
 # define YELLOW "\033[093m"
 # define CYAN "\033[36m"
 
+# define MAP_W 24
+# define MAP_H 17
+
+# define WIN_H 600
+# define WIN_W 800
+
 /*******************************************************************************
-*                                  Structures                                  *
-*******************************************************************************/
+ *                                  Structures                                 *
+ ******************************************************************************/
 
 typedef enum e_keyboard
 {
@@ -41,39 +47,176 @@ typedef enum e_keyboard
 	S = 115,
 	A = 100,
 	D = 97,
-}	t_keyboard;
+}					t_keyboard;
+
+typedef enum e_hit_sides
+{
+	SIDE_NORTH_SHOUTH = 1,
+	SIDE_EAST_WEST = 0,
+}					t_hit_sides;
 
 typedef enum e_key
 {
 	ON_DESTROY = 17,
-}	t_key;
+}					t_key;
 
+/*
+** Raycasting implementation using DDA algorithm
+** This is the core of the 3D rendering engine for cub3d
+*/
+
+typedef struct s_ray
+{
+	// Components of ray direction vector
+	double			ray_dir_x;
+	double			ray_dir_y;
+	int				map_x;
+	int				map_y;
+	double			side_dist_x;
+	double			side_dist_y;
+	double			delta_dist_x;
+	double			delta_dist_y;
+	double			perp_wall_dist;
+	// Step dirs are -1 or 1
+	int				step_x;
+	int				step_y;
+	// Flag
+	bool			hit;
+	// Which side was hit
+	t_hit_sides		side;
+	int				line_height;
+	// Start and end Y positions
+	int				draw_start;
+	int				draw_end;
+	/* Texture width */
+	int				tex_x;
+}					t_ray;
+
+/*
+** Player structure to handle position, direction, and movement
+*/
+typedef struct s_player
+{
+	/* Position */
+	double			pos_x;
+	double			pos_y;
+
+	/* Direction */
+	/* Components of direction vector (where player is looking) */
+	double			dir_x;
+	double			dir_y;
+
+	/* Camera plane */
+	/* Components of camera plane (perpendicular to direction) */
+	double			plane_x;
+	double			plane_y;
+
+	/* Movement */
+	double			move_speed;
+	double			rot_speed;
+
+	/* Controls state */
+	/* Those are all on/off flags */
+	bool			move_forward;
+	bool			move_backward;
+	bool			move_left;
+	bool			move_right;
+	bool			rotate_left;
+	bool			rotate_right;
+
+	/* Screen properties */
+	/* Camera height (usually screen_height/2) */
+	double			cam_height;
+}					t_player;
+
+/*
+** Texture structure to store image data
+*/
+typedef struct s_texture
+{
+	/* MLX inage */
+	void			*img;
+	/* Texture data */
+	char			*addr;
+	int				width;
+	int				height;
+	/* Other MLX info */
+	int				bits_per_pixel;
+	int				line_length;
+	int				endian;
+}					t_texture;
+
+/*
+** Structure to hold all textures
+*/
+typedef struct s_textures
+{
+	t_texture		north;
+	t_texture		south;
+	t_texture		east;
+	t_texture		west;
+}					t_textures;
+
+/*
+** Info for the MLX stored here for convenience
+*/
+typedef struct s_img
+{
+	void			*img;
+	char			*addr;
+	int				bits_per_pixel;
+	int				line_length;
+	int				endian;
+}					t_img;
+
+/*
+** Union type for easily manipulating color
+** This is way more convenient than an unsigned integer.
+** Also we're using uint8_t because we need a type of 8 bytes long of
+*/
+typedef union u_color
+{
+	unsigned int	val;
+	struct
+	{
+		uint8_t		blue;
+		uint8_t		green;
+		uint8_t		red;
+		uint8_t		alpha;
+	};
+}					t_color;
+
+/*
+** Global application data
+*/
 typedef struct s_data
 {
-	char	**map;
-	int		map_x;
-	int		map_y;
-	char	*adrr;
-	char	*texture_n;
-	char	*texture_s;
-	char	*texture_w;
-	char	*texture_e;
-	int		floor_color[3];
-	int		ceil_color[3];
-	int		bits_per_pixel;
-	int		map_height;
-	int		map_width;
-	int		line_length;
-	int		endian;
-	int		win_height;
-	int		win_width;
-	void	*mlx;
-	void	*win;
-}			t_data;
+	char			**map;
+	// Textures
+	char			*texture_n;
+	char			*texture_s;
+	char			*texture_e;
+	char			*texture_w;
+	// MLX stuff
+	t_img			img;
+	void			*mlx;
+	void			*win;
+	// Sizes
+	int				map_height;
+	int				map_width;
+	int				win_width;
+	int				win_height;
+	// Pointers
+	t_player		player;
+	t_textures		textures;
+	// Colors
+	t_color			floor_color;
+	t_color			ceil_color;
+}					t_data;
 
 /*******************************************************************************
-*                             Function Prototypes                              *
-*******************************************************************************/
+ *                             Function Prototypes                             *
+ ******************************************************************************/
 
 // m_utils.c
 bool	check_args(int argc, char **argv);
@@ -96,6 +239,5 @@ bool	fill_map(t_data *data, int fd);
 bool	parse_texture_path(t_data *data, char *line, const char *cardinal);
 
 // main.c
-
 
 #endif
