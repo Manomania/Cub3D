@@ -62,3 +62,19 @@ void	free_ressources(t_data *data)
 	free(data);
 	exit(1);
 }
+
+void	free_map(t_data *data)
+{
+	int i;
+
+	if (!data->map)
+		return;
+	i = 0;
+	while (data->map[i])
+	{
+		free(data->map[i]);
+		i++;
+	}
+	free(data->map);
+	data->map = NULL;
+}
