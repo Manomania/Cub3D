@@ -54,25 +54,6 @@ static bool	parse_config_file(t_data *data, int fd)
 	return (false);
 }
 
-static int	read_map(t_data *data, const char *file)
-{
-	int	fd;
-
-	fd = open(file, O_RDONLY);
-	if (fd < 0)
-	{
-		close(fd);
-		return (1);
-	}
-	if (fill_map(data, fd))
-	{
-		close(fd);
-		return (1);
-	}
-	close(fd);
-	return (0);
-}
-
 int	read_file(t_data *data, const char *file)
 {
 	int	fd;
@@ -89,7 +70,5 @@ int	read_file(t_data *data, const char *file)
 		return (1);
 	}
 	close(fd);
-	if (read_map(data, file))
-		return (1);
 	return (0);
 }
