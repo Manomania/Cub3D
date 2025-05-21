@@ -34,7 +34,10 @@ bool	check_color_line(t_data *data, char *color)
 		check++;
 	}
 	if (count_comma != 2)
+	{
+		data->error_detected = true;
 		return (true);
+	}
 	return (false);
 }
 
