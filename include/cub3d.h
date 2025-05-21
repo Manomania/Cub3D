@@ -192,6 +192,7 @@ typedef union u_color
 typedef struct s_data
 {
 	char			**map;
+	int				error_detected;
 	// Textures
 	char			*texture_n;
 	char			*texture_s;
@@ -220,10 +221,7 @@ typedef struct s_data
 
 // m_utils.c
 bool	check_args(int argc, char **argv);
-t_data	*init_data(void);
 bool	init_map_array(t_data *data);
-void	free_ressources(t_data *data);
-void	free_map(t_data *data);
 
 // p_color.c
 bool	parse_color_line(t_data *data, char *line, const char *id);

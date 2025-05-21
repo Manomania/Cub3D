@@ -44,10 +44,10 @@ static void	this_will_be_removed_eventually(t_data *data)
 {
 	data->win_width = WIN_W;
 	data->win_height = WIN_H;
-	data->map_width = MAP_W;
-	data->map_height = MAP_H;
-	data->floor_color.val = 0x555555;
-	data->ceil_color.val = 0xAAAAAA;
+	// data->map_width = MAP_W;
+	// data->map_height = MAP_H;
+	// data->floor_color.val = 0x555555;
+	// data->ceil_color.val = 0xAAAAAA;
 }
 
 t_data	*init_data(void)
@@ -57,22 +57,23 @@ t_data	*init_data(void)
 	data = ft_calloc(1, sizeof(t_data));
 	if (!data)
 		return (NULL);
+	data->error_detected = false;
 	data->mlx = mlx_init();
 	if (!data->mlx)
-		return (free_data(data));
+		return (free_ressource(data));
 	this_will_be_removed_eventually(data);
 	data->win = mlx_new_window(data->mlx, data->win_width, data->win_height,
 			"cub3d");
 	if (!data->win)
-		return (free_data(data));
+		return (free_ressource(data));
 	data->img.img = mlx_new_image(data->mlx, data->win_width, data->win_height);
 	data->img.addr = mlx_get_data_addr(data->img.img, &data->img.bits_per_pixel,
 			&data->img.line_length, &data->img.endian);
-	generate_dummy_map(data);
-	if (!data->map)
-		return (free_data(data));
+	// generate_dummy_map(data);
+	// if (!data->map)
+	// 	return (free_ressource(data));
 	generate_dummy_textures(data);
-	display_map(data);
+	// display_map(data);
 	return (data);
 }
 
@@ -97,20 +98,8 @@ bool	check_error(int argc, char **argv)
 	return (false);
 }
 
-static bool check_data(t_data *data)
+static bool check_map(t_data *data)
 {
-	if (data->floor_color[0] < 0 || data->floor_color[0] > 255)
-		return (true);
-	if (data->floor_color[1] < 0 || data->floor_color[1] > 255)
-		return (true);
-	if (data->floor_color[1] < 0 || data->floor_color[1] > 255)
-		return (true);
-	if (data->ceil_color[0] < 0 || data->ceil_color[0] > 255)
-		return (true);
-	if (data->ceil_color[1] < 0 || data->ceil_color[1] > 255)
-		return (true);
-	if (data->ceil_color[1] < 0 || data->ceil_color[1] > 255)
-		return (true);
 	if (data->map_height <= 0 || data->map_width <= 0)
 		return (true);
 	return (false);
@@ -124,24 +113,30 @@ int	main(int argc, char **argv)
 		return (1);
 	data = init_data();
 	if (!data)
-		free_ressources(data);
+	{
+		free_ressource(data);
+		return (1);
+	}
 	if (read_file(data, argv[1]))
-		free_ressources(data);
-	if (check_data(data))
+	{
+		free_ressource(data);
+		return (1);
+	}
+	if (check_map(data))
 	{
 		printf(RED"DEBUG: texture_north: %s\n"RESET, data->texture_n);
 		printf(RED"DEBUG: texture_south: %s\n"RESET, data->texture_s);
 		printf(RED"DEBUG: texture_west: %s\n"RESET, data->texture_w);
 		printf(RED"DEBUG: texture_east: %s\n"RESET, data->texture_e);
-		printf(RED"DEBUG: F color[r]: %d\n"RESET, data->floor_color[0]);
-		printf(RED"DEBUG: F color[g]: %d\n"RESET, data->floor_color[1]);
-		printf(RED"DEBUG: F color[b]: %d\n"RESET, data->floor_color[2]);
-		printf(RED"DEBUG: C color[r]: %d\n"RESET, data->ceil_color[0]);
-		printf(RED"DEBUG: C color[g]: %d\n"RESET, data->ceil_color[1]);
-		printf(RED"DEBUG: C color[b]: %d\n"RESET, data->ceil_color[2]);
+		printf(RED"DEBUG: F color[r]: %d\n"RESET, data->floor_color.red);
+		printf(RED"DEBUG: F color[g]: %d\n"RESET, data->floor_color.green);
+		printf(RED"DEBUG: F color[b]: %d\n"RESET, data->floor_color.blue);
+		printf(RED"DEBUG: C color[r]: %d\n"RESET, data->ceil_color.red);
+		printf(RED"DEBUG: C color[g]: %d\n"RESET, data->ceil_color.green);
+		printf(RED"DEBUG: C color[b]: %d\n"RESET, data->ceil_color.blue);
 		printf(RED"DEBUG: HEIGHT: %d\n"RESET, data->map_height);
 		printf(RED"DEBUG: WIDTH: %d\n"RESET, data->map_width);
-		free_ressources(data);
+		free_ressource(data);
 	}
 	int i = 0;
 	while (i < data->map_height)
@@ -153,19 +148,18 @@ int	main(int argc, char **argv)
 	printf(YELLOW"DEBUG: texture_south: %s\n"RESET, data->texture_s);
 	printf(YELLOW"DEBUG: texture_west: %s\n"RESET, data->texture_w);
 	printf(YELLOW"DEBUG: texture_east: %s\n"RESET, data->texture_e);
-	printf(YELLOW"DEBUG: F color[r]: %d\n"RESET, data->floor_color[0]);
-	printf(YELLOW"DEBUG: F color[g]: %d\n"RESET, data->floor_color[1]);
-	printf(YELLOW"DEBUG: F color[b]: %d\n"RESET, data->floor_color[2]);
-	printf(YELLOW"DEBUG: C color[r]: %d\n"RESET, data->ceil_color[0]);
-	printf(YELLOW"DEBUG: C color[g]: %d\n"RESET, data->ceil_color[1]);
-	printf(YELLOW"DEBUG: C color[b]: %d\n"RESET, data->ceil_color[2]);
+	printf(YELLOW"DEBUG: F color[r]: %d\n"RESET, data->floor_color.red);
+	printf(YELLOW"DEBUG: F color[g]: %d\n"RESET, data->floor_color.green);
+	printf(YELLOW"DEBUG: F color[b]: %d\n"RESET, data->floor_color.blue);
+	printf(YELLOW"DEBUG: C color[r]: %d\n"RESET, data->ceil_color.red);
+	printf(YELLOW"DEBUG: C color[g]: %d\n"RESET, data->ceil_color.green);
+	printf(YELLOW"DEBUG: C color[b]: %d\n"RESET, data->ceil_color.blue);
 	printf(YELLOW"DEBUG: HEIGHT: %d\n"RESET, data->map_height);
 	printf(YELLOW"DEBUG: WIDTH: %d\n"RESET, data->map_width);
-// 	free_ressources(data);
 	init_player(data);
 	mlx_loop_hook(data->mlx, (int (*)())render_frame, data);
 	mlx_loop(data->mlx);
-	data = free_data(data);
+	free_ressource(data);
 	ft_printf("########################### END! ###########################\n");
 	return (0);
 }

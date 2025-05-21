@@ -20,7 +20,7 @@
 */
 
 /**
- * @brief Parse a line thatdefines a color
+ * @brief Parse a line that defines a color
  *
  * @param data
  * @param line
@@ -29,6 +29,33 @@
  * @return false
  */
 bool	parse_color_line(t_data *data, char *line, const char *id);
+
+/*
+** p_color_utils.c
+*/
+
+/**
+ * @brief Check the line if it is not digit
+ *
+ * @param data
+ * @param color
+ * @return true
+ * @return false
+ */
+bool	check_color_line(t_data *data, char *color);
+
+/**
+ * @brief Check rgb if its between 0 and 255
+ *
+ * @param data
+ * @param r
+ * @param g
+ * @param b
+ * @return true
+ * @return false
+ */
+bool	check_rgb_range(t_data *data, int r, int g, int b);
+
 
 /*
 ** p_file.c

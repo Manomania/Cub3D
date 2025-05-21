@@ -30,13 +30,13 @@
  * @param data Data to be cleared
  * @return void* New value for parameter
  */
-void	*free_data(t_data *data);
+void	*free_ressource(t_data *data);
 
 /**
  * @brief Frees the map
  *
- * @param map Cub3d map
+ * @param data Cub3d map
  */
-void	free_map(char **map);
+void	free_map(t_data *data);
 
 #endif
