@@ -109,6 +109,7 @@ static bool	read_map_content(t_data *data, int fd)
 		free(line);
 		line = get_next_line(fd);
 	}
+	free(line);
 	data->map[i] = NULL;
 	return (false);
 }
