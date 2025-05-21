@@ -10,6 +10,8 @@
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <mem.h>
+
 #include "parsing.h"
 
 static bool	process_line(t_data *data, char *line)
@@ -44,13 +46,32 @@ static bool	parse_config_file(t_data *data, int fd)
 	{
 		if (process_line(data, line))
 		{
-			free(line);
-			line = get_next_line(fd);
-			continue ;
+			if (data->error_detected)
+			{
+				free(line);
+				break ;
+			}
 		}
 		free(line);
 		line = get_next_line(fd);
 	}
+	return (false);
+}
+
+static bool	fd_fill_map(t_data *data, int fd)
+{
+	if (fd < 0)
+	{
+		close(fd);
+		return (true);
+	}
+	if (fill_map(data, fd))
+	{
+		close(fd);
+		data->error_detected = true;
+		return (true);
+	}
+	close(fd);
 	return (false);
 }
 
@@ -67,8 +88,12 @@ int	read_file(t_data *data, const char *file)
 	if (parse_config_file(data, fd))
 	{
 		close(fd);
+		free_ressource(data);
 		return (1);
 	}
 	close(fd);
+	fd = open(file, O_RDONLY);
+	if (fd_fill_map(data, fd))
+		return (1);
 	return (0);
 }

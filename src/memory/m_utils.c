@@ -32,3 +32,13 @@ bool	check_args(int argc, char **argv)
 	}
 	return (false);
 }
+
+bool	init_map_array(t_data *data)
+{
+	if (data->map_height < 1)
+		return (true);
+	data->map = ft_calloc(data->map_height + 1, sizeof(char *));
+	if (!data->map)
+		return (true);
+	return (false);
+}
