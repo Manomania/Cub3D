@@ -85,6 +85,8 @@ int		read_file(t_data *data, const char *file);
  */
 bool	process_map_dimension(t_data *data, char *line);
 
+bool	fill_map(t_data *data, int fd);
+
 /*
 ** p_texture.c
 */

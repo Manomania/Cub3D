@@ -14,6 +14,7 @@
 #include "draw.h"
 #include "mem.h"
 #include "mlx.h"
+#include "parsing.h"
 #include "player.h"
 #include <limits.h>
 
@@ -69,11 +70,8 @@ t_data	*init_data(void)
 	data->img.img = mlx_new_image(data->mlx, data->win_width, data->win_height);
 	data->img.addr = mlx_get_data_addr(data->img.img, &data->img.bits_per_pixel,
 			&data->img.line_length, &data->img.endian);
-	// generate_dummy_map(data);
-	// if (!data->map)
-	// 	return (free_ressource(data));
 	generate_dummy_textures(data);
-	// display_map(data);
+	display_map(data);
 	return (data);
 }
 
@@ -99,9 +97,9 @@ bool	check_error(int argc, char **argv)
 }
 
 
-static bool check_map(t_data *data)
+static bool	check_map(t_data *data)
 {
-	if (data->map_height <= 0 || data->map_width <= 0)
+	if (data->map_height <= 0 || data->map_width <= 0 || !data->map)
 		return (true);
 	return (false);
 }
@@ -118,7 +116,7 @@ int	main(int argc, char **argv)
 		free_ressource(data);
 		return (1);
 	}
-	if (read_file(data, argv[1]))
+	if (read_file(data, argv[1]) || data->error_detected)
 	{
 		free_ressource(data);
 		return (1);
@@ -138,12 +136,16 @@ int	main(int argc, char **argv)
 		printf(RED"DEBUG: HEIGHT: %d\n"RESET, data->map_height);
 		printf(RED"DEBUG: WIDTH: %d\n"RESET, data->map_width);
 		free_ressource(data);
+		return (1);
 	}
 	int i = 0;
-	while (i < data->map_height)
+	if (data && data->map)  // Add this check
 	{
-		printf(YELLOW"DEBUG: map: %s"RESET, data->map[i]);
-		i++;
+		while (i < data->map_height && data->map[i])  // Add check for data->map[i]
+		{
+			printf(YELLOW"DEBUG: map: %s"RESET, data->map[i]);
+			i++;
+		}
 	}
 	printf(YELLOW"\nDEBUG: texture_north: %s\n"RESET, data->texture_n);
 	printf(YELLOW"DEBUG: texture_south: %s\n"RESET, data->texture_s);

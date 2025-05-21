@@ -39,4 +39,11 @@ void	*free_ressource(t_data *data);
  */
 void	free_map(t_data *data);
 
+/**
+ * @brief init the map
+ *
+ * @param data Cub3d map
+ */
+bool	init_map_array(t_data *data);
+
 #endif
