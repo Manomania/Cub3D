@@ -6,34 +6,31 @@
 /*   By: elagouch <elagouch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/19 15:57:10 by elagouch          #+#    #+#             */
-/*   Updated: 2025/05/19 16:10:31 by elagouch         ###   ########.fr       */
+/*   Updated: 2025/05/21 16:36:17 by elagouch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "mem.h"
 #include "mlx.h"
 
-void	free_map(char **map)
+void	free_map(t_data *data)
 {
 	int	i;
 
-	if (!map)
+	if (!data->map)
 		return ;
-	i = -1;
-	while (map[++i])
-		free(map[i]);
-	free(map);
+	i = 0;
+	while (data->map[i])
+	{
+		free(data->map[i]);
+		i++;
+	}
+	free(data->map);
+	data->map = NULL;
 }
 
-void	*free_data(t_data *data)
+static void	free_textures(t_data *data)
 {
-	if (!data)
-		return (NULL);
-	if (data->map)
-	{
-		free_map(data->map);
-		data->map = NULL;
-	}
 	if (data->textures.north.img)
 		mlx_destroy_image(data->mlx, data->textures.north.img);
 	if (data->textures.south.img)
@@ -42,6 +39,31 @@ void	*free_data(t_data *data)
 		mlx_destroy_image(data->mlx, data->textures.east.img);
 	if (data->textures.west.img)
 		mlx_destroy_image(data->mlx, data->textures.west.img);
+}
+
+static void	free_paths(t_data *data)
+{
+	if (data->texture_n)
+		free(data->texture_n);
+	if (data->texture_s)
+		free(data->texture_s);
+	if (data->texture_e)
+		free(data->texture_e);
+	if (data->texture_w)
+		free(data->texture_w);
+}
+
+void	*free_ressource(t_data *data)
+{
+	if (!data)
+		return (NULL);
+	if (data->map)
+	{
+		free_map(data);
+		data->map = NULL;
+	}
+	free_paths(data);
+	free_textures(data);
 	if (data->img.img)
 		mlx_destroy_image(data->mlx, data->img.img);
 	if (data->win)

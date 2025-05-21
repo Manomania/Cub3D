@@ -6,7 +6,7 @@
 /*   By: elagouch <elagouch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/28 12:05:19 by maximart          #+#    #+#             */
-/*   Updated: 2025/05/20 19:49:22 by elagouch         ###   ########.fr       */
+/*   Updated: 2025/05/21 16:28:38 by elagouch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -191,6 +191,7 @@ typedef union u_color
 typedef struct s_data
 {
 	char			**map;
+	int				error_detected;
 	// Textures
 	char			*texture_n;
 	char			*texture_s;

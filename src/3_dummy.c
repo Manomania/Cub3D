@@ -6,7 +6,7 @@
 /*   By: elagouch <elagouch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/16 18:22:49 by elagouch          #+#    #+#             */
-/*   Updated: 2025/05/19 18:41:43 by elagouch         ###   ########.fr       */
+/*   Updated: 2025/05/21 16:36:01 by elagouch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -127,45 +127,45 @@ int	generate_dummy_textures(t_data *data)
 	return (1);
 }
 
-/*
-** Generate a dummy map for testing without parsing a file
-*/
-int	generate_dummy_map(t_data *data)
-{
-	const char *dummy_map[] = {"111111111111111111111111",
-								"100000000000000000000001",
-								"100000000000000000000001",
-								"100000111100000111100001",
-								"100000100100000100100001",
-								"100000111100000111100001",
-								"100000000000000000000001",
-								"100000000000000000000001",
-								"100000000000000000000001",
-								"100000000000000000000001",
-								"100000111100000111100001",
-								"100000100100000100100001",
-								"100000111100000111100001",
-								"100000000000000000000001",
-								"100000000000N00000000001",
-								// Player starts here facing North
-								"100000000000000000000001",
-								"111111111111111111111111",
-								NULL};
-	int i, map_height = 0;
-	// Count map height
-	while (dummy_map[map_height])
-		map_height++;
-	// Allocate memory for map
-	data->map = (char **)malloc(sizeof(char *) * (map_height + 1));
-	if (!data->map)
-		return (0);
-	// Copy map lines
-	for (i = 0; i < map_height; i++)
-		data->map[i] = ft_strdup(dummy_map[i]);
-	// Null-terminate map array
-	data->map[map_height] = NULL;
-	// Set map dimensions
-	data->map_height = map_height;
-	data->map_width = ft_strlen(dummy_map[0]);
-	return (1);
-}
+// /*
+// ** Generate a dummy map for testing without parsing a file
+// */
+// int	generate_dummy_map(t_data *data)
+// {
+// 	const char *dummy_map[] = {"111111111111111111111111",
+// 								"100000000000000000000001",
+// 								"100000000000000000000001",
+// 								"100000111100000111100001",
+// 								"100000100100000100100001",
+// 								"100000111100000111100001",
+// 								"100000000000000000000001",
+// 								"100000000000000000000001",
+// 								"100000000000000000000001",
+// 								"100000000000000000000001",
+// 								"100000111100000111100001",
+// 								"100000100100000100100001",
+// 								"100000111100000111100001",
+// 								"100000000000000000000001",
+// 								"100000000000N00000000001",
+// 								// Player starts here facing North
+// 								"100000000000000000000001",
+// 								"111111111111111111111111",
+// 								NULL};
+// 	int i, map_height = 0;
+// 	// Count map height
+// 	while (dummy_map[map_height])
+// 		map_height++;
+// 	// Allocate memory for map
+// 	data->map = (char **)malloc(sizeof(char *) * (map_height + 1));
+// 	if (!data->map)
+// 		return (0);
+// 	// Copy map lines
+// 	for (i = 0; i < map_height; i++)
+// 		data->map[i] = ft_strdup(dummy_map[i]);
+// 	// Null-terminate map array
+// 	data->map[map_height] = NULL;
+// 	// Set map dimensions
+// 	data->map_height = map_height;
+// 	data->map_width = ft_strlen(dummy_map[0]);
+// 	return (1);
+// }
