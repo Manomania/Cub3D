@@ -98,6 +98,7 @@ bool	check_error(int argc, char **argv)
 	return (false);
 }
 
+
 static bool check_map(t_data *data)
 {
 	if (data->map_height <= 0 || data->map_width <= 0)
@@ -107,7 +108,7 @@ static bool check_map(t_data *data)
 
 int	main(int argc, char **argv)
 {
-	t_data	*data = NULL;
+	t_data	*data;
 
 	if (check_error(argc, argv))
 		return (1);

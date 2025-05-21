@@ -72,7 +72,7 @@ bool	process_map_dimension(t_data *data, char *line)
 	if (*tmp == '\0')
 	{
 		free(original_tmp);
-		return (true);
+		return (false);
 	}
 	while (*tmp)
 	{
