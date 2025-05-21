@@ -2,6 +2,7 @@ SRC_F	=	3_main					\
 			3_dummy					\
 			draw/d_math				\
 			draw/d_draw				\
+			draw/d_fps				\
 			draw/d_render			\
 			draw/d_shadow			\
 			memory/m_free			\
@@ -12,6 +13,7 @@ SRC_F	=	3_main					\
 			parsing/p_map			\
 			parsing/p_texture		\
 			player/l_init			\
+			player/l_mlx			\
 			player/l_move			\
 			raycasting/r_dda		\
 			raycasting/r_init		\

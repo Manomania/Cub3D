@@ -6,7 +6,7 @@
 /*   By: elagouch <elagouch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/16 16:32:13 by elagouch          #+#    #+#             */
-/*   Updated: 2025/05/19 18:47:27 by elagouch         ###   ########.fr       */
+/*   Updated: 2025/05/21 16:29:21 by elagouch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,13 @@ int		calculate_texture_x(double wall_x, t_texture *texture, t_ray *ray);
  * @return double The exact hit position on the wall (0-1)
  */
 double	calculate_wall_hit(t_data *data, t_ray *ray);
+
+/**
+ * @brief Display FPS counter on screen
+ *
+ * @param data Main data structure
+ */
+void	display_fps(t_data *data);
 
 /**
  * @brief Draw a textured vertical line on the screen
@@ -99,5 +106,12 @@ void	my_mlx_pixel_put(t_img *img, int x, int y, t_color color);
  * @param data App data
  */
 void	render_frame(t_data *data);
+
+/**
+ * @brief Update FPS counter
+ *
+ * @param data Main data structure
+ */
+void	update_fps_counter(t_data *data);
 
 #endif

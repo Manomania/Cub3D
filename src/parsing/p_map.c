@@ -6,12 +6,12 @@
 /*   By: elagouch <elagouch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/17 17:57:14 by maximart          #+#    #+#             */
-/*   Updated: 2025/05/19 19:13:34 by elagouch         ###   ########.fr       */
+/*   Updated: 2025/05/21 16:38:47 by elagouch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "parsing.h"
 #include "mem.h"
+#include "parsing.h"
 
 static bool	is_map_line_valid(char *line)
 {

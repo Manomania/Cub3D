@@ -6,12 +6,11 @@
 /*   By: elagouch <elagouch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/16 21:44:41 by maximart          #+#    #+#             */
-/*   Updated: 2025/05/19 19:13:30 by elagouch         ###   ########.fr       */
+/*   Updated: 2025/05/21 16:49:40 by elagouch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <mem.h>
-
+#include "mem.h"
 #include "parsing.h"
 
 static bool	process_line(t_data *data, char *line)

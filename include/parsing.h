@@ -6,7 +6,7 @@
 /*   By: elagouch <elagouch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/19 18:29:12 by elagouch          #+#    #+#             */
-/*   Updated: 2025/05/19 18:36:25 by elagouch         ###   ########.fr       */
+/*   Updated: 2025/05/21 16:35:35 by elagouch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,6 @@ bool	check_color_line(t_data *data, char *color);
  * @return false
  */
 bool	check_rgb_range(t_data *data, int r, int g, int b);
-
 
 /*
 ** p_file.c

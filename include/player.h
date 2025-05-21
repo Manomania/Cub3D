@@ -6,7 +6,7 @@
 /*   By: elagouch <elagouch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/16 18:36:18 by elagouch          #+#    #+#             */
-/*   Updated: 2025/05/18 11:54:38 by elagouch         ###   ########.fr       */
+/*   Updated: 2025/05/21 16:28:59 by elagouch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,39 @@
 # define PLAYER_H
 
 # include "cub3d.h"
+
+/*******************************************************************************
+ *                                  Structures                                 *
+ ******************************************************************************/
+
+/*
+** For some unknown reason, the MLX only defines ON_DESTROY
+*/
+enum
+{
+	ON_KEYDOWN = 2,
+	ON_KEYUP = 3,
+	ON_MOUSEDOWN = 4,
+	ON_MOUSEUP = 5,
+	ON_MOUSEMOVE = 6,
+	ON_EXPOSE = 12,
+	// ON_DESTROY = 17
+};
+
+typedef enum e_keyboard
+{
+	ESCAPE = 65307,
+	W = 119,
+	S = 115,
+	A = 100,
+	D = 97,
+	LEFT_ARROW = 65361,
+	RIGHT_ARROW = 65363,
+}		t_keyboard;
+
+/*******************************************************************************
+ *                             Function Prototypes                             *
+ ******************************************************************************/
 
 /**
  * @brief Initializes the player structure from app state
@@ -36,5 +69,12 @@ void	init_player(t_data *data);
  *      detection system.
  */
 void	move_player(t_player *player, char **map);
+
+/**
+ * @brief Set the up mlx hooks
+ *
+ * @param data App data
+ */
+void	setup_mlx_hooks(t_data *data);
 
 #endif

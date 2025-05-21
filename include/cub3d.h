@@ -6,7 +6,7 @@
 /*   By: elagouch <elagouch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/28 12:05:19 by maximart          #+#    #+#             */
-/*   Updated: 2025/05/19 19:01:08 by elagouch         ###   ########.fr       */
+/*   Updated: 2025/05/21 16:28:38 by elagouch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,10 +18,11 @@
 # include <stdbool.h>
 # include <stdio.h>
 # include <stdlib.h>
+# include <sys/time.h>
 
-// *************************************************************************** #
-//                                   Macros                                    #
-// *************************************************************************** #
+/*******************************************************************************
+ *                                    Macros                                   *
+ ******************************************************************************/
 
 # define RESET "\033[039m"
 # define RED "\033[091m"
@@ -30,24 +31,22 @@
 # define YELLOW "\033[093m"
 # define CYAN "\033[36m"
 
+// TODO: Destroy
 # define MAP_W 24
 # define MAP_H 17
 
 # define WIN_H 600
 # define WIN_W 800
 
+# define FPS_COUNTER_TEXT_HEIGHT 20
+# define FPS_COUNTER_TEXT_WIDTH 80
+
+# define BASE_MOVE_SPEED 5.0
+# define BASE_ROT_SPEED 3.0
+
 /*******************************************************************************
  *                                  Structures                                 *
  ******************************************************************************/
-
-typedef enum e_keyboard
-{
-	ESCAPE = 65307,
-	W = 119,
-	S = 115,
-	A = 100,
-	D = 97,
-}					t_keyboard;
 
 typedef enum e_hit_sides
 {
@@ -213,6 +212,14 @@ typedef struct s_data
 	// Colors
 	t_color			floor_color;
 	t_color			ceil_color;
+	// Frame timing
+	struct timeval	last_frame;
+	struct timeval	current_frame;
+	double			delta_time;
+	double			fps;
+	int				frame_count;
+	double			fps_timer;
+	double			time_accumulator;
 }					t_data;
 
 /*******************************************************************************
