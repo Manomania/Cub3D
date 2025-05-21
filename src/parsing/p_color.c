@@ -10,65 +10,57 @@
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <mem.h>
+
 #include "parsing.h"
 
-static bool	check_color_line(char *color)
+static bool	parse_rgb_values(int *r, int *g, int *b, char *color)
 {
-	char	*check;
-	int		count_comma;
-
-	count_comma = 0;
-	check = color;
-	while (*check)
-	{
-		if (*check == ',')
-			count_comma++;
-		if ((!ft_isdigit(*check) && *check != ',' && *check != '\n'))
-		{
-			printf(RED "Error: Invalid character in color: '%c'\n" RESET,
-				*check);
-			return (true);
-		}
-		check++;
-	}
-	if (count_comma != 2)
+	*r = ft_atoi(color);
+	while (*color && *color != ',')
+		color++;
+	if (!*color)
 		return (true);
+	color++;
+	*g = ft_atoi(color);
+	while (*color && *color != ',')
+		color++;
+	if (!*color)
+		return (true);
+	color++;
+	*b = ft_atoi(color);
 	return (false);
 }
 
 static bool	get_color_floor(t_data *data, char *color)
 {
-	data->floor_color.red = ft_atoi(color);
-	while (*color && *color != ',')
-		color++;
-	if (!*color)
+	int	r;
+	int	g;
+	int	b;
+
+	if (parse_rgb_values(&r, &g, &b, color))
 		return (true);
-	color++;
-	data->floor_color.green = ft_atoi(color);
-	while (*color && *color != ',')
-		color++;
-	if (!*color)
+	if (check_rgb_range(data, r, g, b))
 		return (true);
-	color++;
-	data->floor_color.blue = ft_atoi(color);
+	data->floor_color.red = r;
+	data->floor_color.green = g;
+	data->floor_color.blue = b;
 	return (false);
 }
 
 static bool	get_color_ceil(t_data *data, char *color)
 {
-	data->floor_color.red = ft_atoi(color);
-	while (*color && *color != ',')
-		color++;
-	if (!*color)
+	int	r;
+	int	g;
+	int	b;
+
+	if (parse_rgb_values(&r, &g, &b, color))
 		return (true);
-	color++;
-	data->floor_color.green = ft_atoi(color);
-	while (*color && *color != ',')
-		color++;
-	if (!*color)
+	if (check_rgb_range(data, r, g, b))
 		return (true);
-	color++;
-	data->floor_color.green = ft_atoi(color);
+	data->ceil_color.red = r;
+	data->ceil_color.green = g;
+	data->ceil_color.blue = b;
 	return (false);
 }
 
@@ -102,7 +94,7 @@ bool	parse_color_line(t_data *data, char *line, const char *id)
 	color = skip + 2;
 	while (*color && (*color == ' ' || *color == '\t'))
 		color++;
-	if (check_color_line(color))
+	if (check_color_line(data, color))
 		return (true);
 	if (get_colors(data, color, id))
 		return (true);

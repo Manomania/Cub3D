@@ -11,12 +11,15 @@
 /* ************************************************************************** */
 
 #include "parsing.h"
+#include "mem.h"
 
 static bool	is_map_line_valid(char *line)
 {
 	char	*tmp;
 	char	*original_tmp;
+	bool	is_valid;
 
+	is_valid = true;
 	if (!line || line[0] == '\0')
 		return (false);
 	original_tmp = ft_strtrim(line, "\n");
@@ -26,19 +29,16 @@ static bool	is_map_line_valid(char *line)
 	if (*tmp == '\0')
 	{
 		free(original_tmp);
-		return (true);
+		return (false);
 	}
 	while (*tmp)
 	{
 		if (!ft_strchr("01 \tNSEW", *tmp))
-		{
-			free(original_tmp);
-			return (true);
-		}
+			is_valid = false;
 		tmp++;
 	}
 	free(original_tmp);
-	return (false);
+	return (is_valid);
 }
 
 static void	get_dimension(t_data *data, char *line, bool is_line, char *og_tmp)
@@ -93,17 +93,18 @@ static bool	read_map_content(t_data *data, int fd)
 	line = get_next_line(fd);
 	if (!line)
 		return (true);
-	while (line)
+	while (line && i < data->map_height)
 	{
-		if (!is_map_line_valid(line))
+		if (is_map_line_valid(line))
 		{
-			data->map[i++] = ft_strdup(line);
-			if (data->map[i])
+			data->map[i] = ft_strdup(line);
+			if (!data->map[i])
 			{
 				free_map(data);
 				free(line);
 				return (true);
 			}
+			i++;
 		}
 		free(line);
 		line = get_next_line(fd);

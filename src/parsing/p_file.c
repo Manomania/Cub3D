@@ -10,6 +10,8 @@
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <mem.h>
+
 #include "parsing.h"
 
 static bool	process_line(t_data *data, char *line)
@@ -44,9 +46,11 @@ static bool	parse_config_file(t_data *data, int fd)
 	{
 		if (process_line(data, line))
 		{
-			free(line);
-			line = get_next_line(fd);
-			continue ;
+			if (data->error_detected)
+			{
+				free(line);
+				break ;
+			}
 		}
 		free(line);
 		line = get_next_line(fd);
@@ -86,6 +90,7 @@ int	read_file(t_data *data, const char *file)
 	if (parse_config_file(data, fd))
 	{
 		close(fd);
+		free_ressource(data);
 		return (1);
 	}
 	close(fd);
