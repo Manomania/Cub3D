@@ -6,7 +6,7 @@
 /*   By: elagouch <elagouch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/15 18:49:24 by elagouch          #+#    #+#             */
-/*   Updated: 2025/05/21 16:38:53 by elagouch         ###   ########.fr       */
+/*   Updated: 2025/05/21 16:54:34 by elagouch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ static char	find_and_place_player(t_data *data)
 	while (++y < data->map_height)
 	{
 		x = -1;
-		while (++x < data->map_width)
+		while (data->map[y][++x] && x < data->map_width)
 		{
 			if (data->map[y][x] == 'N' || data->map[y][x] == 'S'
 				|| data->map[y][x] == 'E' || data->map[y][x] == 'W')

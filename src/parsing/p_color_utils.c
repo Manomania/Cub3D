@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   p_colors_utils.c                                   :+:      :+:    :+:   */
+/*   p_color_utils.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: maximart <maximart@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: elagouch <elagouch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/21 15:39:34 by maximart          #+#    #+#             */
-/*   Updated: 2025/05/21 15:39:34 by maximart         ###   ########.fr       */
+/*   Updated: 2025/05/21 16:57:40 by elagouch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,7 @@ bool	check_color_line(t_data *data, char *color)
 	}
 	if (count_comma != 2)
 	{
+		ft_printf(RED "Error: Color values must be between 0-255\n" RESET);
 		data->error_detected = true;
 		return (true);
 	}
