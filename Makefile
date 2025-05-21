@@ -76,7 +76,7 @@ re: 					.print_header fclean all
 							$(call BUILD)
 							$(call SEPARATOR)
 
-.PHONY: 				all clean fclean make_libft re
+.PHONY: 				all clean fclean make_libft re norm
 
 ########################################################################################################################
 #                                                       COMMANDS                                                       #
@@ -163,3 +163,6 @@ define	BUILD
 						@printf "%-47b%b" "$(GREEN)CC:$(DEF_COLOR)" "$(CC)\n";
 						@printf "%-47b%b" "$(GREEN)FLAGS:$(DEF_COLOR)" "$(CFLAGS)\n";
 endef
+
+norm:
+	@norminette src libft include

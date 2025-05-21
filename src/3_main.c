@@ -6,7 +6,7 @@
 /*   By: elagouch <elagouch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/09 16:06:00 by maximart          #+#    #+#             */
-/*   Updated: 2025/05/20 19:17:06 by elagouch         ###   ########.fr       */
+/*   Updated: 2025/05/20 19:49:34 by elagouch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,6 @@ static void	init_fps(t_data *data)
 	data->fps = 0.0;
 	data->frame_count = 0;
 	data->fps_timer = 0.0;
-	data->target_fps = 60.0;
 }
 
 void	display_map(t_data *data)

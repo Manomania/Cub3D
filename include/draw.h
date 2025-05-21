@@ -6,7 +6,7 @@
 /*   By: elagouch <elagouch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/16 16:32:13 by elagouch          #+#    #+#             */
-/*   Updated: 2025/05/20 19:28:46 by elagouch         ###   ########.fr       */
+/*   Updated: 2025/05/20 19:49:16 by elagouch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,15 +99,6 @@ void	draw_floor(t_data *data, int x, int end_y, t_color floor_color);
  * @todo Change this to allow for uniontype color
  */
 void	my_mlx_pixel_put(t_img *img, int x, int y, t_color color);
-
-/**
- * @brief Check if it's time to render a new frame
- *
- * @param data App data
- * @return true The frame should be drawn
- * @return false The frame should not be drawn
- */
-bool	should_render_frame(t_data *data);
 
 /**
  * @brief Renders a frame. Duh.

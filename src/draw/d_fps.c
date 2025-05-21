@@ -6,7 +6,7 @@
 /*   By: elagouch <elagouch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/20 19:12:34 by elagouch          #+#    #+#             */
-/*   Updated: 2025/05/20 19:28:25 by elagouch         ###   ########.fr       */
+/*   Updated: 2025/05/20 19:49:30 by elagouch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,18 +15,6 @@
 #include <stdio.h>
 #include <sys/time.h>
 
-void	init_fps(t_data *data)
-{
-	gettimeofday(&data->last_frame, NULL);
-	data->current_frame = data->last_frame;
-	data->delta_time = 0.016;
-	data->fps = 60.0;
-	data->frame_count = 0;
-	data->fps_timer = 0.0;
-	data->target_fps = 30.0;
-	data->time_accumulator = 0.0;
-}
-
 /*
 ** Calculate time difference between two timeval structs in seconds
 */
@@ -34,28 +22,6 @@ static double	get_time_diff(struct timeval *start, struct timeval *end)
 {
 	return ((end->tv_sec - start->tv_sec) + (end->tv_usec - start->tv_usec)
 		/ 1000000.0);
-}
-
-bool	should_render_frame(t_data *data)
-{
-	struct timeval	now;
-	double			elapsed;
-	double			frame_time;
-
-	if (data->target_fps <= 0.0)
-		return (1);
-	gettimeofday(&now, NULL);
-	elapsed = get_time_diff(&data->last_frame, &now);
-	data->time_accumulator += elapsed;
-	frame_time = 1.0 / data->target_fps;
-	data->last_frame = now;
-	if (data->time_accumulator >= frame_time)
-	{
-		data->delta_time = data->time_accumulator;
-		data->time_accumulator = 0.0;
-		return (1);
-	}
-	return (0);
 }
 
 void	update_fps_counter(t_data *data)

@@ -6,7 +6,7 @@
 /*   By: elagouch <elagouch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/28 12:05:19 by maximart          #+#    #+#             */
-/*   Updated: 2025/05/20 19:31:37 by elagouch         ###   ########.fr       */
+/*   Updated: 2025/05/20 19:49:22 by elagouch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -218,7 +218,6 @@ typedef struct s_data
 	double			fps;
 	int				frame_count;
 	double			fps_timer;
-	double			target_fps;
 	double			time_accumulator;
 }					t_data;
 
