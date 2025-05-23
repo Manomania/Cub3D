@@ -13,34 +13,6 @@
 #include "mem.h"
 #include "parsing.h"
 
-static bool	is_map_line_valid(char *line)
-{
-	char	*tmp;
-	char	*original_tmp;
-	bool	is_valid;
-
-	is_valid = true;
-	if (!line || line[0] == '\0')
-		return (false);
-	original_tmp = ft_strtrim(line, "\n");
-	tmp = original_tmp;
-	while (*tmp && *tmp == ' ')
-		tmp++;
-	if (*tmp == '\0')
-	{
-		free(original_tmp);
-		return (false);
-	}
-	while (*tmp)
-	{
-		if (!ft_strchr("01 \tNSEW", *tmp))
-			is_valid = false;
-		tmp++;
-	}
-	free(original_tmp);
-	return (is_valid);
-}
-
 static void	get_dimension(t_data *data, char *line, bool is_line, char *og_tmp)
 {
 	int	len;
@@ -84,6 +56,17 @@ bool	process_map_dimension(t_data *data, char *line)
 	return (false);
 }
 
+static bool	store_map_line(t_data *data, char *line, int index)
+{
+	data->map[index] = ft_strdup(line);
+	if (!data->map[index])
+	{
+		free_map(data);
+		return (true);
+	}
+	return (false);
+}
+
 static bool	read_map_content(t_data *data, int fd)
 {
 	char	*line;
@@ -97,10 +80,8 @@ static bool	read_map_content(t_data *data, int fd)
 	{
 		if (is_map_line_valid(line))
 		{
-			data->map[i] = ft_strdup(line);
-			if (!data->map[i])
+			if (store_map_line(data, line, i))
 			{
-				free_map(data);
 				free(line);
 				return (true);
 			}
