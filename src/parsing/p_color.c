@@ -26,7 +26,8 @@ static bool	parse_rgb_values(int *r, int *g, int *b, char *color)
 	if (!*color)
 		return (true);
 	color++;
-	*b = ft_atoi(color);
+	if (*color != '\n')
+		*b = ft_atoi(color);
 	return (false);
 }
 
@@ -36,8 +37,14 @@ static bool	get_color_floor(t_data *data, char *color)
 	int	g;
 	int	b;
 
+	r = -1;
+	g = -1;
+	b = -1;
 	if (parse_rgb_values(&r, &g, &b, color))
+	{
+		data->error_detected = true;
 		return (true);
+	}
 	if (check_rgb_range(data, r, g, b))
 		return (true);
 	data->floor_color.red = r;
@@ -52,6 +59,9 @@ static bool	get_color_ceil(t_data *data, char *color)
 	int	g;
 	int	b;
 
+	r = -1;
+	g = -1;
+	b = -1;
 	if (parse_rgb_values(&r, &g, &b, color))
 		return (true);
 	if (check_rgb_range(data, r, g, b))

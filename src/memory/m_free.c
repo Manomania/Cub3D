@@ -29,6 +29,22 @@ void	free_map(t_data *data)
 	data->map = NULL;
 }
 
+void	free_map_copy(char **map_copy, int height)
+{
+	int	i;
+
+	if (!map_copy)
+		return ;
+	i = 0;
+	while (i < height)
+	{
+		if (map_copy[i])
+			free(map_copy[i]);
+		i++;
+	}
+	free(map_copy);
+}
+
 static void	free_textures(t_data *data)
 {
 	if (data->textures.north.img)

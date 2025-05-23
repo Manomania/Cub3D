@@ -11,6 +11,9 @@ SRC_F	=	3_main					\
 			parsing/p_color_utils	\
 			parsing/p_file			\
 			parsing/p_map			\
+			parsing/p_map_check		\
+			parsing/p_map_copy		\
+			parsing/p_map_utils		\
 			parsing/p_texture		\
 			player/l_init			\
 			player/l_mlx			\

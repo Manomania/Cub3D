@@ -109,8 +109,10 @@ bool	check_error(int argc, char **argv)
 
 static bool	check_map(t_data *data)
 {
-	if (data->map_height <= 0 || data->map_width <= 0 || !data->map)
+	if (check_map_validity(data))
 		return (true);
+	// if (data->map_height <= 0 || data->map_width <= 0 || !data->map)
+	// 	return (true);
 	return (false);
 }
 

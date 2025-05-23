@@ -12,6 +12,17 @@
 
 #include "parsing.h"
 
+static bool	check_comma_count(t_data *data, int count_comma)
+{
+	if (count_comma != 2)
+	{
+		data->error_detected = true;
+		ft_printf(RED "Error\nColor values must be like '0,0,0'\n" RESET);
+		return (true);
+	}
+	return (false);
+}
+
 bool	check_color_line(t_data *data, char *color)
 {
 	char	*check;
@@ -33,12 +44,8 @@ bool	check_color_line(t_data *data, char *color)
 		}
 		check++;
 	}
-	if (count_comma != 2)
-	{
-		ft_printf(RED "Error\nColor values must be between 0-255\n" RESET);
-		data->error_detected = true;
+	if (check_comma_count(data, count_comma))
 		return (true);
-	}
 	return (false);
 }
 
