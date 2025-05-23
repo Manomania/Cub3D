@@ -40,6 +40,14 @@ void	*free_ressource(t_data *data);
 void	free_map(t_data *data);
 
 /**
+ * @brief Frees the map copy
+ *
+ * @param map_copy Cub3d map copy
+ * @param height Cub3d map height
+ */
+void	free_map_copy(char **map_copy, int height);
+
+/**
  * @brief init the map
  *
  * @param data Cub3d map

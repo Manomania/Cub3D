@@ -84,7 +84,57 @@ int		read_file(t_data *data, const char *file);
  */
 bool	process_map_dimension(t_data *data, char *line);
 
+/**
+ * @brief Comprehensive map validation using flood fill algorithm
+ *
+ * @param data App data containing the map to validate
+ * @return true if map validation fails, false if map is valid
+ */
 bool	fill_map(t_data *data, int fd);
+
+/*
+** p_map_check.c
+*/
+
+/**
+ * @brief Comprehensive map validation using flood fill algorithm
+ *
+ * @param data App data containing the map to validate
+ * @return true if map validation fails, false if map is valid
+ */
+bool	check_map_validity(t_data *data);
+
+/**
+ * @brief Recursively performs flood fill algorithm on a 2D character map.
+ *
+ * @param map_copy 2D character array (map copy to avoid modifying original)
+ * @param x Starting x-coordinate (column)
+ * @param y Starting y-coordinate (row)
+ * @param data Additional data structure for flood fill parameters
+ * @return true if successful, false on error or invalid coordinates
+ */
+bool	flood_fill_recursive(char **map_copy, int x, int y, t_data *data);
+
+/*
+** p_map_copy.c
+*/
+
+/**
+ * @brief Creating a copy of the map for checking
+ *
+ * @param data App data containing the map to copy
+ * @return true if creating map failed, false if map is created
+ */
+char	**create_map_copy(t_data *data);
+
+
+/**
+ * @brief Check the line is it contains the char needed
+ *
+ * @param line Line to process
+ * @return true if line is unvalid, false if map is valid
+ */
+bool	is_map_line_valid(char *line);
 
 /*
 ** p_texture.c
