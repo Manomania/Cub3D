@@ -6,7 +6,7 @@
 /*   By: elagouch <elagouch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/16 15:20:52 by elagouch          #+#    #+#             */
-/*   Updated: 2025/05/19 18:48:03 by elagouch         ###   ########.fr       */
+/*   Updated: 2025/05/23 13:30:25 by elagouch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,18 @@ bool	load_textures(t_textures *textures, void *mlx_ptr, char *paths[4])
 t_color	get_pixel_color(t_texture *texture, int x, int y)
 {
 	char	*pixel;
+	t_color	black;
 
+	if (!texture || !texture->addr)
+	{
+		black.val = 0x000000;
+		return (black);
+	}
+	if (x < 0 || x >= texture->width || y < 0 || y >= texture->height)
+	{
+		black.val = 0x000000;
+		return (black);
+	}
 	pixel = texture->addr + (y * texture->line_length + x
 			* (texture->bits_per_pixel / 8));
 	return (*(t_color *)pixel);

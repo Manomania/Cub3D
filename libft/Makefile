@@ -43,6 +43,7 @@ SRC_FILES			=	ft_atoi \
 						ft_strlcat \
 						ft_strlcpy \
 						ft_strlen \
+						ft_strrchr \
 						ft_strmapi \
 						ft_strncmp \
 						ft_strcmp \

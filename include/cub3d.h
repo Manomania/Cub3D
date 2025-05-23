@@ -6,7 +6,7 @@
 /*   By: elagouch <elagouch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/28 12:05:19 by maximart          #+#    #+#             */
-/*   Updated: 2025/05/21 16:28:38 by elagouch         ###   ########.fr       */
+/*   Updated: 2025/05/23 13:39:55 by elagouch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@
  ******************************************************************************/
 
 # define RESET "\033[039m"
+
 # define RED "\033[091m"
 # define BLUE "\033[034m"
 # define GREEN "\033[092m"
@@ -191,6 +192,7 @@ typedef union u_color
 typedef struct s_data
 {
 	char			**map;
+	char			*map_file_path;
 	int				error_detected;
 	// Textures
 	char			*texture_n;

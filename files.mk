@@ -1,5 +1,4 @@
-SRC_F	=	3_main					\
-			3_dummy					\
+SRC_F	=	main					\
 			draw/d_math				\
 			draw/d_draw				\
 			draw/d_fps				\
@@ -22,4 +21,6 @@ SRC_F	=	3_main					\
 			raycasting/r_init		\
 			raycasting/r_math		\
 			raycasting/r_ray		\
-			t_texture				\
+			texture/t_texture		\
+			utils/u_path			\
+			utils/u_texture
