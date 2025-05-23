@@ -92,7 +92,7 @@ bool	check_error(int argc, char **argv)
 
 	if (argc != 2)
 	{
-		ft_printf_fd(2, RED "Usage: %s <map_file>\n" RESET, argv[0]);
+		ft_printf_fd(2, RED "Error\nUsage: %s <map_file>\n" RESET, argv[0]);
 		return (true);
 	}
 	else
@@ -100,7 +100,7 @@ bool	check_error(int argc, char **argv)
 		ptr = ft_strnstr(argv[1], ".cub", INT_MAX);
 		if (!ptr || ptr[4] != '\0')
 		{
-			ft_printf("%sError:\nInvalid extension\n%s", RED, RESET);
+			ft_printf(RED"Error\nInvalid extension\n"RESET);
 			return (true);
 		}
 	}

@@ -25,7 +25,7 @@ bool	check_color_line(t_data *data, char *color)
 			count_comma++;
 		if ((!ft_isdigit(*check) && *check != ',' && *check != '\n'))
 		{
-			ft_printf(RED "Error: Color values must be between 0-255\n" RESET);
+			ft_printf(RED "Error; Color values must be between 0-255\n" RESET);
 			{
 				data->error_detected = true;
 				return (true);
@@ -35,7 +35,7 @@ bool	check_color_line(t_data *data, char *color)
 	}
 	if (count_comma != 2)
 	{
-		ft_printf(RED "Error: Color values must be between 0-255\n" RESET);
+		ft_printf(RED "Error\nColor values must be between 0-255\n" RESET);
 		data->error_detected = true;
 		return (true);
 	}
@@ -46,7 +46,7 @@ bool	check_rgb_range(t_data *data, int r, int g, int b)
 {
 	if (r < 0 || r > 255 || g < 0 || g > 255 || b < 0 || b > 255)
 	{
-		ft_printf(RED "Error: Color values must be between 0-255\n" RESET);
+		ft_printf(RED "Error\nColor values must be between 0-255\n" RESET);
 		data->error_detected = true;
 		return (true);
 	}
