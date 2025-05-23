@@ -214,6 +214,8 @@ typedef struct s_data
 	// Colors
 	t_color			floor_color;
 	t_color			ceil_color;
+	bool			color_f_found;
+	bool			color_c_found;
 	// Frame timing
 	struct timeval	last_frame;
 	struct timeval	current_frame;

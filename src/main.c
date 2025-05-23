@@ -68,6 +68,8 @@ t_data	*init_data(void)
 		return (NULL);
 	data->error_detected = false;
 	data->map_found = false;
+	data->color_f_found = false;
+	data->color_c_found = false;
 	data->mlx = mlx_init();
 	if (!data->mlx)
 		return (free_ressource(data));
@@ -124,12 +126,23 @@ int	main(int argc, char **argv)
 		free_ressource(data);
 		return (1);
 	}
-	if (read_file(data, argv[1]) || data->error_detected)
+	if (read_file(data, argv[1]))
 	{
 		free_ressource(data);
 		return (1);
 	}
-	/* NOUVELLE VALIDATION - Vérifie que tout est configuré */
+	if (!data->color_c_found)
+	{
+		ft_printf(RED "Error\nColor C is empty\n" RESET);
+		free_ressource(data);
+		return (1);
+	}
+	if (!data->color_f_found)
+	{
+		ft_printf(RED "Error\nColor F is empty\n" RESET);
+		free_ressource(data);
+		return (1);
+	}
 	if (validate_config_completeness(data))
 	{
 		free_ressource(data);
@@ -140,7 +153,6 @@ int	main(int argc, char **argv)
 		free_ressource(data);
 		return (1);
 	}
-	/* DEBUG - Affichage des informations parsées */
 	i = 0;
 	if (data && data->map)
 	{

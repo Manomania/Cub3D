@@ -15,6 +15,8 @@
 static bool	parse_rgb_values(int *r, int *g, int *b, char *color)
 {
 	*r = ft_atoi(color);
+	if (!*r)
+		return (true);
 	while (*color && *color != ',')
 		color++;
 	if (!*color)
@@ -45,8 +47,6 @@ static bool	get_color_floor(t_data *data, char *color)
 		data->error_detected = true;
 		return (true);
 	}
-	if (check_rgb_range(data, r, g, b))
-		return (true);
 	data->floor_color.red = r;
 	data->floor_color.green = g;
 	data->floor_color.blue = b;
@@ -64,8 +64,6 @@ static bool	get_color_ceil(t_data *data, char *color)
 	b = -1;
 	if (parse_rgb_values(&r, &g, &b, color))
 		return (true);
-	if (check_rgb_range(data, r, g, b))
-		return (true);
 	data->ceil_color.red = r;
 	data->ceil_color.green = g;
 	data->ceil_color.blue = b;
@@ -76,12 +74,14 @@ static bool	get_colors(t_data *data, char *color, const char *id)
 {
 	if (ft_strcmp(id, "F ") == 0)
 	{
+		data->color_f_found = true;
 		if (get_color_floor(data, color))
 			return (true);
 		return (false);
 	}
 	if (ft_strcmp(id, "C ") == 0)
 	{
+		data->color_c_found = true;
 		if (get_color_ceil(data, color))
 			return (true);
 		return (false);

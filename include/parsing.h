@@ -44,18 +44,6 @@ bool	parse_color_line(t_data *data, char *line, const char *id);
  */
 bool	check_color_line(t_data *data, char *color);
 
-/**
- * @brief Check rgb if its between 0 and 255
- *
- * @param data
- * @param r
- * @param g
- * @param b
- * @return true
- * @return false
- */
-bool	check_rgb_range(t_data *data, int r, int g, int b);
-
 /*
 ** p_file.c
 */
