@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   3_main.c                                           :+:      :+:    :+:   */
+/*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: elagouch <elagouch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/09 16:06:00 by maximart          #+#    #+#             */
-/*   Updated: 2025/05/21 16:33:53 by elagouch         ###   ########.fr       */
+/*   Updated: 2025/05/23 13:41:52 by elagouch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,10 +15,8 @@
 #include "mlx.h"
 #include "parsing.h"
 #include "player.h"
+#include "utils.h"
 #include <limits.h>
-
-int			generate_dummy_textures(t_data *data);
-int			generate_dummy_map(t_data *data);
 
 /*
 ** Initialize frame timing variables
@@ -80,7 +78,6 @@ t_data	*init_data(void)
 	data->img.img = mlx_new_image(data->mlx, data->win_width, data->win_height);
 	data->img.addr = mlx_get_data_addr(data->img.img, &data->img.bits_per_pixel,
 			&data->img.line_length, &data->img.endian);
-	generate_dummy_textures(data);
 	display_map(data);
 	init_fps(data);
 	return (data);
@@ -100,7 +97,7 @@ bool	check_error(int argc, char **argv)
 		ptr = ft_strnstr(argv[1], ".cub", INT_MAX);
 		if (!ptr || ptr[4] != '\0')
 		{
-			ft_printf(RED"Error\nInvalid extension\n"RESET);
+			ft_printf(RED "Error\nInvalid extension\n" RESET);
 			return (true);
 		}
 	}
@@ -125,6 +122,12 @@ int	main(int argc, char **argv)
 		return (1);
 	data = init_data();
 	if (!data)
+	{
+		free_ressource(data);
+		return (1);
+	}
+	data->map_file_path = ft_strdup(argv[1]);
+	if (!data->map_file_path)
 	{
 		free_ressource(data);
 		return (1);
@@ -172,6 +175,11 @@ int	main(int argc, char **argv)
 	printf(YELLOW "DEBUG: C color[b]: %d\n" RESET, data->ceil_color.blue);
 	printf(YELLOW "DEBUG: HEIGHT: %d\n" RESET, data->map_height);
 	printf(YELLOW "DEBUG: WIDTH: %d\n" RESET, data->map_width);
+	if (load_game_textures(data))
+	{
+		free_ressource(data);
+		return (1);
+	}
 	init_player(data);
 	setup_mlx_hooks(data);
 	mlx_loop(data->mlx);
