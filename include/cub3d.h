@@ -191,7 +191,8 @@ typedef union u_color
 typedef struct s_data
 {
 	char			**map;
-	bool			error_detected;
+	char			*map_file_path;
+	int				error_detected;
 	bool			map_found;
 	// Textures
 	char			*texture_n;
