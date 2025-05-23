@@ -1,10 +1,10 @@
-NO ../textures/prototype_purple_1.xpm
-SO ../textures/prototype_purple_1.xpm
-WE ../textures/prototype_purple_1.xpm
-EA ../textures/prototype_purple_1.xpm
+NO ../textures/prototype_red.xpm
+SO ../textures/prototype_blue.xpm
+WE ../textures/prototype_yellow.xpm
+EA ../textures/prototype_green.xpm
 
-F 220,100,0
-C 225,30,0
+C 114,198,247
+F 194,194,194
 
             1111111111111111111111111
             1000000000110000001100001
