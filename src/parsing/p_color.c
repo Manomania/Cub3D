@@ -15,8 +15,6 @@
 static bool	parse_rgb_values(int *r, int *g, int *b, char *color)
 {
 	*r = ft_atoi(color);
-	if (!*r)
-		return (true);
 	while (*color && *color != ',')
 		color++;
 	if (!*color)

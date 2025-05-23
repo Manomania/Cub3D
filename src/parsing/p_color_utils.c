@@ -38,10 +38,8 @@ bool	check_color_line(t_data *data, char *color)
 		if ((!ft_isdigit(*check) && *check != ',' && *check != '\n'))
 		{
 			ft_printf(RED "Error; Color values must be between 0-255\n" RESET);
-			{
-				data->error_detected = true;
-				return (true);
-			}
+			data->error_detected = true;
+			return (true);
 		}
 		check++;
 	}
