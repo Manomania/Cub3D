@@ -56,8 +56,8 @@ static void	move_l_r(t_player *player, char **map)
 
 	if (player->move_left)
 	{
-		new_pos_x = player->pos_x - player->plane_x * player->move_speed;
-		new_pos_y = player->pos_y - player->plane_y * player->move_speed;
+		new_pos_x = player->pos_x + player->plane_x * player->move_speed;
+		new_pos_y = player->pos_y + player->plane_y * player->move_speed;
 		if (map[(int)player->pos_y][(int)new_pos_x] != '1')
 			player->pos_x = new_pos_x;
 		if (map[(int)new_pos_y][(int)player->pos_x] != '1')
@@ -65,8 +65,8 @@ static void	move_l_r(t_player *player, char **map)
 	}
 	if (player->move_right)
 	{
-		new_pos_x = player->pos_x + player->plane_x * player->move_speed;
-		new_pos_y = player->pos_y + player->plane_y * player->move_speed;
+		new_pos_x = player->pos_x - player->plane_x * player->move_speed;
+		new_pos_y = player->pos_y - player->plane_y * player->move_speed;
 		if (map[(int)player->pos_y][(int)new_pos_x] != '1')
 			player->pos_x = new_pos_x;
 		if (map[(int)new_pos_y][(int)player->pos_x] != '1')
