@@ -6,7 +6,7 @@
 /*   By: elagouch <elagouch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/23 13:39:02 by elagouch          #+#    #+#             */
-/*   Updated: 2025/05/23 13:42:30 by elagouch         ###   ########.fr       */
+/*   Updated: 2025/05/23 13:49:59 by elagouch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,13 +14,9 @@
 #include "texture.h"
 #include "utils.h"
 
-/**
- * @brief Resolve all texture paths relative to the map file
- *
- * @param data App data containing texture paths
- * @param map_path Path to the .cub map file
- * @return char** Array of resolved paths [N, E, S, W], or NULL on failure
- */
+/*
+** Resolve all texture paths relative to the map file
+*/
 static char	**resolve_texture_paths(t_data *data, const char *map_path)
 {
 	char	**resolved_paths;
@@ -40,13 +36,9 @@ static char	**resolve_texture_paths(t_data *data, const char *map_path)
 	return (resolved_paths);
 }
 
-/**
- * @brief Check if all texture files exist and are readable
- *
- * @param paths Array of texture paths to check
- * @return true If all paths are valid
- * @return false If any path is invalid or missing
- */
+/*
+** Check if all texture files exist and are readable
+*/
 static bool	validate_texture_paths(char **paths)
 {
 	int	i;
@@ -67,11 +59,9 @@ static bool	validate_texture_paths(char **paths)
 	return (true);
 }
 
-/**
- * @brief Free array of resolved texture paths
- *
- * @param paths Array of paths to free
- */
+/*
+** Free array of resolved texture paths
+*/
 static void	free_resolved_paths(char **paths)
 {
 	int	i;
@@ -88,13 +78,6 @@ static void	free_resolved_paths(char **paths)
 	free(paths);
 }
 
-/**
- * @brief Load all game textures from parsed paths
- *
- * @param data App data containing texture paths
- * @return true On error
- * @return false On success
- */
 bool	load_game_textures(t_data *data)
 {
 	char	**resolved_paths;
