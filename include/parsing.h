@@ -151,4 +151,32 @@ bool	is_map_line_valid(char *line);
  */
 bool	parse_texture_path(t_data *data, char *line, const char *cardinal);
 
+/*
+** p_validation.c
+*/
+
+/**
+ * @brief Validate that all required configuration is present
+ *
+ * @param data App data structure to validate
+ * @return true if configuration is incomplete, false if complete
+ */
+bool	validate_config_completeness(t_data *data);
+
+/**
+ * @brief Check if all texture paths are properly set
+ *
+ * @param data App data structure
+ * @return true if textures missing, false if all present
+ */
+bool	check_texture_completeness(t_data *data);
+
+/**
+ * @brief Check if colors are properly configured
+ *
+ * @param data App data structure
+ * @return true if colors missing, false if properly set
+ */
+bool	check_color_completeness(t_data *data);
+
 #endif
