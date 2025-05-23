@@ -13,10 +13,51 @@
 #include "mem.h"
 #include "parsing.h"
 
+
+static bool check_line_under_map(t_data *data, char *line)
+{
+	bool is_map_line;
+	char *trimmed_line;
+	bool is_empty_line;
+
+	trimmed_line = ft_strtrim(line, " \t");
+	is_empty_line = (!trimmed_line || trimmed_line[0] == '\0');
+	if (trimmed_line)
+		free(trimmed_line);
+	is_map_line = is_map_line_valid(line);
+	if (data->map_found)
+	{
+		if (is_map_line)
+		{
+			if (!process_map_dimension(data, line))
+				return (true);
+		}
+		else if (!is_empty_line)
+		{
+			ft_printf(RED "Error\nInvalid data in file\n" RESET);
+			data->error_detected = true;
+			return (true);
+		}
+		return (false);
+	}
+	if (is_map_line)
+	{
+		data->map_found = true;
+		if (!process_map_dimension(data, line))
+			return (true);
+	}
+	return (false);
+}
+
 static bool	process_line(t_data *data, char *line)
 {
+
 	if (line[0] == '\0')
 		return (false);
+	if (check_line_under_map(data, line))
+		return (true);
+	if (data->map_found)
+		return (true);
 	if (!parse_texture_path(data, line, "NO "))
 		return (true);
 	if (!parse_texture_path(data, line, "SO "))

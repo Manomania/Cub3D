@@ -69,6 +69,7 @@ t_data	*init_data(void)
 	if (!data)
 		return (NULL);
 	data->error_detected = false;
+	data->map_found = false;
 	data->mlx = mlx_init();
 	if (!data->mlx)
 		return (free_ressource(data));
@@ -111,8 +112,6 @@ static bool	check_map(t_data *data)
 {
 	if (check_map_validity(data))
 		return (true);
-	// if (data->map_height <= 0 || data->map_width <= 0 || !data->map)
-	// 	return (true);
 	return (false);
 }
 
