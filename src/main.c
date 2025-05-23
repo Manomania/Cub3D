@@ -67,6 +67,7 @@ t_data	*init_data(void)
 	if (!data)
 		return (NULL);
 	data->error_detected = false;
+	data->map_found = false;
 	data->mlx = mlx_init();
 	if (!data->mlx)
 		return (free_ressource(data));
@@ -104,15 +105,6 @@ bool	check_error(int argc, char **argv)
 	return (false);
 }
 
-static bool	check_map(t_data *data)
-{
-	if (check_map_validity(data))
-		return (true);
-	// if (data->map_height <= 0 || data->map_width <= 0 || !data->map)
-	// 	return (true);
-	return (false);
-}
-
 int	main(int argc, char **argv)
 {
 	t_data	*data;
@@ -137,23 +129,18 @@ int	main(int argc, char **argv)
 		free_ressource(data);
 		return (1);
 	}
-	if (check_map(data))
+	/* NOUVELLE VALIDATION - Vérifie que tout est configuré */
+	if (validate_config_completeness(data))
 	{
-		printf(RED "DEBUG: texture_north: %s\n" RESET, data->texture_n);
-		printf(RED "DEBUG: texture_south: %s\n" RESET, data->texture_s);
-		printf(RED "DEBUG: texture_west: %s\n" RESET, data->texture_w);
-		printf(RED "DEBUG: texture_east: %s\n" RESET, data->texture_e);
-		printf(RED "DEBUG: F color[r]: %d\n" RESET, data->floor_color.red);
-		printf(RED "DEBUG: F color[g]: %d\n" RESET, data->floor_color.green);
-		printf(RED "DEBUG: F color[b]: %d\n" RESET, data->floor_color.blue);
-		printf(RED "DEBUG: C color[r]: %d\n" RESET, data->ceil_color.red);
-		printf(RED "DEBUG: C color[g]: %d\n" RESET, data->ceil_color.green);
-		printf(RED "DEBUG: C color[b]: %d\n" RESET, data->ceil_color.blue);
-		printf(RED "DEBUG: HEIGHT: %d\n" RESET, data->map_height);
-		printf(RED "DEBUG: WIDTH: %d\n" RESET, data->map_width);
 		free_ressource(data);
 		return (1);
 	}
+	if (check_map_validity(data))
+	{
+		free_ressource(data);
+		return (1);
+	}
+	/* DEBUG - Affichage des informations parsées */
 	i = 0;
 	if (data && data->map)
 	{
@@ -184,6 +171,5 @@ int	main(int argc, char **argv)
 	setup_mlx_hooks(data);
 	mlx_loop(data->mlx);
 	free_ressource(data);
-	ft_printf("########################### END! ###########################\n");
 	return (0);
 }

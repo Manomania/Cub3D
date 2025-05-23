@@ -60,6 +60,8 @@ bool	flood_fill_recursive(char **map_copy, int x, int y, t_data *data)
 		return (true);
 	if (map_copy[y][x] == '1' || map_copy[y][x] == 'V')
 		return (false);
+	if (map_copy[y][x] == ' ')
+		return (true);
 	if (is_boundary_position(x, y, data) && map_copy[y][x] != '1')
 		return (true);
 	map_copy[y][x] = 'V';

@@ -14,6 +14,7 @@ SRC_F	=	main					\
 			parsing/p_map_copy		\
 			parsing/p_map_utils		\
 			parsing/p_texture		\
+			parsing/p_validation	\
 			player/l_init			\
 			player/l_mlx			\
 			player/l_move			\

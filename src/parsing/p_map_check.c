@@ -46,10 +46,7 @@ static bool	validate_map_flood_fill(t_data *data)
 	bool	result;
 
 	if (!find_player_position(data, &start_x, &start_y))
-	{
-		ft_printf(RED "Error\nNo player found in map\n" RESET);
 		return (true);
-	}
 	map_copy = create_map_copy(data);
 	if (!map_copy)
 	{
@@ -60,7 +57,7 @@ static bool	validate_map_flood_fill(t_data *data)
 	free_map_copy(map_copy, data->map_height);
 	if (result)
 	{
-		ft_printf(RED "Error\nMap is not enclosed by walls\n" RESET);
+		ft_printf(RED "Error\nPlayer is not enclosed by walls\n" RESET);
 		return (true);
 	}
 	return (false);
@@ -82,7 +79,8 @@ static bool	check_invalid_characters(t_data *data)
 			if (c != '0' && c != '1' && c != 'N' && c != 'S'
 				&& c != 'E' && c != 'W' && c != ' ' && c != '\n')
 			{
-				ft_printf(RED "Error\nInvalid character in map\n" RESET);
+				data->error_detected = true;
+				ft_printf(RED "Error\nInvalid '%c' in map\n" RESET, c);
 				return (true);
 			}
 			x++;
@@ -128,7 +126,9 @@ bool	check_map_validity(t_data *data)
 		ft_printf(RED "Error\nInvalid map structure\n" RESET);
 		return (true);
 	}
-	if (check_invalid_characters(data) || check_player_count(data))
+	if (check_invalid_characters(data))
+		return (true);
+	if (check_player_count(data))
 		return (true);
 	if (validate_map_flood_fill(data))
 		return (true);
