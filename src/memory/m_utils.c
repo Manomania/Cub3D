@@ -10,14 +10,13 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
+#include "mem.h"
 
-bool	init_map_array(t_data *data)
+bool	init_map_buffer(t_map_buffer *buffer)
 {
-	if (data->map_height < 1)
-		return (true);
-	data->map = ft_calloc(data->map_height + 1, sizeof(char *));
-	if (!data->map)
-		return (true);
-	return (false);
+	buffer->capacity = 50;
+	buffer->count = 0;
+	buffer->max_width = 0;
+	buffer->lines = ft_calloc(buffer->capacity, sizeof(char *));
+	return (buffer->lines == NULL);
 }
