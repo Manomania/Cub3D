@@ -10,96 +10,68 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "mem.h"
 #include "parsing.h"
 
-static void	get_dimension(t_data *data, char *line, bool is_line, char *og_tmp)
+static bool	is_config_line(char *line)
 {
-	int	len;
+	char	*trimmed;
 
-	len = 0;
-	if (is_line)
-	{
-		len = (int)ft_strlen(line);
-		if (len > data->map_width)
-			data->map_width = len;
-		data->map_height++;
-	}
-	free(og_tmp);
+	if (!line)
+		return (false);
+	trimmed = line;
+	while (*trimmed && (*trimmed == ' ' || *trimmed == '\t'))
+		trimmed++;
+	return (ft_strncmp(trimmed, "NO ", 3) == 0
+		|| ft_strncmp(trimmed, "SO ", 3) == 0
+		|| ft_strncmp(trimmed, "WE ", 3) == 0
+		|| ft_strncmp(trimmed, "EA ", 3) == 0
+		|| ft_strncmp(trimmed, "F ", 2) == 0
+		|| ft_strncmp(trimmed, "C ", 2) == 0);
 }
 
-bool	process_map_dimension(t_data *data, char *line)
+bool	looks_like_map_line(char *line)
 {
 	char	*tmp;
-	char	*original_tmp;
-	bool	is_map_line;
 
-	is_map_line = true;
-	if (line[0] == '\0')
+	if (!line || line[0] == '\0')
 		return (false);
-	original_tmp = ft_strtrim(line, "\n");
-	tmp = original_tmp;
-	while (*tmp && *tmp == ' ')
+	tmp = line;
+	while (*tmp && (*tmp == ' ' || *tmp == '\t'))
 		tmp++;
-	if (*tmp == '\0')
-	{
-		free(original_tmp);
+	if (*tmp == '\0' || *tmp == '\n')
 		return (false);
-	}
-	while (*tmp)
+	if (is_config_line(line))
+		return (false);
+	while (*tmp && *tmp != '\n')
 	{
-		if (!ft_strchr("01 \tNSEW", *tmp))
-			is_map_line = false;
+		if (ft_strchr("01NSEW \t", *tmp))
+			return (true);
 		tmp++;
-	}
-	get_dimension(data, line, is_map_line, original_tmp);
-	return (false);
-}
-
-static bool	store_map_line(t_data *data, char *line, int index)
-{
-	data->map[index] = ft_strdup(line);
-	if (!data->map[index])
-	{
-		free_map(data);
-		return (true);
 	}
 	return (false);
 }
 
-static bool	read_map_content(t_data *data, int fd)
+bool	process_single_line(t_data *data, char *line,
+		bool *map_section_started, t_map_buffer *buffer)
 {
-	char	*line;
-	int		i;
-
-	i = 0;
-	line = get_next_line(fd);
-	if (!line)
-		return (true);
-	while (line && i < data->map_height)
+	if (!*map_section_started)
 	{
-		if (is_map_line_valid(line))
+		if (looks_like_map_line(line))
 		{
-			if (store_map_line(data, line, i))
-			{
-				free(line);
+			*map_section_started = true;
+			if (add_line_to_buffer(buffer, line))
 				return (true);
-			}
-			i++;
 		}
-		free(line);
-		line = get_next_line(fd);
+		else if (is_config_line(line))
+		{
+			if (process_config_line(data, line))
+				return (true);
+		}
 	}
-	free(line);
-	data->map[i] = NULL;
-	return (false);
-}
-
-bool	fill_map(t_data *data, int fd)
-{
-	if (init_map_array(data))
-		return (true);
-	if (read_map_content(data, fd))
-		return (true);
+	else
+	{
+		if (add_line_to_buffer(buffer, line))
+			return (true);
+	}
 	return (false);
 }
