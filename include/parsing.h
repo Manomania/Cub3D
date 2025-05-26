@@ -20,33 +20,33 @@
 */
 
 /**
- * @brief Parse a line that defines a color
- *
- * @param data
- * @param line
- * @param id
- * @return true
- * @return false
+ * @brief Parses a color configuration line (F/C) and extracts RGB values
+ * @param data Main data structure to populate
+ * @param line The line containing color configuration
+ * @param id Color identifier ("F " for floor, "C " for ceiling)
+ * @return true on parsing error, false on success
  */
 bool	parse_color_line(t_data *data, char *line, const char *id);
 
-/*
-** p_color_utils.c
-*/
-
 /**
- * @brief Check the line if it is not digit
- *
- * @param data
- * @param color
- * @return true
- * @return false
+ * @brief Validates that color string contains only valid RGB digits
+ * @param data Main data structure (for error reporting)
+ * @param color The color string to validate
+ * @return true if invalid characters found, false if valid
  */
 bool	check_color_line(t_data *data, char *color);
 
 /*
 ** p_file.c
 */
+
+/**
+ * @brief Processes a configuration line (textures NO/SO/WE/EA or colors F/C)
+ * @param data Main data structure to populate
+ * @param line The configuration line to process
+ * @return true on parsing error, false on success
+ */
+bool	process_config_line(t_data *data, char *line);
 
 /**
  * @brief Open and parses a file
@@ -58,19 +58,38 @@ bool	check_color_line(t_data *data, char *color);
 int		read_file(t_data *data, const char *file);
 
 /*
+** p_flood_fill.c
+*/
+
+/**
+ * @brief Creating a copy of the map for checking
+ *
+ * @param data App data containing the map to copy
+ * @return true if creating map failed, false if map is created
+ */
+char	**create_map_copy(t_data *data);
+
+/*
 ** p_map.c
 */
 
 /**
- * @brief Process the dimentions of a map from a line
- *
- * @param data App data
- * @param line Line to process
- * @return false Always return false for some reason
- *
- * @note This function always return false for some reason. @maximart
+ * @brief Checks if a line appears to be part of the map section
+ * @param line The line to analyze
+ * @return true if line contains map characters (0,1,N,S,E,W), false otherwise
  */
-bool	process_map_dimension(t_data *data, char *line);
+bool	looks_like_map_line(char *line);
+
+/**
+ * @brief Processes a single line from the file (config or map data)
+ * @param data Main data structure to populate
+ * @param line Current line being processed
+ * @param map_section_started Pointer to flag tracking if map section has begun
+ * @param buffer Map buffer to store map lines
+ * @return true on error, false on success
+ */
+bool	process_single_line(t_data *data, char *line,
+			bool *map_section_started, t_map_buffer *buffer);
 
 /**
  * @brief Comprehensive map validation using flood fill algorithm
@@ -104,25 +123,37 @@ bool	check_map_validity(t_data *data);
 bool	flood_fill_recursive(char **map_copy, int x, int y, t_data *data);
 
 /*
-** p_map_copy.c
+** p_map_utils.c
 */
 
 /**
- * @brief Creating a copy of the map for checking
- *
- * @param data App data containing the map to copy
- * @return true if creating map failed, false if map is created
+ * @brief Doubles the buffer capacity and reallocates memory
+ * @param buffer The map buffer to expand
+ * @return true on memory allocation failure, false on success
  */
-char	**create_map_copy(t_data *data);
-
+bool	expand_buffer(t_map_buffer *buffer);
 
 /**
- * @brief Check the line is it contains the char needed
- *
- * @param line Line to process
- * @return true if line is unvalid, false if map is valid
+ * @brief Adds a line to the buffer and updates max width tracking
+ * @param buffer The map buffer to add to
+ * @param line The line to add (will be duplicated)
+ * @return true on error, false on success
  */
-bool	is_map_line_valid(char *line);
+bool	add_line_to_buffer(t_map_buffer *buffer, char *line);
+
+/**
+ * @brief Frees all allocated memory in the map buffer
+ * @param buffer The map buffer to free
+ */
+void	free_map_buffer(t_map_buffer *buffer);
+
+/**
+ * @brief Transfers buffer contents to main data structure and sets map dimensions
+ * @param data Main data structure to populate with map data
+ * @param buffer Source buffer containing map lines
+ * @return true on memory allocation failure, false on success
+ */
+bool	buffer_to_data(t_data *data, t_map_buffer *buffer);
 
 /*
 ** p_texture.c

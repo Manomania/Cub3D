@@ -192,6 +192,14 @@ typedef union u_color
 	};
 }					t_color;
 
+typedef struct s_map_buffer
+{
+	char	**lines;
+	int		count;
+	int		capacity;
+	int		max_width;
+}	t_map_buffer;
+
 /*
 ** Global application data
 */
@@ -200,7 +208,6 @@ typedef struct s_data
 	char			**map;
 	char			*map_file_path;
 	int				error_detected;
-	bool			map_started;
 	// Textures
 	char			*texture_n;
 	char			*texture_s;
