@@ -67,7 +67,6 @@ t_data	*init_data(void)
 	if (!data)
 		return (NULL);
 	data->error_detected = false;
-	data->map_started = false;
 	data->color_f_found = false;
 	data->color_c_found = false;
 	data->mlx = mlx_init();
@@ -110,7 +109,6 @@ bool	check_error(int argc, char **argv)
 int	main(int argc, char **argv)
 {
 	t_data	*data;
-	int		i;
 
 	if (check_error(argc, argv))
 		return (1);
@@ -128,23 +126,20 @@ int	main(int argc, char **argv)
 	}
 	if (read_file(data, argv[1]))
 	{
-		printf(RED"DEBUG: read_file"RESET);
 		free_ressource(data);
 		return (1);
 	}
 	if (validate_config_completeness(data))
 	{
-		printf(RED"DEBUG: validate_config_completeness"RESET);
 		free_ressource(data);
 		return (1);
 	}
 	if (check_map_validity(data))
 	{
-		printf(RED"DEBUG: check_map_validity"RESET);
 		free_ressource(data);
 		return (1);
 	}
-	i = 0;
+	int i = 0;
 	if (data && data->map)
 	{
 		while (i < data->map_height && data->map[i])
