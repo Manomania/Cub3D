@@ -18,7 +18,7 @@ static bool	check_comma_count(t_data *data, int count_comma)
 	{
 		data->error_detected = true;
 		ft_printf(RED "Error\nColor values must be like "
-				"[0-255],[0-255],[0-255]\n" RESET);
+			"[0-255],[0-255],[0-255]\n" RESET);
 		return (true);
 	}
 	return (false);
@@ -35,9 +35,10 @@ bool	check_color_line(t_data *data, char *color)
 	{
 		if (*check == ',')
 			count_comma++;
-		if ((!ft_isdigit(*check) && *check != ',' && *check != '\n'))
+		if (!ft_isdigit(*check) && *check != ',' && *check != '\n')
 		{
-			ft_printf(RED "Error; Color values must be between 0-255\n" RESET);
+			ft_printf(RED "Error\nColor values must be like "
+				"[0-255],[0-255],[0-255]\n" RESET);
 			data->error_detected = true;
 			return (true);
 		}
