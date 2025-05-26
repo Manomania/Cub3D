@@ -11,7 +11,7 @@ SRC_F	=	main					\
 			parsing/p_file			\
 			parsing/p_map			\
 			parsing/p_map_check		\
-			parsing/p_map_copy		\
+			parsing/p_flood_fill	\
 			parsing/p_map_utils		\
 			parsing/p_texture		\
 			parsing/p_validation	\
