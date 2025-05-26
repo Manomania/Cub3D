@@ -12,30 +12,80 @@
 
 #include "parsing.h"
 
-bool	is_map_line_valid(char *line)
+bool	expand_buffer(t_map_buffer *buffer)
 {
-	char	*tmp;
-	char	*original_tmp;
-	bool	is_valid;
+	char	**new_lines;
+	int		i;
 
-	is_valid = true;
-	if (!line || line[0] == '\0')
-		return (false);
-	original_tmp = ft_strtrim(line, "\n");
-	tmp = original_tmp;
-	while (*tmp && *tmp == ' ')
-		tmp++;
-	if (*tmp == '\0')
+	buffer->capacity *= 2;
+	new_lines = ft_calloc(buffer->capacity, sizeof(char *));
+	if (!new_lines)
+		return (true);
+	i = 0;
+	while (i < buffer->count)
 	{
-		free(original_tmp);
-		return (false);
+		new_lines[i] = buffer->lines[i];
+		i++;
 	}
-	while (*tmp)
+	free(buffer->lines);
+	buffer->lines = new_lines;
+	return (false);
+}
+
+bool	add_line_to_buffer(t_map_buffer *buffer, char *line)
+{
+	int	len;
+
+	if (buffer->count >= buffer->capacity)
 	{
-		if (!ft_strchr("01 \tNSEW", *tmp))
-			is_valid = false;
-		tmp++;
+		if (expand_buffer(buffer))
+			return (true);
 	}
-	free(original_tmp);
-	return (is_valid);
+	buffer->lines[buffer->count] = ft_strdup(line);
+	if (!buffer->lines[buffer->count])
+		return (true);
+	len = (int)ft_strlen(line);
+	if (len > 0 && line[len - 1] == '\n')
+		len--;
+	if (len > buffer->max_width)
+		buffer->max_width = len;
+	buffer->count++;
+	return (false);
+}
+
+void	free_map_buffer(t_map_buffer *buffer)
+{
+	int	i;
+
+	if (!buffer->lines)
+		return ;
+	i = 0;
+	while (i < buffer->count)
+	{
+		if (buffer->lines[i])
+			free(buffer->lines[i]);
+		i++;
+	}
+	free(buffer->lines);
+	buffer->lines = NULL;
+}
+
+bool	buffer_to_data(t_data *data, t_map_buffer *buffer)
+{
+	int	i;
+
+	data->map_height = buffer->count;
+	data->map_width = buffer->max_width;
+	data->map = ft_calloc(data->map_height + 1, sizeof(char *));
+	if (!data->map)
+		return (true);
+	i = 0;
+	while (i < buffer->count)
+	{
+		data->map[i] = buffer->lines[i];
+		buffer->lines[i] = NULL;
+		i++;
+	}
+	data->map[i] = NULL;
+	return (false);
 }

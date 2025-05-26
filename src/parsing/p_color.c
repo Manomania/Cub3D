@@ -14,19 +14,21 @@
 
 static bool	parse_rgb_values(int *r, int *g, int *b, char *color)
 {
-	*r = ft_atoi(color);
+	if (ft_isdigit(*color))
+		*r = ft_atoi(color);
 	while (*color && *color != ',')
 		color++;
 	if (!*color)
 		return (true);
 	color++;
-	*g = ft_atoi(color);
+	if (ft_isdigit(*color))
+		*g = ft_atoi(color);
 	while (*color && *color != ',')
 		color++;
 	if (!*color)
 		return (true);
 	color++;
-	if (*color != '\n')
+	if (ft_isdigit(*color))
 		*b = ft_atoi(color);
 	return (false);
 }
@@ -45,8 +47,11 @@ static bool	get_color_floor(t_data *data, char *color)
 		data->error_detected = true;
 		return (true);
 	}
-	if (check_rgb_range(data, r, g, b))
+	if (r < 0 || r > 255 || g < 0 || g > 255 || b < 0 || b > 255)
+	{
+		ft_printf(RED "Error\nColor values must be between 0-255\n" RESET);
 		return (true);
+	}
 	data->floor_color.red = r;
 	data->floor_color.green = g;
 	data->floor_color.blue = b;
@@ -63,9 +68,15 @@ static bool	get_color_ceil(t_data *data, char *color)
 	g = -1;
 	b = -1;
 	if (parse_rgb_values(&r, &g, &b, color))
+	{
+		data->error_detected = true;
 		return (true);
-	if (check_rgb_range(data, r, g, b))
+	}
+	if (r < 0 || r > 255 || g < 0 || g > 255 || b < 0 || b > 255)
+	{
+		ft_printf(RED "Error\nColor values must be between 0-255\n" RESET);
 		return (true);
+	}
 	data->ceil_color.red = r;
 	data->ceil_color.green = g;
 	data->ceil_color.blue = b;
@@ -76,12 +87,14 @@ static bool	get_colors(t_data *data, char *color, const char *id)
 {
 	if (ft_strcmp(id, "F ") == 0)
 	{
+		data->color_f_found = true;
 		if (get_color_floor(data, color))
 			return (true);
 		return (false);
 	}
 	if (ft_strcmp(id, "C ") == 0)
 	{
+		data->color_c_found = true;
 		if (get_color_ceil(data, color))
 			return (true);
 		return (false);

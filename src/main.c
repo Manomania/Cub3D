@@ -67,7 +67,8 @@ t_data	*init_data(void)
 	if (!data)
 		return (NULL);
 	data->error_detected = false;
-	data->map_found = false;
+	data->color_f_found = false;
+	data->color_c_found = false;
 	data->mlx = mlx_init();
 	if (!data->mlx)
 		return (free_ressource(data));
@@ -108,7 +109,6 @@ bool	check_error(int argc, char **argv)
 int	main(int argc, char **argv)
 {
 	t_data	*data;
-	int		i;
 
 	if (check_error(argc, argv))
 		return (1);
@@ -124,12 +124,11 @@ int	main(int argc, char **argv)
 		free_ressource(data);
 		return (1);
 	}
-	if (read_file(data, argv[1]) || data->error_detected)
+	if (read_file(data, argv[1]))
 	{
 		free_ressource(data);
 		return (1);
 	}
-	/* NOUVELLE VALIDATION - Vérifie que tout est configuré */
 	if (validate_config_completeness(data))
 	{
 		free_ressource(data);
@@ -140,8 +139,7 @@ int	main(int argc, char **argv)
 		free_ressource(data);
 		return (1);
 	}
-	/* DEBUG - Affichage des informations parsées */
-	i = 0;
+	int i = 0;
 	if (data && data->map)
 	{
 		while (i < data->map_height && data->map[i])
@@ -162,6 +160,18 @@ int	main(int argc, char **argv)
 	printf(YELLOW "DEBUG: C color[b]: %d\n" RESET, data->ceil_color.blue);
 	printf(YELLOW "DEBUG: HEIGHT: %d\n" RESET, data->map_height);
 	printf(YELLOW "DEBUG: WIDTH: %d\n" RESET, data->map_width);
+	if (!data->color_c_found)
+	{
+		ft_printf(RED "Error\nColor C is empty\n" RESET);
+		free_ressource(data);
+		return (1);
+	}
+	if (!data->color_f_found)
+	{
+		ft_printf(RED "Error\nColor F is empty\n" RESET);
+		free_ressource(data);
+		return (1);
+	}
 	if (load_game_textures(data))
 	{
 		free_ressource(data);

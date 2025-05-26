@@ -48,10 +48,10 @@ void	free_map(t_data *data);
 void	free_map_copy(char **map_copy, int height);
 
 /**
- * @brief init the map
+ * @brief init the map in a buffer before in the data
  *
  * @param data Cub3d map
  */
-bool	init_map_array(t_data *data);
+bool	init_map_buffer(t_map_buffer *buffer);
 
 #endif

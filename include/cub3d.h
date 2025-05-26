@@ -59,6 +59,13 @@ typedef enum e_key
 	ON_DESTROY = 17,
 }					t_key;
 
+typedef enum e_parse_state
+{
+	STATE_CONFIG,
+	STATE_MAP,
+	STATE_POST_MAP,
+}	t_parse_state;
+
 /*
 ** Raycasting implementation using DDA algorithm
 ** This is the core of the 3D rendering engine for cub3d
@@ -185,6 +192,14 @@ typedef union u_color
 	};
 }					t_color;
 
+typedef struct s_map_buffer
+{
+	char	**lines;
+	int		count;
+	int		capacity;
+	int		max_width;
+}	t_map_buffer;
+
 /*
 ** Global application data
 */
@@ -193,7 +208,6 @@ typedef struct s_data
 	char			**map;
 	char			*map_file_path;
 	int				error_detected;
-	bool			map_found;
 	// Textures
 	char			*texture_n;
 	char			*texture_s;
@@ -214,6 +228,8 @@ typedef struct s_data
 	// Colors
 	t_color			floor_color;
 	t_color			ceil_color;
+	bool			color_f_found;
+	bool			color_c_found;
 	// Frame timing
 	struct timeval	last_frame;
 	struct timeval	current_frame;
