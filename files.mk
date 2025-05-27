@@ -6,6 +6,11 @@ SRC_F	=	main					\
 			draw/d_shadow			\
 			memory/m_free			\
 			memory/m_utils			\
+			minimap/n_draw			\
+			minimap/n_grid			\
+			minimap/n_minimap		\
+			minimap/n_player		\
+			minimap/n_utils			\
 			parsing/p_color			\
 			parsing/p_color_utils	\
 			parsing/p_file			\
