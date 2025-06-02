@@ -7,6 +7,7 @@ SRC_F	=	main					\
 			memory/m_free			\
 			memory/m_utils			\
 			minimap/n_draw			\
+			minimap/n_draw_utils	\
 			minimap/n_grid			\
 			minimap/n_minimap		\
 			minimap/n_player		\
