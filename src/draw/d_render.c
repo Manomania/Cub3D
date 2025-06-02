@@ -10,6 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "minimap.h"
 #include "draw.h"
 #include "mlx.h"
 #include "player.h"
@@ -39,6 +40,7 @@ void	render_frame(t_data *data)
 	ft_memset(data->img.addr, 0, data->win_width * data->win_height
 		* (data->img.bits_per_pixel / 8));
 	raycasting(data);
+	draw_minimap(data); //  MINIMAP BONUS
 	mlx_put_image_to_window(data->mlx, data->win, data->img.img, 0, 0);
 	update_fps_counter(data);
 	display_fps(data);
