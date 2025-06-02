@@ -38,14 +38,16 @@ static void	init_line_params(t_draw_params *params, int *dx, int *dy,
 }
 
 static void	draw_line_pixels(t_data *data, t_draw_params *params,
-		int dx, int dy, int *step)
+			int dx, int dy)
 {
 	int	err2;
+	int	step_x;
+	int	step_y;
 
+	init_steps(params, &step_x, &step_y);
 	while (1)
 	{
-		if (params->x >= 0 && params->y >= 0
-			&& params->x < data->win_width && params->y < data->win_height)
+		if (is_pixel_valid(data, params->x, params->y))
 			my_mlx_pixel_put(&data->img, params->x, params->y, params->color);
 		if (params->x == params->width && params->y == params->height)
 			break ;
@@ -53,12 +55,12 @@ static void	draw_line_pixels(t_data *data, t_draw_params *params,
 		if (err2 > -dy)
 		{
 			params->start_x -= dy;
-			params->x += step[0];
+			params->x += step_x;
 		}
 		if (err2 < dx)
 		{
 			params->start_x += dx;
-			params->y += step[1];
+			params->y += step_y;
 		}
 	}
 }
@@ -70,7 +72,7 @@ void	draw_line(t_data *data, t_draw_params *params)
 	int	step[2];
 
 	init_line_params(params, &dx, &dy, step);
-	draw_line_pixels(data, params, dx, dy, step);
+	draw_line_pixels(data, params, dx, dy);
 }
 
 void	draw_minimap_border(t_data *data, t_draw_params *params)
