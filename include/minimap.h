@@ -1,17 +1,27 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   minimap.h                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: maximart <maximart@student.42lyon.fr>      +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/05/27 16:31:07 by maximart          #+#    #+#             */
+/*   Updated: 2025/06/02 12:46:54 by maximart         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #ifndef MINIMAP_H
-#define MINIMAP_H
+# define MINIMAP_H
 
 # include "cub3d.h"
-
 
 /*******************************************************************************
  *                                    Macros                                   *
  ******************************************************************************/
 
-# define MINIMAP_SIZE 200
-# define MINIMAP_MARGIN 50
-# define MINIMAP_SCALE 20
+# define MINIMAP_SIZE 150
+# define MINIMAP_MARGIN 40
+# define MINIMAP_SCALE 15
 # define MINIMAP_PLAYER_SIZE 3
 # define MINIMAP_FOV_LENGTH 200
 # define MINIMAP_WALL_COLOR 0xFFFFFF
@@ -25,6 +35,7 @@
 
 typedef struct s_draw_params
 {
+	int		player_screen[2];
 	int		x;
 	int		y;
 	int		width;
@@ -93,6 +104,27 @@ void	draw_line(t_data *data, t_draw_params *params);
 void	draw_minimap_border(t_data *data, t_draw_params *params);
 
 /*
+** n_draw_utils.c
+*/
+
+/**
+ * @brief Draws the player's field of view cone on minimap
+ *
+ * @param data Main game data with player direction information
+ * @param params Drawing parameters for FOV visualization
+ * @param player_screen Array with player screen position [x, y]
+ */
+void	draw_player_fov(t_data *data, t_draw_params *params);
+
+/**
+ * @brief Draws the four borderlines around minimap perimeter
+ *
+ * @param data Main game data structure
+ * @param params Drawing parameters with border positioning
+ */
+void	draw_border_lines(t_data *data, t_draw_params *params);
+
+/*
 ** n_grid.c
 */
 
@@ -130,14 +162,6 @@ void	draw_minimap_player(t_data *data, t_draw_params *params);
 */
 
 /**
- * @brief Draws the four border lines around minimap perimeter
- *
- * @param data Main game data structure
- * @param params Drawing parameters with border positioning
- */
-void	draw_border_lines(t_data *data, t_draw_params *params);
-
-/**
  * @brief Checks if screen coordinates are within minimap FOV bounds
  *
  * @param params Drawing parameters containing minimap boundaries
@@ -156,12 +180,34 @@ bool	check_fov_bounds(t_draw_params *params, int screen_x, int screen_y);
 bool	is_player_in_bounds(t_draw_params *params);
 
 /**
- * @brief Draws the player's field of view cone on minimap
+ * @brief Validates pixel coordinates within screen boundaries
  *
- * @param data Main game data with player direction information
- * @param params Drawing parameters for FOV visualization
- * @param player_screen Array with player screen position [x, y]
+ * @param data Main game data with player information
+ * @param x Coordinate to validate
+ * @param y Coordinate to validate
+ * @return 1 if valid, 0 otherwise
  */
-void	draw_player_fov(t_data *data, t_draw_params *params, int *player_screen);
+int		is_pixel_valid(t_data *data, int x, int y);
+
+/**
+ * @brief Calculates step directions for line drawing algorithms
+ *
+ * @param params Drawing parameters with player position and minimap bounds
+ * @param step_x Pointer to store X direction (-1 or +1)
+ * @param step_y Pointer to store Y direction (-1 or +1)
+ */
+void	init_steps(t_draw_params *params, int *step_x, int *step_y);
+
+/**
+ * @brief Initializes ray position and direction for raycasting
+ *
+ * @param data Pointer to data structure containing player position
+ * @param angle Ray casting angle in radians
+ * @param ray_pos Array to store ray starting position [x, y]
+ * @param ray_dir Array to store ray direction vector [x, y]
+ * @warning NULL pointers cause undefined behavior
+ */
+void	init_ray_pos(t_data *data, double angle, double *ray_pos,
+			double *ray_dir);
 
 #endif

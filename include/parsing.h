@@ -148,7 +148,8 @@ bool	add_line_to_buffer(t_map_buffer *buffer, char *line);
 void	free_map_buffer(t_map_buffer *buffer);
 
 /**
- * @brief Transfers buffer contents to main data structure and sets map dimensions
+ * @brief Transfers buffer contents to main data structure
+ * and sets map dimensions
  * @param data Main data structure to populate with map data
  * @param buffer Source buffer containing map lines
  * @return true on memory allocation failure, false on success
