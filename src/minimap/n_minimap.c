@@ -15,7 +15,7 @@
 
 static void	init_draw_params(t_draw_params *params, t_data *data)
 {
-	params->minimap_x = MINIMAP_SIZE - MINIMAP_MARGIN;
+	params->minimap_x = MINIMAP_MARGIN;
 	params->minimap_y = data->win_height - MINIMAP_SIZE - MINIMAP_MARGIN;
 	params->cell_size = MINIMAP_SIZE / MINIMAP_SCALE;
 	params->center_x = (int)(data->player.pos_x * params->cell_size);
