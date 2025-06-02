@@ -15,6 +15,7 @@
 #include "mem.h"
 #include "mlx.h"
 #include "player.h"
+#include "mouse.h"
 
 static void	hook_destroy(t_data *data)
 {
@@ -38,6 +39,8 @@ static int	key_press(int keycode, t_data *data)
 		data->player.rotate_left = 1;
 	else if (keycode == RIGHT_ARROW)
 		data->player.rotate_right = 1;
+	else if (keycode == 32) // MOUSE
+		mouse_toggle();
 	return (0);
 }
 
@@ -64,4 +67,5 @@ void	setup_mlx_hooks(t_data *data)
 	mlx_hook(data->win, ON_DESTROY, 0, (int (*)())hook_destroy, data);
 	mlx_hook(data->win, ON_KEYDOWN, 1L << 0, key_press, data);
 	mlx_hook(data->win, ON_KEYUP, 1L << 1, key_release, data);
+	mouse_setup_hooks(data); // MOUSE
 }
