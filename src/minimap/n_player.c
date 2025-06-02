@@ -41,6 +41,15 @@ static void	clamp_ray_endpoint(t_draw_params *params, int screen_x,
 		params->end_y = screen_y;
 }
 
+static void	map_to_screen(t_draw_params *params, double *ray_pos,
+		int *screen_pos)
+{
+	screen_pos[0] = params->minimap_x + (int)(ray_pos[0] * params->cell_size)
+		- params->start_x;
+	screen_pos[1] = params->minimap_y + (int)(ray_pos[1] * params->cell_size)
+		- params->start_y;
+}
+
 void	cast_fov_ray(t_data *data, t_draw_params *params, double angle)
 {
 	double	ray_pos[2];
@@ -48,10 +57,7 @@ void	cast_fov_ray(t_data *data, t_draw_params *params, double angle)
 	int		steps;
 	int		screen_pos[2];
 
-	ray_pos[0] = data->player.pos_x;
-	ray_pos[1] = data->player.pos_y;
-	ray_dir[0] = cos(angle) * 0.02;
-	ray_dir[1] = sin(angle) * 0.02;
+	init_ray_pos(data, angle, ray_pos, ray_dir);
 	steps = 0;
 	while (steps < MINIMAP_FOV_LENGTH)
 	{
@@ -64,34 +70,26 @@ void	cast_fov_ray(t_data *data, t_draw_params *params, double angle)
 			ray_pos[1] -= ray_dir[1];
 			break ;
 		}
-		screen_pos[0] = params->minimap_x + (int)(ray_pos[0]
-				* params->cell_size) - params->start_x;
-		screen_pos[1] = params->minimap_y + (int)(ray_pos[1]
-				* params->cell_size) - params->start_y;
+		map_to_screen(params, ray_pos, screen_pos);
 		if (check_fov_bounds(params, screen_pos[0], screen_pos[1]))
 			break ;
 	}
-	screen_pos[0] = params->minimap_x + (int)(ray_pos[0] * params->cell_size)
-		- params->start_x;
-	screen_pos[1] = params->minimap_y + (int)(ray_pos[1] * params->cell_size)
-		- params->start_y;
+	map_to_screen(params, ray_pos, screen_pos);
 	clamp_ray_endpoint(params, screen_pos[0], screen_pos[1]);
 }
 
 void	draw_minimap_player(t_data *data, t_draw_params *params)
 {
-	int	player_screen[2];
-
-	player_screen[0] = params->minimap_x + MINIMAP_SIZE / 2;
-	player_screen[1] = params->minimap_y + MINIMAP_SIZE / 2;
+	params->player_screen[0] = params->minimap_x + MINIMAP_SIZE / 2;
+	params->player_screen[1] = params->minimap_y + MINIMAP_SIZE / 2;
 	params->color.val = MINIMAP_PLAYER_COLOR;
-	params->x = player_screen[0] - MINIMAP_PLAYER_SIZE / 2;
-	params->y = player_screen[1] - MINIMAP_PLAYER_SIZE / 2;
+	params->x = params->player_screen[0] - MINIMAP_PLAYER_SIZE / 2;
+	params->y = params->player_screen[1] - MINIMAP_PLAYER_SIZE / 2;
 	if (is_player_in_bounds(params))
 	{
 		params->width = MINIMAP_PLAYER_SIZE;
 		params->height = MINIMAP_PLAYER_SIZE;
 		draw_filled_rect(data, params);
 	}
-	draw_player_fov(data, params, player_screen);
+	draw_player_fov(data, params);
 }
