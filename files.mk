@@ -12,6 +12,8 @@ SRC_F	=	main					\
 			minimap/n_minimap		\
 			minimap/n_player		\
 			minimap/n_utils			\
+			mouse/o_buttons			\
+			mouse/o_init			\
 			mouse/o_mouse			\
 			parsing/p_color			\
 			parsing/p_color_utils	\
