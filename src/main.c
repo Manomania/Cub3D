@@ -179,7 +179,7 @@ int	main(int argc, char **argv)
 		return (1);
 	}
 	mouse_init(data->win_width, data->win_height); // MOUSE
-	mlx_mouse_hide(data->mlx, data->win); // MOUSE
+	// mlx_mouse_hide(data->mlx, data->win); // MOUSE
 	init_player(data);
 	setup_mlx_hooks(data);
 	mlx_loop(data->mlx);
