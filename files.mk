@@ -27,10 +27,11 @@ SRC_F	=	main						\
 			player/l_init				\
 			player/l_mlx				\
 			player/l_move				\
-			raycasting/r_dda			\
-			raycasting/r_init			\
-			raycasting/r_math			\
-			raycasting/r_ray			\
+			raycasting/r_raycasting		\
 			texture/t_texture			\
 			utils/u_path				\
 			utils/u_texture
+#			raycasting/r_dda			\
+#			raycasting/r_init			\
+#			raycasting/r_math			\
+#			raycasting/r_ray			\
