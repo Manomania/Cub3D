@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minimap.h"
+#include "minimap_bonus.h"
 
 static void	draw_single_fov_line(t_data *data, t_draw_params *params,
 		int end_x, int end_y)

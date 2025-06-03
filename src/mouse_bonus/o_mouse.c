@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "mouse.h"
+#include "mouse_bonus.h"
 #include "mlx.h"
 
 static void	mouse_recenter(t_data *data)

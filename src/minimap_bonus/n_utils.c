@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minimap.h"
+#include "minimap_bonus.h"
 #include "draw.h"
 
 bool	check_fov_bounds(t_draw_params *params, int screen_x, int screen_y)

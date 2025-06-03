@@ -6,11 +6,11 @@
 /*   By: maximart <maximart@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/03 13:48:29 by maximart          #+#    #+#             */
-/*   Updated: 2025/06/03 13:48:52 by maximart         ###   ########.fr       */
+/*   Updated: 2025/06/03 14:13:02 by maximart         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "mouse.h"
+#include "mouse_bonus.h"
 
 void	handle_scroll_wheel(int button)
 {

@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minimap.h"
+#include "minimap_bonus.h"
 #include "draw.h"
 
 static bool	check_grid_bounds(t_draw_params *params)

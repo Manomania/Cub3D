@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minimap.h"
+#include "minimap_bonus.h"
 #include "draw.h"
 #include "mlx.h"
 #include "player.h"

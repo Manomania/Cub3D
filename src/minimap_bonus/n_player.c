@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minimap.h"
+#include "minimap_bonus.h"
 #include "draw.h"
 
 static bool	is_wall_at_map_pos(t_data *data, int map_x, int map_y)

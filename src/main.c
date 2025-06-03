@@ -17,7 +17,7 @@
 #include "player.h"
 #include "utils.h"
 #include <limits.h>
-#include "mouse.h"
+#include "mouse_bonus.h"
 
 /*
 ** Initialize frame timing variables

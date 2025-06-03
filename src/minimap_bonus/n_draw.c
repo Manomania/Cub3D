@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minimap.h"
+#include "minimap_bonus.h"
 #include "draw.h"
 
 void	clamp_rect_bounds(t_data *data, t_draw_params *params)

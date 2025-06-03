@@ -6,11 +6,11 @@
 /*   By: maximart <maximart@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/03 13:49:58 by maximart          #+#    #+#             */
-/*   Updated: 2025/06/03 13:50:48 by maximart         ###   ########.fr       */
+/*   Updated: 2025/06/03 14:12:52 by maximart         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "mouse.h"
+#include "mouse_bonus.h"
 #include "mlx.h"
 
 static t_mouse	g_mouse;

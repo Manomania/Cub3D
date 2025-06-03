@@ -15,7 +15,7 @@
 #include "mem.h"
 #include "mlx.h"
 #include "player.h"
-#include "mouse.h"
+#include "mouse_bonus.h"
 
 static void	hook_destroy(t_data *data)
 {
