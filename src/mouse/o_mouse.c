@@ -13,32 +13,7 @@
 #include "mouse.h"
 #include "mlx.h"
 
-static t_mouse	g_mouse;
-
-void	mouse_init(int win_width, int win_height)
-{
-	g_mouse.x = (int)(win_width * 0.5);
-	g_mouse.y = (int)(win_height * 0.5);
-	g_mouse.last_x = g_mouse.x;
-	g_mouse.last_y = g_mouse.y;
-	g_mouse.is_active = false;
-	g_mouse.first_move = true;
-	g_mouse.sensitivity = MOUSE_SENSITIVITY;
-}
-
-t_mouse	*mouse_get_state(void)
-{
-	return (&g_mouse);
-}
-
-void	mouse_toggle(void)
-{
-	g_mouse.is_active = !g_mouse.is_active;
-	if (g_mouse.is_active)
-		g_mouse.first_move = true;
-}
-
-void	mouse_recenter(t_data *data)
+static void	mouse_recenter(t_data *data)
 {
 	t_mouse	*mouse;
 	int		center_x;
@@ -54,7 +29,7 @@ void	mouse_recenter(t_data *data)
 	mouse->last_y = center_y;
 }
 
-double	mouse_get_delta(int current_x, int current_y)
+static double	mouse_get_delta(int current_x, int current_y)
 {
 	t_mouse	*mouse;
 	double	delta_x;
@@ -75,23 +50,6 @@ double	mouse_get_delta(int current_x, int current_y)
 	return (delta_x);
 }
 
-static void	handle_scroll_wheel(int button)
-{
-	t_mouse	*mouse;
-
-	mouse = mouse_get_state();
-	if (button == MOUSE_SCROLL_UP)
-	{
-		if (mouse->sensitivity < MOUSE_MAX)
-			mouse->sensitivity += 0.0005;
-	}
-	if (button == MOUSE_SCROLL_DOWN)
-	{
-		if (mouse->sensitivity > MOUSE_MIN)
-			mouse->sensitivity -= 0.0005;
-	}
-}
-
 static void	mouse_rotate_camera(t_player *player, double delta_x)
 {
 	double	old_dir_x;
@@ -110,19 +68,7 @@ static void	mouse_rotate_camera(t_player *player, double delta_x)
 	player->plane_y = old_plane_x * sin_angle + player->plane_y * cos_angle;
 }
 
-static int	mouse_press_handler(int button, int x, int y, t_data *data)
-{
-	(void)x;
-	(void)y;
-	(void)data;
-	if (button == MOUSE_LEFT_CLICK)
-		mouse_toggle();
-	if (button == MOUSE_SCROLL_UP || button == MOUSE_SCROLL_DOWN)
-		handle_scroll_wheel(button);
-	return (0);
-}
-
-static int	mouse_move_handler(int x, int y, t_data *data)
+int	mouse_move_handler(int x, int y, t_data *data)
 {
 	double	delta_x;
 	int		center_x;
@@ -136,9 +82,4 @@ static int	mouse_move_handler(int x, int y, t_data *data)
 	if (abs(x - center_x) > 50 || abs(y - center_y) > 50)
 		mouse_recenter(data);
 	return (0);
-}
-void	mouse_setup_hooks(t_data *data)
-{
-	mlx_hook(data->win, 6, 1L << 6, mouse_move_handler, data);
-	mlx_hook(data->win, 4, 1L << 2, mouse_press_handler, data);
 }
