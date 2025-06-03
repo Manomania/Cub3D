@@ -17,6 +17,7 @@
 #include "player.h"
 #include "utils.h"
 #include <limits.h>
+#include "mouse.h"
 
 /*
 ** Initialize frame timing variables
@@ -177,6 +178,8 @@ int	main(int argc, char **argv)
 		free_ressource(data);
 		return (1);
 	}
+	mouse_init(data->win_width, data->win_height); // MOUSE
+	// mlx_mouse_hide(data->mlx, data->win); // MOUSE
 	init_player(data);
 	setup_mlx_hooks(data);
 	mlx_loop(data->mlx);
