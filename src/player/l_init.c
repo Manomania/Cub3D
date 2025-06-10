@@ -50,45 +50,30 @@ static char	find_and_place_player(t_data *data)
 	return ('\0');
 }
 
-static void	set_initial_camera_plane_2(t_data *data, char dir)
-{
-	if (dir == 'E')
-	{
-		data->player.dir_x = 1;
-		data->player.dir_y = 0;
-		data->player.plane_x = 0;
-		data->player.plane_y = 0.66;
-	}
-	else if (dir == 'W')
-	{
-		data->player.dir_x = -1;
-		data->player.dir_y = 0;
-		data->player.plane_x = 0;
-		data->player.plane_y = -0.66;
-	}
-}
-
-/*
-** Set initial direction and camera plane based on starting direction
-*/
 static void	set_initial_camera_plane(t_data *data, char dir)
 {
 	if (dir == 'N')
 	{
 		data->player.dir_x = 0;
 		data->player.dir_y = -1;
-		data->player.plane_x = 0.66;
-		data->player.plane_y = 0;
 	}
 	else if (dir == 'S')
 	{
 		data->player.dir_x = 0;
 		data->player.dir_y = 1;
-		data->player.plane_x = -0.66;
-		data->player.plane_y = 0;
 	}
-	else
-		set_initial_camera_plane_2(data, dir);
+	else if (dir == 'E')
+	{
+		data->player.dir_x = 1;
+		data->player.dir_y = 0;
+	}
+	else if (dir == 'W')
+	{
+		data->player.dir_x = -1;
+		data->player.dir_y = 0;
+	}
+	data->player.plane_x = -data->player.dir_y * 0.66;
+	data->player.plane_y = data->player.dir_x * 0.66;
 }
 
 static void	set_initial_player_data(t_data *data)
