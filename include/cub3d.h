@@ -83,6 +83,14 @@ typedef struct s_ray
 	double			delta_dist_x;
 	double			delta_dist_y;
 	double			perp_wall_dist;
+
+	double  horizontal_x;
+	double  horizontal_y;
+	double  vertical_x;
+	double  vertical_y;
+	double  horizontal_dist;
+	double  vertical_dist;
+
 	// Step dirs are -1 or 1
 	int				step_x;
 	int				step_y;
@@ -107,6 +115,7 @@ typedef struct s_player
 	double			pos_x;
 	double			pos_y;
 
+	double			angle;
 	/* Direction */
 	/* Components of direction vector (where player is looking) */
 	double			dir_x;
