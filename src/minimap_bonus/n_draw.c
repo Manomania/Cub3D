@@ -26,11 +26,11 @@ static void	init_line_params(t_draw_params *params, int *dx, int *dy,
 {
 	*dx = abs(params->width - params->x);
 	*dy = abs(params->height - params->y);
-	if (params->x < params->width)
+	if (params->x > params->width)
 		step[0] = 1;
 	else
 		step[0] = -1;
-	if (params->y < params->height)
+	if (params->y > params->height)
 		step[1] = 1;
 	else
 		step[1] = -1;
