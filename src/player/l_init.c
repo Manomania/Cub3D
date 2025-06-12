@@ -55,12 +55,12 @@ static void	set_initial_camera_plane(t_data *data, char dir)
 	if (dir == 'N')
 	{
 		data->player.dir_x = 0;
-		data->player.dir_y = -1;
+		data->player.dir_y = 1;
 	}
 	else if (dir == 'S')
 	{
 		data->player.dir_x = 0;
-		data->player.dir_y = 1;
+		data->player.dir_y = -1;
 	}
 	else if (dir == 'E')
 	{

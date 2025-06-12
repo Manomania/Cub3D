@@ -45,8 +45,8 @@ static void	move_fw_bw(t_player *player, char **map)
 
 	if (player->move_forward)
 	{
-		new_pos_x = player->pos_x + player->dir_x * player->move_speed;
-		new_pos_y = player->pos_y + player->dir_y * player->move_speed;
+		new_pos_x = player->pos_x - player->dir_x * player->move_speed;
+		new_pos_y = player->pos_y - player->dir_y * player->move_speed;
 		if (is_valid_position(map, new_pos_x, player->pos_y))
 			player->pos_x = new_pos_x;
 		if (is_valid_position(map, player->pos_x, new_pos_y))
@@ -54,8 +54,8 @@ static void	move_fw_bw(t_player *player, char **map)
 	}
 	if (player->move_backward)
 	{
-		new_pos_x = player->pos_x - player->dir_x * player->move_speed;
-		new_pos_y = player->pos_y - player->dir_y * player->move_speed;
+		new_pos_x = player->pos_x + player->dir_x * player->move_speed;
+		new_pos_y = player->pos_y + player->dir_y * player->move_speed;
 		if (is_valid_position(map, new_pos_x, player->pos_y))
 			player->pos_x = new_pos_x;
 		if (is_valid_position(map, player->pos_x, new_pos_y))
@@ -74,8 +74,8 @@ static void	move_l_r(t_player *player, char **map)
 
 	if (player->move_left)
 	{
-		new_pos_x = player->pos_x + player->plane_x * player->move_speed;
-		new_pos_y = player->pos_y + player->plane_y * player->move_speed;
+		new_pos_x = player->pos_x - player->plane_x * player->move_speed;
+		new_pos_y = player->pos_y - player->plane_y * player->move_speed;
 		if (is_valid_position(map, new_pos_x, player->pos_y))
 			player->pos_x = new_pos_x;
 		if (is_valid_position(map, player->pos_x, new_pos_y))
@@ -83,8 +83,8 @@ static void	move_l_r(t_player *player, char **map)
 	}
 	if (player->move_right)
 	{
-		new_pos_x = player->pos_x - player->plane_x * player->move_speed;
-		new_pos_y = player->pos_y - player->plane_y * player->move_speed;
+		new_pos_x = player->pos_x + player->plane_x * player->move_speed;
+		new_pos_y = player->pos_y + player->plane_y * player->move_speed;
 		if (is_valid_position(map, new_pos_x, player->pos_y))
 			player->pos_x = new_pos_x;
 		if (is_valid_position(map, player->pos_x, new_pos_y))
@@ -100,15 +100,15 @@ static void	rotate_l(t_player *player)
 	if (player->rotate_left)
 	{
 		old_dir_x = player->dir_x;
-		player->dir_x = player->dir_x * cos(-player->rot_speed) - player->dir_y
-			* sin(-player->rot_speed);
-		player->dir_y = old_dir_x * sin(-player->rot_speed) + player->dir_y
-			* cos(-player->rot_speed);
+		player->dir_x = player->dir_x * cos(player->rot_speed) - player->dir_y
+			* sin(player->rot_speed);
+		player->dir_y = old_dir_x * sin(player->rot_speed) + player->dir_y
+			* cos(player->rot_speed);
 		old_plane_x = player->plane_x;
-		player->plane_x = player->plane_x * cos(-player->rot_speed)
-			- player->plane_y * sin(-player->rot_speed);
-		player->plane_y = old_plane_x * sin(-player->rot_speed)
-			+ player->plane_y * cos(-player->rot_speed);
+		player->plane_x = player->plane_x * cos(player->rot_speed)
+			- player->plane_y * sin(player->rot_speed);
+		player->plane_y = old_plane_x * sin(player->rot_speed) + player->plane_y
+			* cos(player->rot_speed);
 	}
 }
 
@@ -120,15 +120,15 @@ static void	rotate_r(t_player *player)
 	if (player->rotate_right)
 	{
 		old_dir_x = player->dir_x;
-		player->dir_x = player->dir_x * cos(player->rot_speed) - player->dir_y
-			* sin(player->rot_speed);
-		player->dir_y = old_dir_x * sin(player->rot_speed) + player->dir_y
-			* cos(player->rot_speed);
+		player->dir_x = player->dir_x * cos(-player->rot_speed) - player->dir_y
+			* sin(-player->rot_speed);
+		player->dir_y = old_dir_x * sin(-player->rot_speed) + player->dir_y
+			* cos(-player->rot_speed);
 		old_plane_x = player->plane_x;
-		player->plane_x = player->plane_x * cos(player->rot_speed)
-			- player->plane_y * sin(player->rot_speed);
-		player->plane_y = old_plane_x * sin(player->rot_speed) + player->plane_y
-			* cos(player->rot_speed);
+		player->plane_x = player->plane_x * cos(-player->rot_speed)
+			- player->plane_y * sin(-player->rot_speed);
+		player->plane_y = old_plane_x * sin(-player->rot_speed)
+			+ player->plane_y * cos(-player->rot_speed);
 	}
 }
 
