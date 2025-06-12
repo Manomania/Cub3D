@@ -44,7 +44,7 @@ static double	mouse_get_delta(int current_x, int current_y)
 		mouse->first_move = false;
 		return (0.0);
 	}
-	delta_x = (double)(current_x - mouse->last_x) * mouse->sensitivity;
+	delta_x = (double)(mouse->last_x - current_x) * mouse->sensitivity;
 	mouse->last_x = current_x;
 	mouse->last_y = current_y;
 	return (delta_x);
