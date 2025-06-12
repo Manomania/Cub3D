@@ -134,10 +134,6 @@ static void	rotate_r(t_player *player)
 
 void	move_player(t_player *player, char **map)
 {
-	printf("ENTER move_player: player=%p, dir=(%.6f,%.6f)\n",
-	   player, player->dir_x, player->dir_y);
-	printf("MOVE: received pointer = %p, dir=(%.6f,%.6f)\n",
-	   player, player->dir_x, player->dir_y);
 	move_fw_bw(player, map);
 	move_l_r(player, map);
 	rotate_l(player);
