@@ -45,7 +45,7 @@ static void	move_fw_bw(t_player *player, char **map)
 
 	if (player->move_forward)
 	{
-		new_pos_x = player->pos_x - player->dir_x * player->move_speed;
+		new_pos_x = player->pos_x + player->dir_x * player->move_speed;
 		new_pos_y = player->pos_y - player->dir_y * player->move_speed;
 		if (is_valid_position(map, new_pos_x, player->pos_y))
 			player->pos_x = new_pos_x;
@@ -54,7 +54,7 @@ static void	move_fw_bw(t_player *player, char **map)
 	}
 	if (player->move_backward)
 	{
-		new_pos_x = player->pos_x + player->dir_x * player->move_speed;
+		new_pos_x = player->pos_x - player->dir_x * player->move_speed;
 		new_pos_y = player->pos_y + player->dir_y * player->move_speed;
 		if (is_valid_position(map, new_pos_x, player->pos_y))
 			player->pos_x = new_pos_x;
@@ -74,7 +74,7 @@ static void	move_l_r(t_player *player, char **map)
 
 	if (player->move_left)
 	{
-		new_pos_x = player->pos_x - player->plane_x * player->move_speed;
+		new_pos_x = player->pos_x + player->plane_x * player->move_speed;
 		new_pos_y = player->pos_y - player->plane_y * player->move_speed;
 		if (is_valid_position(map, new_pos_x, player->pos_y))
 			player->pos_x = new_pos_x;
@@ -83,7 +83,7 @@ static void	move_l_r(t_player *player, char **map)
 	}
 	if (player->move_right)
 	{
-		new_pos_x = player->pos_x + player->plane_x * player->move_speed;
+		new_pos_x = player->pos_x - player->plane_x * player->move_speed;
 		new_pos_y = player->pos_y + player->plane_y * player->move_speed;
 		if (is_valid_position(map, new_pos_x, player->pos_y))
 			player->pos_x = new_pos_x;
@@ -134,6 +134,10 @@ static void	rotate_r(t_player *player)
 
 void	move_player(t_player *player, char **map)
 {
+	printf("ENTER move_player: player=%p, dir=(%.6f,%.6f)\n",
+	   player, player->dir_x, player->dir_y);
+	printf("MOVE: received pointer = %p, dir=(%.6f,%.6f)\n",
+	   player, player->dir_x, player->dir_y);
 	move_fw_bw(player, map);
 	move_l_r(player, map);
 	rotate_l(player);
