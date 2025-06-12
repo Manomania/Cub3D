@@ -64,8 +64,8 @@ static void	cast_grid_ray(t_data *data, t_ray *ray, int x)
 
 static void	init_ray(t_ray *ray, t_player *player, double camera_x)
 {
-	ray->ray_dir_x = player->dir_x + player->plane_x * camera_x;
-	ray->ray_dir_y = player->dir_y + player->plane_y * camera_x;
+	ray->ray_dir_x = player->dir_x - player->plane_x * camera_x;
+	ray->ray_dir_y = player->dir_y - player->plane_y * camera_x;
 	ray->hit = 0;
 }
 
