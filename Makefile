@@ -1,9 +1,10 @@
 ########################################################################################################################
 #                                                      VARIABLES                                                       #
-########################################################################################################################\
+########################################################################################################################
 
 AUTHOR				=	maximart && elagouch
 NAME				=	cub3d
+NAME_BONUS			=	cub3d_bonus
 HEADER				=	$(INC_DIR)cub3d.h
 CC 					= 	cc
 CFLAGS 				= 	-Wall -Wextra -Werror
@@ -12,7 +13,27 @@ MLX_FLAGS			=	-L$(MLX_DIR) -l:libmlx_Linux.a -lXext -lX11 -lm
 AR					=	ar rcs
 RM					=	rm -f
 
-include files.mk
+include files_mandatory.mk
+include files_bonus.mk
+include files_extra.mk
+
+# Env vars depending on targets
+# We use filter bc ifeq cannot account for `make fclean bonus` or `make re_bonus`
+ifneq ($(filter bonus re_bonus,$(MAKECMDGOALS)),)
+	SRC_F = $(SRC_F_MANDATORY) $(SRC_F_BONUS)
+	CFLAGS += -DBONUS=1
+	TARGET_NAME = $(NAME_BONUS)
+	BUILD_TYPE = BONUS
+else ifneq ($(filter extra re_extra,$(MAKECMDGOALS)),)
+	SRC_F = $(SRC_F_MANDATORY) $(SRC_F_BONUS) $(SRC_F_EXTRA)
+	CFLAGS += -DBONUS=1 -DEXTRA=1
+	TARGET_NAME = $(NAME)_extra
+	BUILD_TYPE = EXTRA
+else
+	SRC_F = $(SRC_F_MANDATORY)
+	TARGET_NAME = $(NAME)
+	BUILD_TYPE = MANDATORY
+endif
 
 SRC					=	$(addprefix $(SRC_DIR), $(addsuffix .c, $(SRC_F)))
 OBJ 				= 	$(addprefix $(OBJ_DIR), $(addsuffix .o, $(SRC_F)))
@@ -39,7 +60,11 @@ MLX					=	$(MLX_DIR)libmlx_Linux.a
 #                                                       TARGETS                                                        #
 ########################################################################################################################
 
-all:					.print_header $(LIBFT) $(NAME) $(MLX)
+all:					.print_header $(LIBFT) $(MLX) $(TARGET_NAME)
+
+bonus:					.print_header $(LIBFT) $(MLX) $(TARGET_NAME)
+
+extra:					.print_header $(LIBFT) $(MLX) $(TARGET_NAME)
 
 clean:					.print_header
 							@printf "%$(SPACEMENT)b%b" "$(BLUE)[$(OBJ_DIR)]:" "$(GREEN)[✓]$(DEF_COLOR)\n"
@@ -53,7 +78,7 @@ clean:					.print_header
 
 fclean: 				clean
 							@printf "%$(SPACEMENT)b%b" "$(BLUE)[$(NAME)]:" "$(GREEN)[✓]$(DEF_COLOR)\n"
-							@$(RM) $(NAME)
+							@$(RM) $(NAME) $(NAME_BONUS) $(NAME)_extra
 							@printf "$(RED)=> Deleted!$(DEF_COLOR)\n"
 							@printf "\n"
 							@printf "%$(SPACEMENT)b%b" "$(BLUE)[$(LIBFT)]:"  "$(GREEN)[✓]$(DEF_COLOR)\n"
@@ -65,10 +90,11 @@ fclean: 				clean
 							@printf "$(RED)=> Deleted!\n$(DEF_COLOR)\n"
 							$(call SEPARATOR)
 
-make_libft:
-							@$(MAKE) --silent -C $(LIBFT_DIR)
+re: 					fclean all
 
-re: 					.print_header fclean all
+re_bonus:				fclean bonus
+
+re_extra:				fclean extra
 
 .print_header:
 							$(call DISPLAY_TITLE)
@@ -76,16 +102,17 @@ re: 					.print_header fclean all
 							$(call BUILD)
 							$(call SEPARATOR)
 
-.PHONY: 				all clean fclean make_libft re norm
+.PHONY: 				all bonus extra clean fclean re re_bonus re_extra norm
 
 ########################################################################################################################
 #                                                       COMMANDS                                                       #
 ########################################################################################################################
 
-$(NAME):				$(LIBFT) $(MLX) $(OBJ)
+$(TARGET_NAME):			$(LIBFT) $(MLX) $(OBJ)
 							@$(CC) $(CFLAGS) $(OBJ) $(LIBFT) $(MLX_FLAGS) -o $@
 
-$(LIBFT):				make_libft
+$(LIBFT):
+							@$(MAKE) --silent -C $(LIBFT_DIR)
 
 $(MLX):
 							@$(MAKE) --silent -C $(MLX_DIR)

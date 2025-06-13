@@ -11,13 +11,15 @@
 /* ************************************************************************** */
 
 #include "cub3d.h"
+#ifdef BONUS
+# include "cub3d_bonus.h"
+#endif
 #include "mem.h"
 #include "mlx.h"
 #include "parsing.h"
 #include "player.h"
 #include "utils.h"
 #include <limits.h>
-#include "mouse_bonus.h"
 
 /*
 ** Initialize frame timing variables
@@ -47,19 +49,6 @@ void	display_map(t_data *data)
 	}
 }
 
-/*
-** (¬,‿,¬)
-*/
-static void	this_will_be_removed_eventually(t_data *data)
-{
-	data->win_width = WIN_W;
-	data->win_height = WIN_H;
-	// data->map_width = MAP_W;
-	// data->map_height = MAP_H;
-	// data->floor_color.val = 0x555555;
-	// data->ceil_color.val = 0xAAAAAA;
-}
-
 t_data	*init_data(void)
 {
 	t_data	*data;
@@ -73,7 +62,8 @@ t_data	*init_data(void)
 	data->mlx = mlx_init();
 	if (!data->mlx)
 		return (free_ressource(data));
-	this_will_be_removed_eventually(data);
+	data->win_width = WIN_W;
+	data->win_height = WIN_H;
 	data->win = mlx_new_window(data->mlx, data->win_width, data->win_height,
 			"cub3d");
 	if (!data->win)
@@ -106,6 +96,19 @@ bool	check_error(int argc, char **argv)
 	}
 	return (false);
 }
+
+#ifdef BONUS
+static void	handle_bonus_features(t_data *data)
+{
+    mouse_init(data->win_width, data->win_height);
+    // mlx_mouse_hide(data->mlx, data->win);
+}
+#else
+static void	handle_bonus_features(t_data *data)
+{
+	(void)data;
+}
+#endif
 
 int	main(int argc, char **argv)
 {
@@ -178,8 +181,7 @@ int	main(int argc, char **argv)
 		free_ressource(data);
 		return (1);
 	}
-	mouse_init(data->win_width, data->win_height); // MOUSE
-	// mlx_mouse_hide(data->mlx, data->win); // MOUSE
+	handle_bonus_features(data);
 	init_player(data);
 	setup_mlx_hooks(data);
 	mlx_loop(data->mlx);

@@ -6,3 +6,5 @@ cub3d
 .vscode/
 *.xml
 *.txt
+compile_commands.json
+.cache/

@@ -10,11 +10,25 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minimap_bonus.h"
+#ifdef BONUS
+# include "minimap_bonus.h"
+#endif
 #include "draw.h"
 #include "mlx.h"
 #include "player.h"
 #include "raycasting.h"
+
+#ifdef BONUS
+static void	handle_bonus_features(t_data *data)
+{
+	draw_minimap(data);
+}
+#else
+static void	handle_bonus_features(t_data *data)
+{
+	(void)data;
+}
+#endif
 
 /*
 ** Rendering pipeline. Note: we memset the image to zero, idk if it's a good
@@ -40,7 +54,7 @@ void	render_frame(t_data *data)
 	ft_memset(data->img.addr, 0, data->win_width * data->win_height
 		* (data->img.bits_per_pixel / 8));
 	raycasting(data);
-	draw_minimap(data); //  MINIMAP BONUS
+	handle_bonus_features(data);
 	mlx_put_image_to_window(data->mlx, data->win, data->img.img, 0, 0);
 	update_fps_counter(data);
 	display_fps(data);

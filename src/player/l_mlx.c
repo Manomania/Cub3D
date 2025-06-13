@@ -15,13 +15,28 @@
 #include "mem.h"
 #include "mlx.h"
 #include "player.h"
-#include "mouse_bonus.h"
+#ifdef BONUS
+# include "cub3d_bonus.h"
+#endif
 
 static void	hook_destroy(t_data *data)
 {
 	free_ressource(data);
 	exit(EXIT_SUCCESS);
 }
+
+#ifdef BONUS
+static void	handle_bonus_features(int keycode)
+{
+	if (keycode == 32)
+		mouse_toggle();
+}
+#else
+static void	handle_bonus_features(int keycode)
+{
+	(void)keycode;
+}
+#endif
 
 static int	key_press(int keycode, t_data *data)
 {
@@ -39,8 +54,8 @@ static int	key_press(int keycode, t_data *data)
 		data->player.rotate_left = 1;
 	else if (keycode == RIGHT_ARROW)
 		data->player.rotate_right = 1;
-	else if (keycode == 32) // MOUSE
-		mouse_toggle();
+	else
+		handle_bonus_features(keycode);
 	return (0);
 }
 
@@ -61,6 +76,7 @@ static int	key_release(int keycode, t_data *data)
 	return (0);
 }
 
+#ifdef BONUS
 void	setup_mlx_hooks(t_data *data)
 {
 	mlx_loop_hook(data->mlx, (int (*)())render_frame, data);
@@ -69,3 +85,12 @@ void	setup_mlx_hooks(t_data *data)
 	mlx_hook(data->win, ON_KEYUP, 1L << 1, key_release, data);
 	mouse_setup_hooks(data); // MOUSE
 }
+#else
+void	setup_mlx_hooks(t_data *data)
+{
+	mlx_loop_hook(data->mlx, (int (*)())render_frame, data);
+	mlx_hook(data->win, ON_DESTROY, 0, (int (*)())hook_destroy, data);
+	mlx_hook(data->win, ON_KEYDOWN, 1L << 0, key_press, data);
+	mlx_hook(data->win, ON_KEYUP, 1L << 1, key_release, data);
+}
+#endif
