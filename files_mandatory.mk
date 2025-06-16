@@ -29,5 +29,6 @@ SRC_F_MANDATORY = main						\
 				raycasting/r_utils			\
 				raycasting/r_vertical		\
 				texture/t_texture			\
+				texture/t_texture_pproc		\
 				utils/u_path				\
 				utils/u_texture

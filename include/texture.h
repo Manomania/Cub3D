@@ -6,7 +6,7 @@
 /*   By: elagouch <elagouch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/16 15:22:00 by elagouch          #+#    #+#             */
-/*   Updated: 2025/05/19 18:48:30 by elagouch         ###   ########.fr       */
+/*   Updated: 2025/06/16 17:42:33 by elagouch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,11 +34,12 @@ t_color		get_pixel_color(t_texture *texture, int x, int y);
 /**
  * @brief Determine which texture to use based on wall orientation
  *
+ * @param data App data for the bonus part
  * @param textures Pointer to textures struct
  * @param ray Pointer to ray
  * @return t_texture* Pointer to a newly initialized texture object
  */
-t_texture	*get_wall_texture(t_textures *textures, t_ray *ray);
+t_texture	*get_wall_texture(t_data *data, t_textures *textures, t_ray *ray);
 
 /**
  * @brief Load textures needed for cub3d from XPM texture files paths

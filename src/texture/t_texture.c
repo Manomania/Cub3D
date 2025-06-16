@@ -6,13 +6,16 @@
 /*   By: elagouch <elagouch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/16 15:20:52 by elagouch          #+#    #+#             */
-/*   Updated: 2025/05/23 13:30:25 by elagouch         ###   ########.fr       */
+/*   Updated: 2025/06/16 17:42:58 by elagouch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 #include "mlx.h"
 #include "texture.h"
+
+bool		load_bonus_textures(t_data *data, char *door_path);
+t_texture	*get_wall_texture_bonus(t_data *data, t_textures *textures, t_ray *ray);
 
 static bool	load_textures_ns(t_textures *textures, void *mlx_ptr,
 		char *north_path, char *south_path)
@@ -88,8 +91,13 @@ t_color	get_pixel_color(t_texture *texture, int x, int y)
 	return (*(t_color *)pixel);
 }
 
-t_texture	*get_wall_texture(t_textures *textures, t_ray *ray)
+t_texture	*get_wall_texture(t_data *data, t_textures *textures, t_ray *ray)
 {
+	t_texture	*txt;
+
+	txt = get_wall_texture_bonus(data, textures, ray);
+	if (txt)
+		return (txt);
 	if (ray->side == SIDE_NORTH_SHOUTH)
 	{
 		if (ray->ray_dir_y > 0)

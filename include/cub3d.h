@@ -6,7 +6,7 @@
 /*   By: elagouch <elagouch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/28 12:05:19 by maximart          #+#    #+#             */
-/*   Updated: 2025/06/16 14:45:27 by elagouch         ###   ########.fr       */
+/*   Updated: 2025/06/16 17:28:31 by elagouch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -168,6 +168,7 @@ typedef struct s_textures
 	t_texture		south;
 	t_texture		east;
 	t_texture		west;
+	t_texture		door;
 }					t_textures;
 
 /*

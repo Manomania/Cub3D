@@ -6,7 +6,7 @@
 /*   By: elagouch <elagouch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/16 16:31:43 by elagouch          #+#    #+#             */
-/*   Updated: 2025/06/16 14:53:54 by elagouch         ###   ########.fr       */
+/*   Updated: 2025/06/16 17:43:28 by elagouch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ void	draw_textured_line(t_data *data, t_ray *ray, int x)
 	t_texture	*texture;
 	double		wall_x;
 
-	texture = get_wall_texture(&data->textures, ray);
+	texture = get_wall_texture(data, &data->textures, ray);
 	wall_x = calculate_wall_hit(data, ray);
 	ray->tex_x = calculate_texture_x(wall_x, texture, ray);
 	draw_line_pixels(data, ray, texture, x);
