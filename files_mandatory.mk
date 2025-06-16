@@ -2,7 +2,6 @@ SRC_F_MANDATORY = main						\
 				main_pproc					\
 				draw/d_math					\
 				draw/d_draw					\
-				draw/d_fps					\
 				draw/d_render				\
 				draw/d_render_pproc			\
 				draw/d_shadow				\
@@ -21,6 +20,7 @@ SRC_F_MANDATORY = main						\
 				player/l_mlx				\
 				player/l_mlx_pproc			\
 				player/l_mov				\
+				player/l_mov_pproc			\
 				player/l_mov_rot			\
 				raycasting/r_horizontal		\
 				raycasting/r_raycasting		\

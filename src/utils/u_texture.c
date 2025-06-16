@@ -6,9 +6,13 @@
 /*   By: elagouch <elagouch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/23 13:39:02 by elagouch          #+#    #+#             */
-/*   Updated: 2025/05/23 13:49:59 by elagouch         ###   ########.fr       */
+/*   Updated: 2025/06/16 15:31:59 by elagouch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+/*
+** This file contains mainly stuff for resolving paths.
+*/
 
 #include "cub3d.h"
 #include "texture.h"
