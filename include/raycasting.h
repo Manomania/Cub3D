@@ -39,6 +39,8 @@ void	grid_raycasting(t_data *data);
 
 void	init_ray(t_ray *ray, t_player *player, double camera_x);
 
+void	cast_grid_ray(t_data *data, t_ray *ray, int x);
+
 void	calculate_line_height(t_ray *ray, int screen_height);
 
 bool	is_valid_and_walkable(t_data *data, int x, int y);
