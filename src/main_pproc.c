@@ -6,7 +6,7 @@
 /*   By: elagouch <elagouch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/16 14:01:13 by elagouch          #+#    #+#             */
-/*   Updated: 2025/06/16 14:11:49 by elagouch         ###   ########.fr       */
+/*   Updated: 2025/06/16 14:29:20 by elagouch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@
 
 void	handle_main_bonus_features(t_data *data)
 {
-    mouse_init(data->win_width, data->win_height);
+	mouse_init(data->win_width, data->win_height);
 }
 #else
 

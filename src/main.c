@@ -6,7 +6,7 @@
 /*   By: elagouch <elagouch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/09 16:06:00 by maximart          #+#    #+#             */
-/*   Updated: 2025/06/16 14:05:14 by elagouch         ###   ########.fr       */
+/*   Updated: 2025/06/16 14:28:29 by elagouch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,6 +103,7 @@ bool	check_error(int argc, char **argv)
 int	main(int argc, char **argv)
 {
 	t_data	*data;
+	int		i;
 
 	if (check_error(argc, argv))
 		return (1);
@@ -133,7 +134,7 @@ int	main(int argc, char **argv)
 		free_ressource(data);
 		return (1);
 	}
-	int i = 0;
+	i = 0;
 	if (data && data->map)
 	{
 		while (i < data->map_height && data->map[i])
