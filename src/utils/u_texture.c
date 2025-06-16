@@ -6,7 +6,7 @@
 /*   By: elagouch <elagouch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/23 13:39:02 by elagouch          #+#    #+#             */
-/*   Updated: 2025/06/16 15:31:59 by elagouch         ###   ########.fr       */
+/*   Updated: 2025/06/16 18:33:03 by elagouch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,8 @@
 #include "cub3d.h"
 #include "texture.h"
 #include "utils.h"
+
+bool	load_game_textures_bonus(t_data *data);
 
 /*
 ** Resolve all texture paths relative to the map file
@@ -113,5 +115,7 @@ bool	load_game_textures(t_data *data)
 		ft_printf(RED "Error\nFailed to load textures\n" RESET);
 		return (true);
 	}
+	if (load_game_textures_bonus(data))
+		return (true);
 	return (false);
 }

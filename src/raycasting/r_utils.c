@@ -6,7 +6,7 @@
 /*   By: maximart <maximart@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/16 13:38:33 by maximart          #+#    #+#             */
-/*   Updated: 2025/06/16 13:38:33 by maximart         ###   ########.fr       */
+/*   Updated: 2025/06/16 18:27:11 by elagouch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,5 +52,5 @@ bool	is_valid_and_walkable(t_data *data, int x, int y)
 		return (false);
 	if (x >= (int)ft_strlen(data->map[y]))
 		return (false);
-	return (data->map[y][x] != '1');
+	return (!ft_strchr("1D", data->map[y][x]));
 }

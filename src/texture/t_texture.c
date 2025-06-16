@@ -6,7 +6,7 @@
 /*   By: elagouch <elagouch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/16 15:20:52 by elagouch          #+#    #+#             */
-/*   Updated: 2025/06/16 17:42:58 by elagouch         ###   ########.fr       */
+/*   Updated: 2025/06/16 18:05:00 by elagouch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,8 @@
 #include "texture.h"
 
 bool		load_bonus_textures(t_data *data, char *door_path);
-t_texture	*get_wall_texture_bonus(t_data *data, t_textures *textures, t_ray *ray);
+t_texture	*get_wall_texture_bonus(t_data *data, t_textures *textures,
+				t_ray *ray);
 
 static bool	load_textures_ns(t_textures *textures, void *mlx_ptr,
 		char *north_path, char *south_path)

@@ -31,4 +31,5 @@ SRC_F_MANDATORY = main						\
 				texture/t_texture			\
 				texture/t_texture_pproc		\
 				utils/u_path				\
-				utils/u_texture
+				utils/u_texture				\
+				utils/u_texture_pproc

@@ -6,7 +6,7 @@
 /*   By: elagouch <elagouch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/19 15:57:10 by elagouch          #+#    #+#             */
-/*   Updated: 2025/06/16 17:24:22 by elagouch         ###   ########.fr       */
+/*   Updated: 2025/06/16 18:32:42 by elagouch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,8 @@ static void	free_textures(t_data *data)
 		mlx_destroy_image(data->mlx, data->textures.east.img);
 	if (data->textures.west.img)
 		mlx_destroy_image(data->mlx, data->textures.west.img);
+	if (data->textures.door.img)
+		mlx_destroy_image(data->mlx, data->textures.door.img);
 }
 
 static void	free_paths(t_data *data)
