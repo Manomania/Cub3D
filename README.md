@@ -28,7 +28,8 @@ and are given a prefix.
 
 | Category | Directory | Prefix |
 | -- | -- | -- |
-| Bonus: Minimap  | `minimap_bonus` | `n_` |
+| Bonus: Doors | `door_bonus` | `i_` |
+| Bonus: Minimap | `minimap_bonus` | `n_` |
 | Bonus: Mouse control  | `mouse_bonus` | `o_` |
 | Drawing  | `draw` | `d_` |
 | Extra: FPS counter  | `fps_extra` | `f_` |

@@ -6,7 +6,7 @@
 /*   By: elagouch <elagouch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/16 18:36:18 by elagouch          #+#    #+#             */
-/*   Updated: 2025/05/21 16:28:59 by elagouch         ###   ########.fr       */
+/*   Updated: 2025/06/16 19:11:56 by elagouch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,8 @@ typedef enum e_keyboard
 	D = 100,
 	LEFT_ARROW = 65361,
 	RIGHT_ARROW = 65363,
+	SPACE = 32,
+	LMB = 1,
 }		t_keyboard;
 
 /*******************************************************************************
@@ -62,13 +64,14 @@ void	init_player(t_data *data);
  * @brief Move the player
  * Bases itself on the current control state and collision detection.
  *
+ * @param data App data
  * @param player Player
  * @param map Map
  *
  * @see Comments in `player_move.c`, they give context for the collision
  *      detection system.
  */
-void	move_player(t_player *player, char **map);
+void	move_player(t_data *data, t_player *player, char **map);
 
 /**
  * @brief Set the up mlx hooks

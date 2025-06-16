@@ -6,7 +6,7 @@
 /*   By: elagouch <elagouch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/28 12:05:19 by maximart          #+#    #+#             */
-/*   Updated: 2025/06/16 17:28:31 by elagouch         ###   ########.fr       */
+/*   Updated: 2025/06/16 18:54:52 by elagouch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -209,6 +209,26 @@ typedef struct s_map_buffer
 }	t_map_buffer;
 
 /*
+** Door structs
+*/
+typedef struct s_door
+{
+    int     x, y;
+    bool    is_open;
+    bool    is_opening;
+    bool    is_closing;
+    float   open_progress;
+}   t_door;
+
+typedef struct s_door_system
+{
+    t_door  *doors;
+    int     door_count;
+    int     door_capacity;
+    float   animation_speed;
+}   t_door_system;
+
+/*
 ** Global application data
 */
 typedef struct s_data
@@ -247,6 +267,8 @@ typedef struct s_data
 	int				frame_count;
 	double			fps_timer;
 	double			time_accumulator;
+	// Misc
+	t_door_system door_system;
 }					t_data;
 
 /*******************************************************************************
