@@ -1,1 +1,1 @@
-SRC_F_EXTRA = extra_fps/f_fps.c
+SRC_F_EXTRA = fps_extra/f_fps

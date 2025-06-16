@@ -28,10 +28,10 @@ and are given a prefix.
 
 | Category | Directory | Prefix |
 | -- | -- | -- |
-| Bonus: Minimap  | `bonus_minimap` | `n_` |
-| Bonus: Mouse control  | `bonus_mouse` | `o_` |
+| Bonus: Minimap  | `minimap_bonus` | `n_` |
+| Bonus: Mouse control  | `mouse_bonus` | `o_` |
 | Drawing  | `draw` | `d_` |
-| Extra: FPS counter  | `extra_fps` | `f_` |
+| Extra: FPS counter  | `fps_extra` | `f_` |
 | Memory  | `memory` | `m_` |
 | Parsing  | `parsing` | `p_` |
 | Player  | `player` | `l_` |

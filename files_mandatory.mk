@@ -2,7 +2,6 @@ SRC_F_MANDATORY = main						\
 				main_pproc					\
 				draw/d_math					\
 				draw/d_draw					\
-				draw/d_fps					\
 				draw/d_render				\
 				draw/d_render_pproc			\
 				draw/d_shadow				\

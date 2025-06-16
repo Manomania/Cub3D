@@ -6,7 +6,7 @@
 /*   By: elagouch <elagouch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/16 18:10:47 by elagouch          #+#    #+#             */
-/*   Updated: 2025/06/16 14:52:35 by elagouch         ###   ########.fr       */
+/*   Updated: 2025/06/16 15:18:23 by elagouch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@
 ** Not worth using a header file
 */
 void	handle_render_bonus_features(t_data *data);
+void	handle_render_extra_features(t_data *data);
 
 /*
 ** Rendering pipeline. Note: we memset the image to zero, idk if it's a good
@@ -47,6 +48,5 @@ void	render_frame(t_data *data)
 	grid_raycasting(data);
 	handle_render_bonus_features(data);
 	mlx_put_image_to_window(data->mlx, data->win, data->img.img, 0, 0);
-	update_fps_counter(data);
-	display_fps(data);
+	handle_render_extra_features(data);
 }

@@ -1,9 +1,9 @@
-SRC_F_BONUS = bonus_minimap/n_draw			\
-			bonus_minimap/n_draw_utils		\
-			bonus_minimap/n_grid			\
-			bonus_minimap/n_minimap			\
-			bonus_minimap/n_player			\
-			bonus_minimap/n_utils			\
-			bonus_mouse/o_buttons			\
-			bonus_mouse/o_init				\
-			bonus_mouse/o_mouse
+SRC_F_BONUS = minimap_bonus/n_draw			\
+			minimap_bonus/n_draw_utils		\
+			minimap_bonus/n_grid			\
+			minimap_bonus/n_minimap			\
+			minimap_bonus/n_player			\
+			minimap_bonus/n_utils			\
+			mouse_bonus/o_buttons			\
+			mouse_bonus/o_init				\
+			mouse_bonus/o_mouse
