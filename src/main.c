@@ -6,7 +6,7 @@
 /*   By: elagouch <elagouch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/09 16:06:00 by maximart          #+#    #+#             */
-/*   Updated: 2025/05/23 13:41:52 by elagouch         ###   ########.fr       */
+/*   Updated: 2025/06/16 14:54:07 by elagouch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,12 @@
 #include "player.h"
 #include "utils.h"
 #include <limits.h>
-#include "mouse_bonus.h"
+
+/*
+** `main_pproc.c`
+** Not worth using a header file
+*/
+void	handle_main_bonus_features(t_data *data);
 
 /*
 ** Initialize frame timing variables
@@ -47,19 +52,6 @@ void	display_map(t_data *data)
 	}
 }
 
-/*
-** (¬,‿,¬)
-*/
-static void	this_will_be_removed_eventually(t_data *data)
-{
-	data->win_width = WIN_W;
-	data->win_height = WIN_H;
-	// data->map_width = MAP_W;
-	// data->map_height = MAP_H;
-	// data->floor_color.val = 0x555555;
-	// data->ceil_color.val = 0xAAAAAA;
-}
-
 t_data	*init_data(void)
 {
 	t_data	*data;
@@ -73,7 +65,8 @@ t_data	*init_data(void)
 	data->mlx = mlx_init();
 	if (!data->mlx)
 		return (free_ressource(data));
-	this_will_be_removed_eventually(data);
+	data->win_width = WIN_W;
+	data->win_height = WIN_H;
 	data->win = mlx_new_window(data->mlx, data->win_width, data->win_height,
 			"cub3d");
 	if (!data->win)
@@ -110,6 +103,7 @@ bool	check_error(int argc, char **argv)
 int	main(int argc, char **argv)
 {
 	t_data	*data;
+	int		i;
 
 	if (check_error(argc, argv))
 		return (1);
@@ -140,7 +134,7 @@ int	main(int argc, char **argv)
 		free_ressource(data);
 		return (1);
 	}
-	int i = 0;
+	i = 0;
 	if (data && data->map)
 	{
 		while (i < data->map_height && data->map[i])
@@ -178,8 +172,7 @@ int	main(int argc, char **argv)
 		free_ressource(data);
 		return (1);
 	}
-	mouse_init(data->win_width, data->win_height); // MOUSE
-	// mlx_mouse_hide(data->mlx, data->win); // MOUSE
+	handle_main_bonus_features(data);
 	init_player(data);
 	setup_mlx_hooks(data);
 	mlx_loop(data->mlx);

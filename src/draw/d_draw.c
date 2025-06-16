@@ -6,7 +6,7 @@
 /*   By: elagouch <elagouch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/16 16:31:43 by elagouch          #+#    #+#             */
-/*   Updated: 2025/05/19 18:50:19 by elagouch         ###   ########.fr       */
+/*   Updated: 2025/06/16 14:53:54 by elagouch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,10 +72,9 @@ void	my_mlx_pixel_put(t_img *img, int x, int y, t_color color)
 	char	*dst;
 
 	if (!img || !img->addr)
-		return;
+		return ;
 	if (x < 0 || y < 0 || x >= WIN_W || y >= WIN_H)
-		return;
-
+		return ;
 	dst = img->addr + (y * img->line_length + x * (img->bits_per_pixel / 8));
 	*(unsigned int *)dst = color.val;
 }

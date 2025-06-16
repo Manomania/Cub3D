@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   l_move.c                                           :+:      :+:    :+:   */
+/*   l_mov.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: elagouch <elagouch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/18 11:42:38 by elagouch          #+#    #+#             */
-/*   Updated: 2025/05/21 16:39:04 by elagouch         ###   ########.fr       */
+/*   Updated: 2025/06/16 14:52:26 by elagouch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,13 @@
 */
 
 #include "player.h"
+
+/*
+** `l_mov_rot.c`
+** No use making a header for you
+*/
+void	rotate_l(t_player *player);
+void	rotate_r(t_player *player);
 
 /*
 ** Check if a position is valid (not a wall)
@@ -89,46 +96,6 @@ static void	move_l_r(t_player *player, char **map)
 			player->pos_x = new_pos_x;
 		if (is_valid_position(map, player->pos_x, new_pos_y))
 			player->pos_y = new_pos_y;
-	}
-}
-
-static void	rotate_l(t_player *player)
-{
-	double	old_dir_x;
-	double	old_plane_x;
-
-	if (player->rotate_left)
-	{
-		old_dir_x = player->dir_x;
-		player->dir_x = player->dir_x * cos(player->rot_speed) - player->dir_y
-			* sin(player->rot_speed);
-		player->dir_y = old_dir_x * sin(player->rot_speed) + player->dir_y
-			* cos(player->rot_speed);
-		old_plane_x = player->plane_x;
-		player->plane_x = player->plane_x * cos(player->rot_speed)
-			- player->plane_y * sin(player->rot_speed);
-		player->plane_y = old_plane_x * sin(player->rot_speed) + player->plane_y
-			* cos(player->rot_speed);
-	}
-}
-
-static void	rotate_r(t_player *player)
-{
-	double	old_dir_x;
-	double	old_plane_x;
-
-	if (player->rotate_right)
-	{
-		old_dir_x = player->dir_x;
-		player->dir_x = player->dir_x * cos(-player->rot_speed) - player->dir_y
-			* sin(-player->rot_speed);
-		player->dir_y = old_dir_x * sin(-player->rot_speed) + player->dir_y
-			* cos(-player->rot_speed);
-		old_plane_x = player->plane_x;
-		player->plane_x = player->plane_x * cos(-player->rot_speed)
-			- player->plane_y * sin(-player->rot_speed);
-		player->plane_y = old_plane_x * sin(-player->rot_speed)
-			+ player->plane_y * cos(-player->rot_speed);
 	}
 }
 

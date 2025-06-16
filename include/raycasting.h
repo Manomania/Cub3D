@@ -6,7 +6,7 @@
 /*   By: elagouch <elagouch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/16 16:40:53 by elagouch          #+#    #+#             */
-/*   Updated: 2025/05/16 19:03:42 by elagouch         ###   ########.fr       */
+/*   Updated: 2025/06/16 14:49:15 by elagouch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,5 @@ bool	is_valid_and_walkable(t_data *data, int x, int y);
 */
 
 void	find_vertical_intersection(t_data *data, t_ray *ray);
-
-
 
 #endif

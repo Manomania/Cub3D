@@ -6,7 +6,7 @@
 /*   By: elagouch <elagouch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/28 12:05:19 by maximart          #+#    #+#             */
-/*   Updated: 2025/05/21 16:28:38 by elagouch         ###   ########.fr       */
+/*   Updated: 2025/06/16 14:45:27 by elagouch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 # define CUB3D_H
 
 # include "libft.h"
+
 # include <float.h>
 # include <math.h>
 # include <stdbool.h>
@@ -81,12 +82,12 @@ typedef struct s_ray
 	double			delta_dist_y;
 	double			perp_wall_dist;
 
-	double  horizontal_x;
-	double  horizontal_y;
-	double  vertical_x;
-	double  vertical_y;
-	double  horizontal_dist;
-	double  vertical_dist;
+	double			horizontal_x;
+	double  		horizontal_y;
+	double  		vertical_x;
+	double  		vertical_y;
+	double  		horizontal_dist;
+	double  		vertical_dist;
 
 	// Step dirs are -1 or 1
 	int				step_x;

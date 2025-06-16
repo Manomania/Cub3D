@@ -41,7 +41,8 @@ static char	**resolve_texture_paths(t_data *data, const char *map_path)
 */
 static bool	validate_texture_paths(char **paths)
 {
-	int	i;
+	int		i;
+	char	*msg;
 
 	if (!paths)
 		return (false);
@@ -50,8 +51,11 @@ static bool	validate_texture_paths(char **paths)
 	{
 		if (!paths[i])
 		{
-			ft_printf(RED "Error\nTexture file not found: %s\n" RESET,
-				paths[i] ? paths[i] : "NULL");
+			if (paths[i])
+				msg = paths[i];
+			else
+				msg = "NULL";
+			ft_printf(RED "Error\nTexture file not found: %s\n" RESET, msg);
 			return (false);
 		}
 		i++;
@@ -62,12 +66,12 @@ static bool	validate_texture_paths(char **paths)
 /*
 ** Free array of resolved texture paths
 */
-static void	free_resolved_paths(char **paths)
+static bool	free_resolved_paths(char **paths)
 {
 	int	i;
 
 	if (!paths)
-		return ;
+		return (true);
 	i = 0;
 	while (i < 4)
 	{
@@ -76,6 +80,7 @@ static void	free_resolved_paths(char **paths)
 		i++;
 	}
 	free(paths);
+	return (true);
 }
 
 bool	load_game_textures(t_data *data)
@@ -96,10 +101,7 @@ bool	load_game_textures(t_data *data)
 		return (true);
 	}
 	if (!validate_texture_paths(resolved_paths))
-	{
-		free_resolved_paths(resolved_paths);
-		return (true);
-	}
+		return (free_resolved_paths(resolved_paths));
 	success = load_textures(&data->textures, data->mlx, resolved_paths);
 	free_resolved_paths(resolved_paths);
 	if (!success)

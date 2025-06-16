@@ -6,15 +6,20 @@
 /*   By: elagouch <elagouch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/16 18:10:47 by elagouch          #+#    #+#             */
-/*   Updated: 2025/05/21 16:34:31 by elagouch         ###   ########.fr       */
+/*   Updated: 2025/06/16 14:52:35 by elagouch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minimap_bonus.h"
 #include "draw.h"
 #include "mlx.h"
 #include "player.h"
 #include "raycasting.h"
+
+/*
+** `d_render_pproc.c`
+** Not worth using a header file
+*/
+void	handle_render_bonus_features(t_data *data);
 
 /*
 ** Rendering pipeline. Note: we memset the image to zero, idk if it's a good
@@ -40,7 +45,7 @@ void	render_frame(t_data *data)
 	ft_memset(data->img.addr, 0, data->win_width * data->win_height
 		* (data->img.bits_per_pixel / 8));
 	grid_raycasting(data);
-	draw_minimap(data); //  MINIMAP_BONUS
+	handle_render_bonus_features(data);
 	mlx_put_image_to_window(data->mlx, data->win, data->img.img, 0, 0);
 	update_fps_counter(data);
 	display_fps(data);

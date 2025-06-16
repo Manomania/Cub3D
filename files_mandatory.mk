@@ -1,0 +1,31 @@
+SRC_F_MANDATORY = main						\
+				main_pproc					\
+				draw/d_math					\
+				draw/d_draw					\
+				draw/d_fps					\
+				draw/d_render				\
+				draw/d_render_pproc			\
+				draw/d_shadow				\
+				memory/m_free				\
+				memory/m_utils				\
+				parsing/p_color				\
+				parsing/p_color_utils		\
+				parsing/p_file				\
+				parsing/p_map				\
+				parsing/p_map_check			\
+				parsing/p_flood_fill		\
+				parsing/p_map_utils			\
+				parsing/p_texture			\
+				parsing/p_validation		\
+				player/l_init				\
+				player/l_mlx				\
+				player/l_mlx_pproc			\
+				player/l_mov				\
+				player/l_mov_rot			\
+				raycasting/r_horizontal		\
+				raycasting/r_raycasting		\
+				raycasting/r_utils			\
+				raycasting/r_vertical		\
+				texture/t_texture			\
+				utils/u_path				\
+				utils/u_texture
