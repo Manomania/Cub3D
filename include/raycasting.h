@@ -19,62 +19,38 @@
 //                            Function Prototypes                              #
 // *************************************************************************** #
 
-/**
- * @brief Calculate the height of the line to draw on screen
- *
- * @param ray Ray
- * @param screen_height Screen height, duh
- */
-void	calculate_line_height(t_ray *ray, int screen_height);
+/*
+** r_horizontal.c
+*/
 
-/**
- * @brief Calculate the step direction and initial side distance
- *
- * @param ray Ray
- * @param player Player
- */
-void	calculate_step_and_side_dist(t_ray *ray, t_player *player);
+void	find_horizontal_intersection(t_data *data, t_ray *ray);
 
-/**
- * @brief Calculate the distance to the wall
- *
- * @param ray Ray
- */
-void	calculate_wall_distance(t_ray *ray);
+/*
+** r_raycasting.c
+*/
 
-/**
- * @brief Cast a single ray for a given x coordinate on the screen
- *
- * @param data App data
- * @param ray Ray
- * @param x X coordinte
- */
-void	cast_ray(t_data *data, t_ray *ray, int x);
+void	calculate_final_distance(t_data *data, t_ray *ray);
 
-/**
- * @brief Initialize a ray structure for a specific screen x coordinate
- *
- * @param ray Ray
- * @param player Player
- * @param camera_x Camera X position
- */
+void	grid_raycasting(t_data *data);
+
+/*
+** r_utils.c
+*/
+
 void	init_ray(t_ray *ray, t_player *player, double camera_x);
 
-/**
- * @brief Perform DDA algorithm to find wall hit
- *
- * @param ray Ray
- * @param map Map
- */
-void	perform_dda(t_ray *ray, char **map);
+void	cast_grid_ray(t_data *data, t_ray *ray, int x);
 
-/**
- * @brief Main raycasting function
- * To be called in the main loop. Loops through each vertical stripe of the
- * screen.
- *
- * @param data App data
- */
-void	raycasting(t_data *data);
+void	calculate_line_height(t_ray *ray, int screen_height);
+
+bool	is_valid_and_walkable(t_data *data, int x, int y);
+
+/*
+** r_vertical.c
+*/
+
+void	find_vertical_intersection(t_data *data, t_ray *ray);
+
+
 
 #endif

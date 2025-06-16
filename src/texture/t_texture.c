@@ -92,7 +92,7 @@ t_texture	*get_wall_texture(t_textures *textures, t_ray *ray)
 {
 	if (ray->side == SIDE_NORTH_SHOUTH)
 	{
-		if (ray->ray_dir_y < 0)
+		if (ray->ray_dir_y > 0)
 			return (&textures->north);
 		else
 			return (&textures->south);

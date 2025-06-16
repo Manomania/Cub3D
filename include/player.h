@@ -38,8 +38,8 @@ typedef enum e_keyboard
 	ESCAPE = 65307,
 	W = 119,
 	S = 115,
-	A = 100,
-	D = 97,
+	A = 97,
+	D = 100,
 	LEFT_ARROW = 65361,
 	RIGHT_ARROW = 65363,
 }		t_keyboard;

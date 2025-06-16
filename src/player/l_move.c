@@ -18,8 +18,25 @@
 #include "player.h"
 
 /*
-** This function and `move_l_r` doubles as a very basic collision checker, but
-** it kinda sucks, I want to scrape it eventually and make something proper.
+** Check if a position is valid (not a wall)
+*/
+static bool	is_valid_position(char **map, double x, double y)
+{
+	int	map_x;
+	int	map_y;
+
+	map_x = (int)x;
+	map_y = (int)y;
+	if (map_x < 0 || map_y < 0 || !map[map_y] || !map[map_y][map_x])
+		return (false);
+	if (map[map_y][map_x] == '1')
+		return (false);
+	return (true);
+}
+
+/*
+** Move forward/backward along the direction vector
+** Fixed collision detection to be consistent regardless of camera angle
 */
 static void	move_fw_bw(t_player *player, char **map)
 {
@@ -29,25 +46,26 @@ static void	move_fw_bw(t_player *player, char **map)
 	if (player->move_forward)
 	{
 		new_pos_x = player->pos_x + player->dir_x * player->move_speed;
-		new_pos_y = player->pos_y + player->dir_y * player->move_speed;
-		if (map[(int)player->pos_y][(int)new_pos_x] != '1')
+		new_pos_y = player->pos_y - player->dir_y * player->move_speed;
+		if (is_valid_position(map, new_pos_x, player->pos_y))
 			player->pos_x = new_pos_x;
-		if (map[(int)new_pos_y][(int)player->pos_x] != '1')
+		if (is_valid_position(map, player->pos_x, new_pos_y))
 			player->pos_y = new_pos_y;
 	}
 	if (player->move_backward)
 	{
 		new_pos_x = player->pos_x - player->dir_x * player->move_speed;
-		new_pos_y = player->pos_y - player->dir_y * player->move_speed;
-		if (map[(int)player->pos_y][(int)new_pos_x] != '1')
+		new_pos_y = player->pos_y + player->dir_y * player->move_speed;
+		if (is_valid_position(map, new_pos_x, player->pos_y))
 			player->pos_x = new_pos_x;
-		if (map[(int)new_pos_y][(int)player->pos_x] != '1')
+		if (is_valid_position(map, player->pos_x, new_pos_y))
 			player->pos_y = new_pos_y;
 	}
 }
 
 /*
-** See `move_fw_bw` comment above.
+** Move left/right along the camera plane (strafe movement)
+** Fixed collision detection to be consistent
 */
 static void	move_l_r(t_player *player, char **map)
 {
@@ -57,19 +75,19 @@ static void	move_l_r(t_player *player, char **map)
 	if (player->move_left)
 	{
 		new_pos_x = player->pos_x + player->plane_x * player->move_speed;
-		new_pos_y = player->pos_y + player->plane_y * player->move_speed;
-		if (map[(int)player->pos_y][(int)new_pos_x] != '1')
+		new_pos_y = player->pos_y - player->plane_y * player->move_speed;
+		if (is_valid_position(map, new_pos_x, player->pos_y))
 			player->pos_x = new_pos_x;
-		if (map[(int)new_pos_y][(int)player->pos_x] != '1')
+		if (is_valid_position(map, player->pos_x, new_pos_y))
 			player->pos_y = new_pos_y;
 	}
 	if (player->move_right)
 	{
 		new_pos_x = player->pos_x - player->plane_x * player->move_speed;
-		new_pos_y = player->pos_y - player->plane_y * player->move_speed;
-		if (map[(int)player->pos_y][(int)new_pos_x] != '1')
+		new_pos_y = player->pos_y + player->plane_y * player->move_speed;
+		if (is_valid_position(map, new_pos_x, player->pos_y))
 			player->pos_x = new_pos_x;
-		if (map[(int)new_pos_y][(int)player->pos_x] != '1')
+		if (is_valid_position(map, player->pos_x, new_pos_y))
 			player->pos_y = new_pos_y;
 	}
 }
@@ -82,15 +100,15 @@ static void	rotate_l(t_player *player)
 	if (player->rotate_left)
 	{
 		old_dir_x = player->dir_x;
-		player->dir_x = player->dir_x * cos(-player->rot_speed) - player->dir_y
-			* sin(-player->rot_speed);
-		player->dir_y = old_dir_x * sin(-player->rot_speed) + player->dir_y
-			* cos(-player->rot_speed);
+		player->dir_x = player->dir_x * cos(player->rot_speed) - player->dir_y
+			* sin(player->rot_speed);
+		player->dir_y = old_dir_x * sin(player->rot_speed) + player->dir_y
+			* cos(player->rot_speed);
 		old_plane_x = player->plane_x;
-		player->plane_x = player->plane_x * cos(-player->rot_speed)
-			- player->plane_y * sin(-player->rot_speed);
-		player->plane_y = old_plane_x * sin(-player->rot_speed)
-			+ player->plane_y * cos(-player->rot_speed);
+		player->plane_x = player->plane_x * cos(player->rot_speed)
+			- player->plane_y * sin(player->rot_speed);
+		player->plane_y = old_plane_x * sin(player->rot_speed) + player->plane_y
+			* cos(player->rot_speed);
 	}
 }
 
@@ -102,15 +120,15 @@ static void	rotate_r(t_player *player)
 	if (player->rotate_right)
 	{
 		old_dir_x = player->dir_x;
-		player->dir_x = player->dir_x * cos(player->rot_speed) - player->dir_y
-			* sin(player->rot_speed);
-		player->dir_y = old_dir_x * sin(player->rot_speed) + player->dir_y
-			* cos(player->rot_speed);
+		player->dir_x = player->dir_x * cos(-player->rot_speed) - player->dir_y
+			* sin(-player->rot_speed);
+		player->dir_y = old_dir_x * sin(-player->rot_speed) + player->dir_y
+			* cos(-player->rot_speed);
 		old_plane_x = player->plane_x;
-		player->plane_x = player->plane_x * cos(player->rot_speed)
-			- player->plane_y * sin(player->rot_speed);
-		player->plane_y = old_plane_x * sin(player->rot_speed) + player->plane_y
-			* cos(player->rot_speed);
+		player->plane_x = player->plane_x * cos(-player->rot_speed)
+			- player->plane_y * sin(-player->rot_speed);
+		player->plane_y = old_plane_x * sin(-player->rot_speed)
+			+ player->plane_y * cos(-player->rot_speed);
 	}
 }
 

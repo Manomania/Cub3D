@@ -56,6 +56,6 @@ void	init_ray_pos(t_data *data, double angle, double *ray_pos,
 {
 	ray_pos[0] = data->player.pos_x;
 	ray_pos[1] = data->player.pos_y;
-	ray_dir[0] = cos(angle) * 0.02;
-	ray_dir[1] = sin(angle) * 0.02;
+	ray_dir[0] = cos(-angle) * 0.02;
+	ray_dir[1] = sin(-angle) * 0.02;
 }
