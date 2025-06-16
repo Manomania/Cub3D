@@ -6,14 +6,9 @@
 /*   By: elagouch <elagouch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/16 13:48:31 by elagouch          #+#    #+#             */
-/*   Updated: 2025/06/16 14:47:12 by elagouch         ###   ########.fr       */
+/*   Updated: 2025/06/16 16:56:17 by elagouch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
-/*
-** This file is for the conditional preprocessor statements that mess with the
-** norm, as indicated by the `pproc` suffix.
-*/
 
 #include "cub3d.h"
 #include "cub3d_bonus.h"

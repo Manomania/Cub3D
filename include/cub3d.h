@@ -220,6 +220,7 @@ typedef struct s_data
 	char			*texture_s;
 	char			*texture_e;
 	char			*texture_w;
+	char			*texture_door;
 	// MLX stuff
 	t_img			img;
 	void			*mlx;

@@ -6,7 +6,7 @@
 /*   By: elagouch <elagouch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/19 15:57:10 by elagouch          #+#    #+#             */
-/*   Updated: 2025/05/23 13:40:53 by elagouch         ###   ########.fr       */
+/*   Updated: 2025/06/16 17:24:22 by elagouch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,6 +67,8 @@ static void	free_paths(t_data *data)
 		free(data->texture_e);
 	if (data->texture_w)
 		free(data->texture_w);
+	if (data->texture_door)
+		free(data->texture_door);
 	if (data->map_file_path)
 		free(data->map_file_path);
 }

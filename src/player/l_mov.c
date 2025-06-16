@@ -6,7 +6,7 @@
 /*   By: elagouch <elagouch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/18 11:42:38 by elagouch          #+#    #+#             */
-/*   Updated: 2025/06/16 16:11:35 by elagouch         ###   ########.fr       */
+/*   Updated: 2025/06/16 16:56:47 by elagouch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,6 @@
 
 /*
 ** `l_mov_rot.c`
-** No use making a header for you
 */
 void	rotate_l(t_player *player);
 void	rotate_r(t_player *player);

@@ -12,10 +12,12 @@ SRC_F_MANDATORY = main						\
 				parsing/p_file				\
 				parsing/p_map				\
 				parsing/p_map_check			\
+				parsing/p_map_check_pproc	\
 				parsing/p_flood_fill		\
 				parsing/p_map_utils			\
 				parsing/p_texture			\
 				parsing/p_validation		\
+				parsing/p_validation_pproc	\
 				player/l_init				\
 				player/l_mlx				\
 				player/l_mlx_pproc			\

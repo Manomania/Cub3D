@@ -1,44 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   d_render_pproc.c                                   :+:      :+:    :+:   */
+/*   p_map_check_pproc.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: elagouch <elagouch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/06/16 14:07:51 by elagouch          #+#    #+#             */
-/*   Updated: 2025/06/16 16:56:26 by elagouch         ###   ########.fr       */
+/*   Created: 2025/06/16 16:58:02 by elagouch          #+#    #+#             */
+/*   Updated: 2025/06/16 16:59:49 by elagouch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
-#include "cub3d_bonus.h"
-#include "cub3d_extra.h"
+#include <stdbool.h>
 
 #ifdef BONUS
 
-void	handle_render_bonus_features(t_data *data)
+bool	invalid_char(char c)
 {
-	draw_minimap(data);
+	return (c != '0' && c != '1' && c != 'N' && c != 'S'
+		&& c != 'E' && c != 'W' && c != ' ' && c != '\n' && c != 'D');
 }
 #else
 
-void	handle_render_bonus_features(t_data *data)
+bool	invalid_char(char c)
 {
-	(void)data;
-}
-#endif
-
-#ifdef EXTRA
-
-void	handle_render_extra_features(t_data *data)
-{
-	update_fps_counter(data);
-	display_fps(data);
-}
-#else
-
-void	handle_render_extra_features(t_data *data)
-{
-	(void)data;
+	return (c != '0' && c != '1' && c != 'N' && c != 'S'
+		&& c != 'E' && c != 'W' && c != ' ' && c != '\n');
 }
 #endif
