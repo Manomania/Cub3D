@@ -39,7 +39,6 @@ void	render_frame(t_data *data)
 	move_player(&data->player, data->map);
 	ft_memset(data->img.addr, 0, data->win_width * data->win_height
 		* (data->img.bits_per_pixel / 8));
-	// raycasting(data); // OLD RAYCASTING
 	grid_raycasting(data);
 	draw_minimap(data); //  MINIMAP_BONUS
 	mlx_put_image_to_window(data->mlx, data->win, data->img.img, 0, 0);
