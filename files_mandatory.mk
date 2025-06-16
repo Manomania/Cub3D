@@ -1,8 +1,10 @@
 SRC_F_MANDATORY = main						\
+				main_pproc					\
 				draw/d_math					\
 				draw/d_draw					\
 				draw/d_fps					\
 				draw/d_render				\
+				draw/d_render_pproc			\
 				draw/d_shadow				\
 				memory/m_free				\
 				memory/m_utils				\
@@ -17,6 +19,7 @@ SRC_F_MANDATORY = main						\
 				parsing/p_validation		\
 				player/l_init				\
 				player/l_mlx				\
+				player/l_mlx_pproc			\
 				player/l_move				\
 				raycasting/r_dda			\
 				raycasting/r_init			\

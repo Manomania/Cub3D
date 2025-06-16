@@ -192,4 +192,4 @@ define	BUILD
 endef
 
 norm:
-	@norminette src libft include
+	@norminette src libft include|grep Error

@@ -6,20 +6,23 @@
 /*   By: elagouch <elagouch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/09 16:06:00 by maximart          #+#    #+#             */
-/*   Updated: 2025/05/23 13:41:52 by elagouch         ###   ########.fr       */
+/*   Updated: 2025/06/16 14:05:14 by elagouch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
-#ifdef BONUS
-# include "cub3d_bonus.h"
-#endif
 #include "mem.h"
 #include "mlx.h"
 #include "parsing.h"
 #include "player.h"
 #include "utils.h"
 #include <limits.h>
+
+/*
+** `main_pproc.c`
+** Not worth using a header file
+*/
+void	handle_main_bonus_features(t_data *data);
 
 /*
 ** Initialize frame timing variables
@@ -97,19 +100,6 @@ bool	check_error(int argc, char **argv)
 	return (false);
 }
 
-#ifdef BONUS
-static void	handle_bonus_features(t_data *data)
-{
-    mouse_init(data->win_width, data->win_height);
-    // mlx_mouse_hide(data->mlx, data->win);
-}
-#else
-static void	handle_bonus_features(t_data *data)
-{
-	(void)data;
-}
-#endif
-
 int	main(int argc, char **argv)
 {
 	t_data	*data;
@@ -181,7 +171,7 @@ int	main(int argc, char **argv)
 		free_ressource(data);
 		return (1);
 	}
-	handle_bonus_features(data);
+	handle_main_bonus_features(data);
 	init_player(data);
 	setup_mlx_hooks(data);
 	mlx_loop(data->mlx);

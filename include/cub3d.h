@@ -6,7 +6,7 @@
 /*   By: elagouch <elagouch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/28 12:05:19 by maximart          #+#    #+#             */
-/*   Updated: 2025/05/21 16:28:38 by elagouch         ###   ########.fr       */
+/*   Updated: 2025/06/16 13:55:17 by elagouch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,10 @@
 # define CUB3D_H
 
 # include "libft.h"
+# ifdef BONUS
+#  include "cub3d_bonus.h"
+# endif
+
 # include <math.h>
 # include <stdbool.h>
 # include <stdio.h>

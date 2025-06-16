@@ -1,23 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cub3d_bonus.h                                      :+:      :+:    :+:   */
+/*   main_pproc.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: elagouch <elagouch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/06/13 11:55:08 by elagouch          #+#    #+#             */
-/*   Updated: 2025/06/13 11:55:09 by elagouch         ###   ########.fr       */
+/*   Created: 2025/06/16 14:01:13 by elagouch          #+#    #+#             */
+/*   Updated: 2025/06/16 14:11:49 by elagouch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef CUB3D_BONUS_H
-# define CUB3D_BONUS_H
+/*
+** This file is for the conditional preprocessor statements that mess with the
+** norm, as indicated by the `pproc` suffix.
+*/
 
-# include "cub3d.h"
+#include "cub3d.h"
 
-# ifdef BONUS
-#  include "minimap_bonus.h"
-#  include "mouse_bonus.h"
-# endif
+#ifdef BONUS
 
+void	handle_main_bonus_features(t_data *data)
+{
+    mouse_init(data->win_width, data->win_height);
+}
+#else
+
+void	handle_main_bonus_features(t_data *data)
+{
+	(void)data;
+}
 #endif
