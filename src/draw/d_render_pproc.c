@@ -6,7 +6,7 @@
 /*   By: elagouch <elagouch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/16 14:07:51 by elagouch          #+#    #+#             */
-/*   Updated: 2025/06/16 19:21:19 by elagouch         ###   ########.fr       */
+/*   Updated: 2025/06/16 19:25:26 by elagouch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,6 @@ void	handle_render_bonus_features(t_data *data)
 {
 	draw_minimap(data);
 	update_door_animations(data);
-	printf("Updating door animation\n");
 }
 #else
 

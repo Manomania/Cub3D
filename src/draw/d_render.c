@@ -6,7 +6,7 @@
 /*   By: elagouch <elagouch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/16 18:10:47 by elagouch          #+#    #+#             */
-/*   Updated: 2025/06/16 19:19:47 by elagouch         ###   ########.fr       */
+/*   Updated: 2025/06/16 19:25:18 by elagouch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,9 +43,6 @@ void	render_frame(t_data *data)
 		data->player.move_speed = 0.2;
 	if (data->player.rot_speed > 0.15)
 		data->player.rot_speed = 0.15;
-	#ifdef BONUS
-	update_door_animations(data);
-	#endif
 	move_player(data, &data->player, data->map);
 	ft_memset(data->img.addr, 0, data->win_width * data->win_height
 		* (data->img.bits_per_pixel / 8));

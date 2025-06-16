@@ -6,11 +6,11 @@
 /*   By: elagouch <elagouch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/16 16:31:43 by elagouch          #+#    #+#             */
-/*   Updated: 2025/06/16 17:43:28 by elagouch         ###   ########.fr       */
+/*   Updated: 2025/06/16 19:33:10 by elagouch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
+#include "cub3d_bonus.h"
 #include "draw.h"
 #include "texture.h"
 
@@ -42,10 +42,35 @@ void	draw_textured_line(t_data *data, t_ray *ray, int x)
 {
 	t_texture	*texture;
 	double		wall_x;
+	t_door		*door;
+	int			map_x;
+	int			map_y;
 
 	texture = get_wall_texture(data, &data->textures, ray);
 	wall_x = calculate_wall_hit(data, ray);
 	ray->tex_x = calculate_texture_x(wall_x, texture, ray);
+	if (ray->side == SIDE_EAST_WEST) {
+		map_x = (int)ray->vertical_x;
+		map_y = (int)ray->vertical_y;
+		if (ray->ray_dir_x < 0)
+			map_x += 1;
+	} else {
+		map_x = (int)ray->horizontal_x;
+		map_y = (int)ray->horizontal_y;
+		if (ray->ray_dir_y > 0)
+			map_y += 1;
+	}
+	if (map_y >= 0 && map_y < data->map_height && 
+		map_x >= 0 && map_x < data->map_width &&
+		data->map[map_y] && map_x < (int)ft_strlen(data->map[map_y]) &&
+		data->map[map_y][map_x] == 'D') {
+		
+		door = get_door_at(data, map_x, map_y);
+		if (door) {
+			int door_offset = (int)(door->open_progress * ray->line_height);
+			ray->draw_start += door_offset;
+		}
+	}
 	draw_line_pixels(data, ray, texture, x);
 }
 
