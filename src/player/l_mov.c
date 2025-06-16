@@ -6,7 +6,7 @@
 /*   By: elagouch <elagouch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/18 11:42:38 by elagouch          #+#    #+#             */
-/*   Updated: 2025/06/16 14:52:26 by elagouch         ###   ########.fr       */
+/*   Updated: 2025/06/16 16:11:35 by elagouch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,23 +23,10 @@
 */
 void	rotate_l(t_player *player);
 void	rotate_r(t_player *player);
-
 /*
-** Check if a position is valid (not a wall)
+** `l_mov_pproc.c`
 */
-static bool	is_valid_position(char **map, double x, double y)
-{
-	int	map_x;
-	int	map_y;
-
-	map_x = (int)x;
-	map_y = (int)y;
-	if (map_x < 0 || map_y < 0 || !map[map_y] || !map[map_y][map_x])
-		return (false);
-	if (map[map_y][map_x] == '1')
-		return (false);
-	return (true);
-}
+bool	is_valid_position(char **map, double x, double y);
 
 /*
 ** Move forward/backward along the direction vector

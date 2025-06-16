@@ -20,6 +20,7 @@ SRC_F_MANDATORY = main						\
 				player/l_mlx				\
 				player/l_mlx_pproc			\
 				player/l_mov				\
+				player/l_mov_pproc			\
 				player/l_mov_rot			\
 				raycasting/r_horizontal		\
 				raycasting/r_raycasting		\
