@@ -20,11 +20,12 @@ SRC_F_MANDATORY = main						\
 				player/l_init				\
 				player/l_mlx				\
 				player/l_mlx_pproc			\
-				player/l_move				\
-				raycasting/r_dda			\
-				raycasting/r_init			\
-				raycasting/r_math			\
-				raycasting/r_ray			\
+				player/l_mov				\
+				player/l_mov_rot			\
+				raycasting/r_horizontal		\
+				raycasting/r_raycasting		\
+				raycasting/r_utils			\
+				raycasting/r_vertical		\
 				texture/t_texture			\
 				utils/u_path				\
 				utils/u_texture

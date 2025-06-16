@@ -6,7 +6,7 @@
 /*   By: elagouch <elagouch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/28 12:05:19 by maximart          #+#    #+#             */
-/*   Updated: 2025/06/16 13:55:17 by elagouch         ###   ########.fr       */
+/*   Updated: 2025/06/16 14:45:27 by elagouch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,8 @@
 # define CUB3D_H
 
 # include "libft.h"
-# ifdef BONUS
-#  include "cub3d_bonus.h"
-# endif
 
+# include <float.h>
 # include <math.h>
 # include <stdbool.h>
 # include <stdio.h>
@@ -34,10 +32,6 @@
 # define GREEN "\033[092m"
 # define YELLOW "\033[093m"
 # define CYAN "\033[36m"
-
-// TODO: Destroy
-# define MAP_W 24
-# define MAP_H 17
 
 # define WIN_H 600
 # define WIN_W 800
@@ -87,6 +81,14 @@ typedef struct s_ray
 	double			delta_dist_x;
 	double			delta_dist_y;
 	double			perp_wall_dist;
+
+	double			horizontal_x;
+	double  		horizontal_y;
+	double  		vertical_x;
+	double  		vertical_y;
+	double  		horizontal_dist;
+	double  		vertical_dist;
+
 	// Step dirs are -1 or 1
 	int				step_x;
 	int				step_y;
@@ -111,6 +113,7 @@ typedef struct s_player
 	double			pos_x;
 	double			pos_y;
 
+	double			angle;
 	/* Direction */
 	/* Components of direction vector (where player is looking) */
 	double			dir_x;

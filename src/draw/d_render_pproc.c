@@ -6,7 +6,7 @@
 /*   By: elagouch <elagouch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/16 14:07:51 by elagouch          #+#    #+#             */
-/*   Updated: 2025/06/16 14:11:31 by elagouch         ###   ########.fr       */
+/*   Updated: 2025/06/16 14:47:56 by elagouch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 */
 
 #include "cub3d.h"
+#include "cub3d_bonus.h"
 
 #ifdef BONUS
 

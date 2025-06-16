@@ -6,7 +6,7 @@
 /*   By: elagouch <elagouch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/16 13:48:31 by elagouch          #+#    #+#             */
-/*   Updated: 2025/06/16 14:06:14 by elagouch         ###   ########.fr       */
+/*   Updated: 2025/06/16 14:47:12 by elagouch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,10 @@
 ** norm, as indicated by the `pproc` suffix.
 */
 
+#include "cub3d.h"
+#include "cub3d_bonus.h"
 #include "draw.h"
 #include "mlx.h"
-#include "cub3d.h"
 #include "player.h"
 
 /*
