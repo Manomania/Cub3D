@@ -14,6 +14,7 @@
 # define CUB3D_H
 
 # include "libft.h"
+# include <float.h>
 # include <math.h>
 # include <stdbool.h>
 # include <stdio.h>
@@ -30,10 +31,6 @@
 # define GREEN "\033[092m"
 # define YELLOW "\033[093m"
 # define CYAN "\033[36m"
-
-// TODO: Destroy
-# define MAP_W 24
-# define MAP_H 17
 
 # define WIN_H 600
 # define WIN_W 800
