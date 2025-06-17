@@ -6,7 +6,7 @@
 /*   By: elagouch <elagouch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/16 16:11:40 by elagouch          #+#    #+#             */
-/*   Updated: 2025/06/17 16:45:19 by elagouch         ###   ########.fr       */
+/*   Updated: 2025/06/17 18:12:56 by elagouch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ bool	is_valid_position(t_data *data, double x, double y)
 	map_y = (int)y;
 	if (map_x < 0 || map_y < 0 || !data->map[map_y] || !data->map[map_y][map_x])
 		return (false);
-	if (data->map[map_y][map_x] == '1')
-		return (false);
+	// if (data->map[map_y][map_x] == '1')
+	// 	return (false);
 	return (true);
 }

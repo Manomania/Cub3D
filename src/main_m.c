@@ -6,7 +6,7 @@
 /*   By: elagouch <elagouch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/17 13:23:50 by elagouch          #+#    #+#             */
-/*   Updated: 2025/06/17 13:24:01 by elagouch         ###   ########.fr       */
+/*   Updated: 2025/06/17 17:58:18 by elagouch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,4 +16,3 @@ void	handle_main_bonus_features(t_data *data)
 {
 	(void)data;
 }
-
