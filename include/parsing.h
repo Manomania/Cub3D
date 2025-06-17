@@ -6,7 +6,7 @@
 /*   By: elagouch <elagouch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/19 18:29:12 by elagouch          #+#    #+#             */
-/*   Updated: 2025/05/21 16:35:35 by elagouch         ###   ########.fr       */
+/*   Updated: 2025/06/17 17:28:02 by elagouch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,10 @@
 # define PARSING_H
 
 # include "cub3d.h"
+
+/*******************************************************************************
+ *                             Function Prototypes                             *
+ ******************************************************************************/
 
 /*
 ** p_color.c
@@ -98,6 +102,18 @@ bool	process_single_line(t_data *data, char *line,
  * @return true if map validation fails, false if map is valid
  */
 bool	fill_map(t_data *data, int fd);
+
+/*
+** p_map_{m,b}.c
+*/
+
+/**
+ * @brief Condition for the validation of a config line
+ *
+ * @param trimmed String to check
+ * @returns bool Whether it's a config line or not
+ */
+bool config_line_condition(char *trimmed);
 
 /*
 ** p_map_check.c
@@ -199,4 +215,4 @@ bool	check_texture_completeness(t_data *data);
  */
 bool	check_color_completeness(t_data *data);
 
-#endif
+#endif // !PARSING_H

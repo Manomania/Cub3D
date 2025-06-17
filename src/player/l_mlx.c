@@ -1,24 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   l_mlx.c                                            :+:      :+:    :+:   */
+/*   l_mlx.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: elagouch <elagouch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/20 18:03:34 by elagouch          #+#    #+#             */
-/*   Updated: 2025/06/16 14:29:26 by elagouch         ###   ########.fr       */
+/*   Updated: 2025/06/16 18:00:00 by elagouch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 #include "mem.h"
 #include "player.h"
-
-/*
-** `l_mlx_pproc.c`
-** Not worth using a header file
-*/
-void	handle_mlx_bonus_features(int keycode);
+#include "pproc.h"
 
 void	hook_destroy(t_data *data)
 {
@@ -43,7 +37,7 @@ int	key_press(int keycode, t_data *data)
 	else if (keycode == RIGHT_ARROW)
 		data->player.rotate_right = 1;
 	else
-		handle_mlx_bonus_features(keycode);
+		handle_mlx_bonus_features(data, keycode);
 	return (0);
 }
 

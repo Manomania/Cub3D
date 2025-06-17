@@ -1,33 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main_pproc.c                                       :+:      :+:    :+:   */
+/*   l_mov_m.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: elagouch <elagouch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/06/16 14:01:13 by elagouch          #+#    #+#             */
-/*   Updated: 2025/06/16 14:46:52 by elagouch         ###   ########.fr       */
+/*   Created: 2025/06/16 16:11:40 by elagouch          #+#    #+#             */
+/*   Updated: 2025/06/17 18:20:58 by elagouch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-/*
-** This file is for the conditional preprocessor statements that mess with the
-** norm, as indicated by the `pproc` suffix.
-*/
-
 #include "cub3d.h"
-#include "cub3d_bonus.h"
 
-#ifdef BONUS
-
-void	handle_main_bonus_features(t_data *data)
+bool	is_valid_position(t_data *data, double x, double y)
 {
-	mouse_init(data->win_width, data->win_height);
-}
-#else
+	int	map_x;
+	int	map_y;
 
-void	handle_main_bonus_features(t_data *data)
-{
-	(void)data;
+	map_x = (int)x;
+	map_y = (int)y;
+	if (map_x < 0 || map_y < 0 || !data->map[map_y] || !data->map[map_y][map_x])
+		return (false);
+	return (true);
 }
-#endif

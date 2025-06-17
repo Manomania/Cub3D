@@ -1,23 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cub3d_bonus.h                                      :+:      :+:    :+:   */
+/*   p_map_b.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: elagouch <elagouch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/06/13 11:55:08 by elagouch          #+#    #+#             */
-/*   Updated: 2025/06/16 14:46:27 by elagouch         ###   ########.fr       */
+/*   Created: 2025/06/17 17:25:49 by elagouch          #+#    #+#             */
+/*   Updated: 2025/06/17 17:26:23 by elagouch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef CUB3D_BONUS_H
-# define CUB3D_BONUS_H
+#include "cub3d.h"
 
-# include "cub3d.h"
-
-# ifdef BONUS
-#  include "minimap_bonus.h"
-#  include "mouse_bonus.h"
-# endif
-
-#endif
+bool config_line_condition(char *trimmed)
+{
+	return (!ft_strncmp(trimmed, "NO ", 3)
+		|| !ft_strncmp(trimmed, "SO ", 3)
+		|| !ft_strncmp(trimmed, "WE ", 3)
+		|| !ft_strncmp(trimmed, "EA ", 3)
+		|| !ft_strncmp(trimmed, "D ", 2)
+		|| !ft_strncmp(trimmed, "F ", 2)
+		|| !ft_strncmp(trimmed, "C ", 2));
+}

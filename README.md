@@ -24,11 +24,14 @@ As well as:
 ## `src/` naming convention
 
 We take inspiration from the Doom naming convention. The files are placed in a subdir that correspond to their subject,
-and are given a prefix.
+and are given a prefix for their subject, and a suffix for their context (mandatory, bonus, extra).
+
+### Prefix
 
 | Category | Directory | Prefix |
 | -- | -- | -- |
-| Bonus: Minimap  | `minimap_bonus` | `n_` |
+| Bonus: Doors | `door_bonus` | `i_` |
+| Bonus: Minimap | `minimap_bonus` | `n_` |
 | Bonus: Mouse control  | `mouse_bonus` | `o_` |
 | Drawing  | `draw` | `d_` |
 | Extra: FPS counter  | `fps_extra` | `f_` |
@@ -38,6 +41,18 @@ and are given a prefix.
 | Ray casting | `raycasting` | `r_` |
 | Texture  | `texture` | `t_` |
 | Utilities | `utils` | `u_` |
+
+### Suffix
+
+| Context | Suffix |
+| -- | -- |
+| Mandatory | `_m` |
+| Bonus | `_b` |
+| Extra | `_e` |
+
+## TODO
+
+Check back door parsing in normal context, I may have broken it with the new linking system
 
 ## Inspiration
 

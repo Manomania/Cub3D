@@ -6,7 +6,7 @@
 /*   By: elagouch <elagouch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/28 12:05:19 by maximart          #+#    #+#             */
-/*   Updated: 2025/06/16 14:45:27 by elagouch         ###   ########.fr       */
+/*   Updated: 2025/06/17 17:41:25 by elagouch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,14 +33,22 @@
 # define YELLOW "\033[093m"
 # define CYAN "\033[36m"
 
-# define WIN_H 600
-# define WIN_W 800
+# define WIN_H 720
+# define WIN_W 1280
 
 # define FPS_COUNTER_TEXT_HEIGHT 20
 # define FPS_COUNTER_TEXT_WIDTH 80
 
 # define BASE_MOVE_SPEED 5.0
 # define BASE_ROT_SPEED 3.0
+
+# ifdef BONUS
+#  define BUILD_BONUS 0
+#  define MAP_CHARS "01NSEWD \t"
+# else
+#  define BUILD_BONUS 1
+#  define MAP_CHARS "01NSEW \t"
+# endif
 
 /*******************************************************************************
  *                                  Structures                                 *
@@ -168,6 +176,7 @@ typedef struct s_textures
 	t_texture		south;
 	t_texture		east;
 	t_texture		west;
+	t_texture		door;
 }					t_textures;
 
 /*
@@ -208,6 +217,26 @@ typedef struct s_map_buffer
 }	t_map_buffer;
 
 /*
+** Door structs
+*/
+typedef struct s_door
+{
+    int     x, y;
+    bool    is_open;
+    bool    is_opening;
+    bool    is_closing;
+    float   open_progress;
+}   t_door;
+
+typedef struct s_door_system
+{
+    t_door  *doors;
+    int     door_count;
+    int     door_capacity;
+    float   animation_speed;
+}   t_door_system;
+
+/*
 ** Global application data
 */
 typedef struct s_data
@@ -220,6 +249,7 @@ typedef struct s_data
 	char			*texture_s;
 	char			*texture_e;
 	char			*texture_w;
+	char			*texture_door;
 	// MLX stuff
 	t_img			img;
 	void			*mlx;
@@ -245,6 +275,8 @@ typedef struct s_data
 	int				frame_count;
 	double			fps_timer;
 	double			time_accumulator;
+	// Misc
+	t_door_system door_system;
 }					t_data;
 
 /*******************************************************************************
@@ -265,4 +297,4 @@ typedef struct s_data
  */
 bool				check_args(int argc, char **argv);
 
-#endif
+#endif // !CUB3D_H

@@ -6,7 +6,7 @@
 /*   By: elagouch <elagouch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/23 13:37:20 by elagouch          #+#    #+#             */
-/*   Updated: 2025/05/23 13:38:30 by elagouch         ###   ########.fr       */
+/*   Updated: 2025/06/17 13:44:26 by elagouch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,10 @@
  *                             Function Prototypes                             *
  ******************************************************************************/
 
+/*
+** u_path.c
+*/
+
 /**
  * @brief Resolve a relative path based on a reference file path
  *
@@ -27,6 +31,10 @@
  * @return char* Resolved absolute path, or NULL on failure
  */
 char	*resolve_path(const char *base_path, const char *relative_path);
+
+/*
+** u_texture.c
+*/
 
 /**
  * @brief Load all game textures from parsed paths
@@ -37,4 +45,4 @@ char	*resolve_path(const char *base_path, const char *relative_path);
  */
 bool	load_game_textures(t_data *data);
 
-#endif
+#endif // !UTILS_H

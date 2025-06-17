@@ -1,27 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   d_shadow.c                                         :+:      :+:    :+:   */
+/*   l_mov_e.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: elagouch <elagouch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/05/19 16:13:47 by elagouch          #+#    #+#             */
-/*   Updated: 2025/05/19 18:52:34 by elagouch         ###   ########.fr       */
+/*   Created: 2025/06/17 14:43:13 by elagouch          #+#    #+#             */
+/*   Updated: 2025/06/17 16:05:35 by elagouch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "draw.h"
+#include "cub3d.h"
+#include "door_bonus.h"
 
-t_color	apply_shadow(t_color color, int side)
+bool	is_valid_position(t_data *data, double x, double y)
 {
-	t_color	c;
+	int	map_x;
+	int	map_y;
 
-	c = color;
-	if (side == 1)
-	{
-		c.red /= 2;
-		c.green /= 2;
-		c.blue /= 2;
-	}
-	return (c);
+	map_x = (int)x;
+	map_y = (int)y;
+	if (map_x < 0 || map_y < 0 || !data->map[map_y] || !data->map[map_y][map_x])
+		return (false);
+	if (data->map[map_y][map_x] == '1')
+		return (false);
+	if (data->map[map_y][map_x] == 'D')
+		return (is_door_passable(data, map_x, map_y));
+	return (true);
 }

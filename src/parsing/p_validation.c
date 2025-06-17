@@ -6,11 +6,16 @@
 /*   By: maximart <maximart@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/23 16:50:56 by maximart          #+#    #+#             */
-/*   Updated: 2025/05/23 16:50:56 by maximart         ###   ########.fr       */
+/*   Updated: 2025/06/16 16:56:42 by elagouch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parsing.h"
+
+/*
+** `p_validation_pproc.c`
+*/
+bool	check_bonus_textures(t_data *data);
 
 bool	check_texture_completeness(t_data *data)
 {
@@ -34,7 +39,7 @@ bool	check_texture_completeness(t_data *data)
 		ft_printf(RED "Error\nMissing West texture (WE)\n" RESET);
 		return (true);
 	}
-	return (false);
+	return (check_bonus_textures(data));
 }
 
 bool	check_color_completeness(t_data *data)

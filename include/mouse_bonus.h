@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   bonus_mouse.h                                      :+:      :+:    :+:   */
+/*   mouse_bonus.h                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: maximart <maximart@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/03 14:11:25 by maximart          #+#    #+#             */
-/*   Updated: 2025/06/03 14:13:07 by maximart         ###   ########.fr       */
+/*   Updated: 2025/06/17 13:42:15 by elagouch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,4 +110,4 @@ void	mouse_setup_hooks(t_data *data);
  */
 int		mouse_move_handler(int x, int y, t_data *data);
 
-#endif
+#endif // !MOUSE_BONUS_H

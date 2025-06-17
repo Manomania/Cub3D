@@ -6,13 +6,13 @@
 /*   By: elagouch <elagouch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/16 16:31:43 by elagouch          #+#    #+#             */
-/*   Updated: 2025/06/16 14:53:54 by elagouch         ###   ########.fr       */
+/*   Updated: 2025/06/17 17:53:20 by elagouch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
 #include "draw.h"
 #include "texture.h"
+#include "door_bonus.h"
 
 static void	draw_line_pixels(t_data *data, t_ray *ray, t_texture *texture,
 		int x)
@@ -32,7 +32,6 @@ static void	draw_line_pixels(t_data *data, t_ray *ray, t_texture *texture,
 		tex_y = (int)tex_pos & (texture->height - 1);
 		tex_pos += step;
 		color = get_pixel_color(texture, ray->tex_x, tex_y);
-		color = apply_shadow(color, ray->side);
 		my_mlx_pixel_put(&data->img, x, y, color);
 		y++;
 	}
@@ -42,10 +41,34 @@ void	draw_textured_line(t_data *data, t_ray *ray, int x)
 {
 	t_texture	*texture;
 	double		wall_x;
+	t_door		*door;
+	int			map_x;
+	int			map_y;
 
-	texture = get_wall_texture(&data->textures, ray);
+	texture = get_wall_texture(data, &data->textures, ray);
 	wall_x = calculate_wall_hit(data, ray);
 	ray->tex_x = calculate_texture_x(wall_x, texture, ray);
+	if (ray->side == SIDE_EAST_WEST) {
+		map_x = (int)ray->vertical_x;
+		map_y = (int)ray->vertical_y;
+	} else {
+		map_x = (int)ray->horizontal_x;
+		map_y = (int)ray->horizontal_y;
+	}
+	if (map_y >= 0 && map_y < data->map_height && 
+		map_x >= 0 && map_x < data->map_width &&
+		data->map[map_y] && map_x < (int)ft_strlen(data->map[map_y]) &&
+		data->map[map_y][map_x] == 'D') {
+		
+		door = get_door_at(data, map_x, map_y);
+		if (door) {
+			int door_offset = (int)(door->open_progress * ray->line_height);
+			ray->draw_start += door_offset;
+			if (ray->draw_start > ray->draw_end)
+				ray->draw_start = ray->draw_end;
+		}
+	}
+	
 	draw_line_pixels(data, ray, texture, x);
 }
 

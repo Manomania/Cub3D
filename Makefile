@@ -18,19 +18,24 @@ include files_bonus.mk
 include files_extra.mk
 
 # Env vars depending on targets
-# We use filter bc ifeq cannot account for `make fclean bonus` or `make re_bonus`
+# We use filter bc ifeq here cannot account for `make fclean bonus` or `make re_bonus`
+# There are SRC_F_*CONTEXT* for things that will be inherited by this context and higher ones, and
+# SRC_F_ONLY_*CONTEXT*
+## Bonus
 ifneq ($(filter bonus re_bonus,$(MAKECMDGOALS)),)
-	SRC_F = $(SRC_F_MANDATORY) $(SRC_F_BONUS)
+	SRC_F = $(SRC_F_MANDATORY) $(SRC_F_BONUS) $(SRC_F_ONLY_BONUS)
 	CFLAGS += -DBONUS=1
 	TARGET_NAME = $(NAME_BONUS)
 	BUILD_TYPE = BONUS
+## Extra
 else ifneq ($(filter extra re_extra,$(MAKECMDGOALS)),)
 	SRC_F = $(SRC_F_MANDATORY) $(SRC_F_BONUS) $(SRC_F_EXTRA)
 	CFLAGS += -DBONUS=1 -DEXTRA=1
 	TARGET_NAME = $(NAME)_extra
 	BUILD_TYPE = EXTRA
+## Mandatory
 else
-	SRC_F = $(SRC_F_MANDATORY)
+	SRC_F = $(SRC_F_MANDATORY) $(SRC_F_ONLY_MANDATORY)
 	TARGET_NAME = $(NAME)
 	BUILD_TYPE = MANDATORY
 endif

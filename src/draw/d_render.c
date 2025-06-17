@@ -6,7 +6,7 @@
 /*   By: elagouch <elagouch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/16 18:10:47 by elagouch          #+#    #+#             */
-/*   Updated: 2025/06/16 15:18:23 by elagouch         ###   ########.fr       */
+/*   Updated: 2025/06/17 13:40:22 by elagouch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,13 +14,7 @@
 #include "mlx.h"
 #include "player.h"
 #include "raycasting.h"
-
-/*
-** `d_render_pproc.c`
-** Not worth using a header file
-*/
-void	handle_render_bonus_features(t_data *data);
-void	handle_render_extra_features(t_data *data);
+#include "pproc.h"
 
 /*
 ** Rendering pipeline. Note: we memset the image to zero, idk if it's a good
@@ -42,7 +36,7 @@ void	render_frame(t_data *data)
 		data->player.move_speed = 0.2;
 	if (data->player.rot_speed > 0.15)
 		data->player.rot_speed = 0.15;
-	move_player(&data->player, data->map);
+	move_player(data, &data->player, data->map);
 	ft_memset(data->img.addr, 0, data->win_width * data->win_height
 		* (data->img.bits_per_pixel / 8));
 	grid_raycasting(data);

@@ -6,12 +6,14 @@
 /*   By: elagouch <elagouch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/19 15:57:10 by elagouch          #+#    #+#             */
-/*   Updated: 2025/05/23 13:40:53 by elagouch         ###   ########.fr       */
+/*   Updated: 2025/06/16 19:16:39 by elagouch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "mem.h"
 #include "mlx.h"
+
+void	free_door_system(t_data *data);
 
 void	free_map(t_data *data)
 {
@@ -55,6 +57,8 @@ static void	free_textures(t_data *data)
 		mlx_destroy_image(data->mlx, data->textures.east.img);
 	if (data->textures.west.img)
 		mlx_destroy_image(data->mlx, data->textures.west.img);
+	if (data->textures.door.img)
+		mlx_destroy_image(data->mlx, data->textures.door.img);
 }
 
 static void	free_paths(t_data *data)
@@ -67,6 +71,8 @@ static void	free_paths(t_data *data)
 		free(data->texture_e);
 	if (data->texture_w)
 		free(data->texture_w);
+	if (data->texture_door)
+		free(data->texture_door);
 	if (data->map_file_path)
 		free(data->map_file_path);
 }
@@ -82,6 +88,7 @@ void	*free_ressource(t_data *data)
 	}
 	free_paths(data);
 	free_textures(data);
+	free_door_system(data);
 	if (data->img.img)
 		mlx_destroy_image(data->mlx, data->img.img);
 	if (data->win)

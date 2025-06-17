@@ -6,10 +6,11 @@
 /*   By: elagouch <elagouch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/16 21:46:09 by maximart          #+#    #+#             */
-/*   Updated: 2025/05/19 19:13:37 by elagouch         ###   ########.fr       */
+/*   Updated: 2025/06/17 17:24:06 by elagouch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "libft.h"
 #include "parsing.h"
 
 bool	parse_texture_path(t_data *data, char *line, const char *cardinal)
@@ -20,7 +21,7 @@ bool	parse_texture_path(t_data *data, char *line, const char *cardinal)
 	skip = line;
 	while (*skip && (*skip == ' ' || *skip == '\t'))
 		skip++;
-	if (ft_strncmp(skip, cardinal, 3) == 0)
+	if (!ft_strncmp(skip, cardinal, ft_strlen(cardinal)))
 	{
 		path = skip + 2;
 		while (*path && (*path == ' ' || *path == '\t'))
@@ -33,6 +34,8 @@ bool	parse_texture_path(t_data *data, char *line, const char *cardinal)
 			data->texture_w = ft_strtrim(path, "\n");
 		else if (ft_strcmp(cardinal, "EA ") == 0)
 			data->texture_e = ft_strtrim(path, "\n");
+		else if (ft_strcmp(cardinal, "D ") == 0)
+			data->texture_door = ft_strtrim(path, "\n");
 		return (false);
 	}
 	return (true);

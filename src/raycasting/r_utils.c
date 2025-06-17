@@ -6,11 +6,12 @@
 /*   By: maximart <maximart@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/16 13:38:33 by maximart          #+#    #+#             */
-/*   Updated: 2025/06/16 13:38:33 by maximart         ###   ########.fr       */
+/*   Updated: 2025/06/17 17:56:37 by elagouch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "raycasting.h"
+#include "door_bonus.h"
 
 void	init_ray(t_ray *ray, t_player *player, double camera_x)
 {
@@ -44,6 +45,8 @@ void	calculate_line_height(t_ray *ray, int screen_height)
 
 bool	is_valid_and_walkable(t_data *data, int x, int y)
 {
+	t_door	*door;
+
 	if (y < 0 || y >= data->map_height)
 		return (false);
 	if (x < 0 || x >= data->map_width)
@@ -52,5 +55,12 @@ bool	is_valid_and_walkable(t_data *data, int x, int y)
 		return (false);
 	if (x >= (int)ft_strlen(data->map[y]))
 		return (false);
-	return (data->map[y][x] != '1');
+	if (data->map[y][x] == 'D')
+	{
+		door = get_door_at(data, x, y);
+		if (door && door->open_progress >= 1.0f)
+			return (true);
+		return (false);
+	}
+	return (!ft_strchr("1", data->map[y][x]));
 }

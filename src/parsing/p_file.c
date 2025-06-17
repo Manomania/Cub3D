@@ -6,7 +6,7 @@
 /*   By: maximart <elagouch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/16 21:44:41 by maximart          #+#    #+#             */
-/*   Updated: 2025/05/26 15:44:11 by maximart         ###   ########.fr       */
+/*   Updated: 2025/06/17 17:15:08 by elagouch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,8 @@ bool	process_config_line(t_data *data, char *line)
 	if (!parse_texture_path(data, line, "WE "))
 		return (false);
 	if (!parse_texture_path(data, line, "EA "))
+		return (false);
+	if (!parse_texture_path(data, line, "D "))
 		return (false);
 	if (!parse_color_line(data, line, "F "))
 		return (false);
