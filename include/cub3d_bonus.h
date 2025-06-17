@@ -20,15 +20,6 @@
 #  include "mouse_bonus.h"
 
 /**
- * @brief Finds the door at coords
- * @param data App data
- * @param x X coordinate
- * @param y Y coordinate
- * @returns t_door* Door
- */
-t_door	*get_door_at(t_data *data, int x, int y);
-
-/**
  * @brief Checks if a door can be passed at the moment
  * @param data App data
  * @param x X coordinate of the door

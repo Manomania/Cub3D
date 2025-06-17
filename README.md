@@ -40,6 +40,12 @@ and are given a prefix.
 | Texture  | `texture` | `t_` |
 | Utilities | `utils` | `u_` |
 
+## TODO
+
+The current way we do conditional builds kinda sucks, because the conditions are `#ifdef` in source files, and the code is hard to read.
+Change that to the Makefile deciding with what to compile, and the headers being common between each context (mandatory, bonus, extra).
+This also has the benefit of avoiding compilation issues when switching context.
+
 ## Inspiration
 
 **This project was inspired by these awesome videos !** They helped us understand the many concepts of graphical 2.5D and 3D rendering, so check them out !

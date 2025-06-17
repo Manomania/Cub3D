@@ -289,4 +289,15 @@ typedef struct s_data
  */
 bool				check_args(int argc, char **argv);
 
+/**
+ * @brief Finds the door at coords
+ *
+ * @param data App data
+ * @param x X coordinate
+ * @param y Y coordinate
+ * @returns t_door* Door
+ * @note This cannot be in cub3d_bonus.h because we need it for mandatory compilation
+ */
+t_door	*get_door_at(t_data *data, int x, int y);
+
 #endif

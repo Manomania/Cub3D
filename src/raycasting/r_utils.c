@@ -44,6 +44,8 @@ void	calculate_line_height(t_ray *ray, int screen_height)
 
 bool	is_valid_and_walkable(t_data *data, int x, int y)
 {
+	t_door	*door;
+
 	if (y < 0 || y >= data->map_height)
 		return (false);
 	if (x < 0 || x >= data->map_width)
@@ -52,5 +54,12 @@ bool	is_valid_and_walkable(t_data *data, int x, int y)
 		return (false);
 	if (x >= (int)ft_strlen(data->map[y]))
 		return (false);
-	return (!ft_strchr("1D", data->map[y][x]));
+	if (data->map[y][x] == 'D')
+	{
+		door = get_door_at(data, x, y);
+		if (door && door->open_progress >= 1.0f)
+			return (true);
+		return (false);
+	}
+	return (!ft_strchr("1", data->map[y][x]));
 }

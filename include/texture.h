@@ -26,8 +26,6 @@
  * @param x X screen coordinate
  * @param y Y screen coordinate
  * @return t_color Pixel color
- *
- * @todo Change this to allow for uniontype color
  */
 t_color		get_pixel_color(t_texture *texture, int x, int y);
 

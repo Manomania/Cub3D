@@ -63,8 +63,6 @@ void	draw_textured_line(t_data *data, t_ray *ray, int x);
  * @param x X coordinate
  * @param start_y Start Y coordinate
  * @param ceil_color Ceiling color
- *
- * @todo Change this to allow for uniontype color
  */
 void	draw_ceiling(t_data *data, int x, int start_y, t_color ceil_color);
 
@@ -75,21 +73,17 @@ void	draw_ceiling(t_data *data, int x, int start_y, t_color ceil_color);
  * @param x X coordinate
  * @param end_y End Y coordinate
  * @param floor_color Floor color
- *
- * @todo Change this to allow for uniontype color
  */
 void	draw_floor(t_data *data, int x, int end_y, t_color floor_color);
 
 /**
  * @brief Puts a pixel to a MLX image
+ * This is a replacement for vanilla pixel put counterpart
  *
  * @param img MLX image
  * @param x Pixel X coordinate
  * @param y Pixel Y coordinate
  * @param color Pixel color
- *
- * @note Replacement for vanilla pixel put counterpart
- * @todo Change this to allow for uniontype color
  */
 void	my_mlx_pixel_put(t_img *img, int x, int y, t_color color);
 
