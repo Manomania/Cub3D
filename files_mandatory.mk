@@ -2,7 +2,6 @@ SRC_F_MANDATORY := main						\
 				draw/d_math					\
 				draw/d_draw					\
 				draw/d_render				\
-				draw/d_shadow				\
 				memory/m_free				\
 				memory/m_utils				\
 				parsing/p_color				\

@@ -6,7 +6,7 @@
 /*   By: elagouch <elagouch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/16 16:32:13 by elagouch          #+#    #+#             */
-/*   Updated: 2025/06/17 13:43:06 by elagouch         ###   ########.fr       */
+/*   Updated: 2025/06/17 17:36:12 by elagouch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,19 +18,6 @@
 /*******************************************************************************
  *                             Function Prototypes                             *
  ******************************************************************************/
-
-/*
-** d_shadow.c
-*/
-
-/**
- * @brief Apply darkness to color for y-sides (shadow effect)
- *
- * @param color The original color
- * @param side The side of the wall hit (0 for x, 1 for y)
- * @return t_color The adjusted color
- */
-t_color	apply_shadow(t_color color, int side);
 
 /*
 ** d_math.c

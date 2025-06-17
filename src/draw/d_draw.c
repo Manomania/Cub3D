@@ -6,7 +6,7 @@
 /*   By: elagouch <elagouch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/16 16:31:43 by elagouch          #+#    #+#             */
-/*   Updated: 2025/06/17 14:09:20 by elagouch         ###   ########.fr       */
+/*   Updated: 2025/06/17 17:36:01 by elagouch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,6 @@ static void	draw_line_pixels(t_data *data, t_ray *ray, t_texture *texture,
 		tex_y = (int)tex_pos & (texture->height - 1);
 		tex_pos += step;
 		color = get_pixel_color(texture, ray->tex_x, tex_y);
-		color = apply_shadow(color, ray->side);
 		my_mlx_pixel_put(&data->img, x, y, color);
 		y++;
 	}
