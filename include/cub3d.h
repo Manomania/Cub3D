@@ -6,7 +6,7 @@
 /*   By: elagouch <elagouch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/28 12:05:19 by maximart          #+#    #+#             */
-/*   Updated: 2025/06/17 17:16:53 by elagouch         ###   ########.fr       */
+/*   Updated: 2025/06/17 17:41:25 by elagouch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,8 +33,8 @@
 # define YELLOW "\033[093m"
 # define CYAN "\033[36m"
 
-# define WIN_H 900
-# define WIN_W 1600
+# define WIN_H 720
+# define WIN_W 1280
 
 # define FPS_COUNTER_TEXT_HEIGHT 20
 # define FPS_COUNTER_TEXT_WIDTH 80

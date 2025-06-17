@@ -6,7 +6,7 @@
 /*   By: elagouch <elagouch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/17 14:48:51 by elagouch          #+#    #+#             */
-/*   Updated: 2025/06/17 16:04:08 by elagouch         ###   ########.fr       */
+/*   Updated: 2025/06/17 17:46:21 by elagouch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,15 +38,11 @@ t_texture	*get_wall_texture_bonus(t_data *data, t_textures *textures,
 	{
 		map_x = (int)ray->vertical_x;
 		map_y = (int)ray->vertical_y;
-		if (ray->ray_dir_x < 0)
-			map_x += 1;
 	}
 	else
 	{
 		map_x = (int)ray->horizontal_x;
 		map_y = (int)ray->horizontal_y;
-		if (ray->ray_dir_y > 0)
-			map_y += 1;
 	}
 	if (map_y >= 0 && map_y < data->map_height
 		&& map_x >= 0 && map_x < data->map_width

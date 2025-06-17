@@ -6,7 +6,7 @@
 /*   By: elagouch <elagouch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/16 16:31:43 by elagouch          #+#    #+#             */
-/*   Updated: 2025/06/17 17:36:01 by elagouch         ###   ########.fr       */
+/*   Updated: 2025/06/17 17:53:20 by elagouch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,13 +51,9 @@ void	draw_textured_line(t_data *data, t_ray *ray, int x)
 	if (ray->side == SIDE_EAST_WEST) {
 		map_x = (int)ray->vertical_x;
 		map_y = (int)ray->vertical_y;
-		if (ray->ray_dir_x < 0)
-			map_x += 1;
 	} else {
 		map_x = (int)ray->horizontal_x;
 		map_y = (int)ray->horizontal_y;
-		if (ray->ray_dir_y > 0)
-			map_y += 1;
 	}
 	if (map_y >= 0 && map_y < data->map_height && 
 		map_x >= 0 && map_x < data->map_width &&
@@ -68,8 +64,11 @@ void	draw_textured_line(t_data *data, t_ray *ray, int x)
 		if (door) {
 			int door_offset = (int)(door->open_progress * ray->line_height);
 			ray->draw_start += door_offset;
+			if (ray->draw_start > ray->draw_end)
+				ray->draw_start = ray->draw_end;
 		}
 	}
+	
 	draw_line_pixels(data, ray, texture, x);
 }
 
