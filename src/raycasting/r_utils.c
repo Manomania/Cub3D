@@ -6,16 +6,11 @@
 /*   By: maximart <maximart@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/16 13:38:33 by maximart          #+#    #+#             */
-/*   Updated: 2025/06/16 19:40:10 by elagouch         ###   ########.fr       */
+/*   Updated: 2025/06/16 18:27:11 by elagouch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "raycasting.h"
-
-/*
-** `r_utils_pproc.c`
-*/
-void	handle_rutils_bonus_features(t_data *data, t_ray *ray);
 
 void	init_ray(t_ray *ray, t_player *player, double camera_x)
 {
@@ -34,7 +29,6 @@ void	cast_grid_ray(t_data *data, t_ray *ray, int x)
 	find_vertical_intersection(data, ray);
 	calculate_final_distance(data, ray);
 	calculate_line_height(ray, data->win_height);
-	handle_rutils_bonus_features(data, ray);
 }
 
 void	calculate_line_height(t_ray *ray, int screen_height)
