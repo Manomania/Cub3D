@@ -29,7 +29,7 @@ ifneq ($(filter bonus re_bonus,$(MAKECMDGOALS)),)
 	BUILD_TYPE = BONUS
 ## Extra
 else ifneq ($(filter extra re_extra,$(MAKECMDGOALS)),)
-	SRC_F = $(SRC_F_MANDATORY) $(SRC_F_BONUS) $(SRC_F_EXTRA) $(SRC_F_ONLY_EXTRA)
+	SRC_F = $(SRC_F_MANDATORY) $(SRC_F_BONUS) $(SRC_F_EXTRA)
 	CFLAGS += -DBONUS=1 -DEXTRA=1
 	TARGET_NAME = $(NAME)_extra
 	BUILD_TYPE = EXTRA

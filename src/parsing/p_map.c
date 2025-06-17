@@ -6,7 +6,7 @@
 /*   By: elagouch <elagouch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/17 17:57:14 by maximart          #+#    #+#             */
-/*   Updated: 2025/06/16 17:10:13 by elagouch         ###   ########.fr       */
+/*   Updated: 2025/06/17 17:26:34 by elagouch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,13 +22,7 @@ static bool	is_config_line(char *line)
 	trimmed = line;
 	while (*trimmed && (*trimmed == ' ' || *trimmed == '\t'))
 		trimmed++;
-	return (!ft_strncmp(trimmed, "NO ", 3)
-		|| !ft_strncmp(trimmed, "SO ", 3)
-		|| !ft_strncmp(trimmed, "WE ", 3)
-		|| !ft_strncmp(trimmed, "EA ", 3)
-		|| !ft_strncmp(trimmed, "D ", 2)
-		|| !ft_strncmp(trimmed, "F ", 2)
-		|| !ft_strncmp(trimmed, "C ", 2));
+	return (config_line_condition(trimmed));
 }
 
 bool	looks_like_map_line(char *line)
@@ -46,7 +40,7 @@ bool	looks_like_map_line(char *line)
 		return (false);
 	while (*tmp && *tmp != '\n')
 	{
-		if (ft_strchr("01NSEWD \t", *tmp))
+		if (ft_strchr(MAP_CHARS, *tmp))
 			return (true);
 		tmp++;
 	}
@@ -54,7 +48,7 @@ bool	looks_like_map_line(char *line)
 }
 
 bool	process_single_line(t_data *data, char *line,
-		bool *map_section_started, t_map_buffer *buffer)
+			bool *map_section_started, t_map_buffer *buffer)
 {
 	if (!*map_section_started)
 	{

@@ -9,9 +9,10 @@ SRC_F_BONUS := main_b						\
 			mouse_bonus/o_buttons			\
 			mouse_bonus/o_init				\
 			mouse_bonus/o_mouse				\
+			parsing/p_map_b					\
 			parsing/p_validation_b			\
 			player/l_mlx_b					\
+			player/l_mov_b					\
 			texture/t_texture_b				\
 			utils/u_texture_b
-SRC_F_ONLY_BONUS := draw/d_render_b			\
-			player/l_mov_m
+SRC_F_ONLY_BONUS := draw/d_render_b

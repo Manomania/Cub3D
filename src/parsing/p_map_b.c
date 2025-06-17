@@ -1,27 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   l_mov_m.c                                          :+:      :+:    :+:   */
+/*   p_map_b.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: elagouch <elagouch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/06/16 16:11:40 by elagouch          #+#    #+#             */
-/*   Updated: 2025/06/17 16:45:19 by elagouch         ###   ########.fr       */
+/*   Created: 2025/06/17 17:25:49 by elagouch          #+#    #+#             */
+/*   Updated: 2025/06/17 17:26:23 by elagouch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-bool	is_valid_position(t_data *data, double x, double y)
+bool config_line_condition(char *trimmed)
 {
-	int	map_x;
-	int	map_y;
-
-	map_x = (int)x;
-	map_y = (int)y;
-	if (map_x < 0 || map_y < 0 || !data->map[map_y] || !data->map[map_y][map_x])
-		return (false);
-	if (data->map[map_y][map_x] == '1')
-		return (false);
-	return (true);
+	return (!ft_strncmp(trimmed, "NO ", 3)
+		|| !ft_strncmp(trimmed, "SO ", 3)
+		|| !ft_strncmp(trimmed, "WE ", 3)
+		|| !ft_strncmp(trimmed, "EA ", 3)
+		|| !ft_strncmp(trimmed, "D ", 2)
+		|| !ft_strncmp(trimmed, "F ", 2)
+		|| !ft_strncmp(trimmed, "C ", 2));
 }
