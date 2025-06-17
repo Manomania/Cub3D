@@ -6,7 +6,7 @@
 /*   By: elagouch <elagouch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/16 15:22:00 by elagouch          #+#    #+#             */
-/*   Updated: 2025/06/16 17:42:33 by elagouch         ###   ########.fr       */
+/*   Updated: 2025/06/17 13:44:07 by elagouch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,9 @@
 
 # include "cub3d.h"
 
-// *************************************************************************** #
-//                            Function Prototypes                              #
-// *************************************************************************** #
+/*******************************************************************************
+ *                             Function Prototypes                             *
+ ******************************************************************************/
 
 /**
  * @brief Get RGB color from image data at a specific screen position
@@ -53,4 +53,12 @@ t_texture	*get_wall_texture(t_data *data, t_textures *textures, t_ray *ray);
  */
 bool		load_textures(t_textures *textures, void *mlx_ptr, char *paths[4]);
 
-#endif
+/**
+ * @brief Loads bonus textures only
+ * @param data App data
+ * @param door_path Door path
+ * @returns bool Whether it failed or not
+ */
+bool	load_bonus_textures(t_data *data, char *door_path);
+
+#endif // !TEXTURE_H

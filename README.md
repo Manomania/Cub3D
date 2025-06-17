@@ -24,7 +24,9 @@ As well as:
 ## `src/` naming convention
 
 We take inspiration from the Doom naming convention. The files are placed in a subdir that correspond to their subject,
-and are given a prefix.
+and are given a prefix for their subject, and a suffix for their context (mandatory, bonus, extra).
+
+### Prefix
 
 | Category | Directory | Prefix |
 | -- | -- | -- |
@@ -40,11 +42,17 @@ and are given a prefix.
 | Texture  | `texture` | `t_` |
 | Utilities | `utils` | `u_` |
 
+### Suffix
+
+| Context | Suffix |
+| -- | -- |
+| Mandatory | `_m` |
+| Bonus | `_b` |
+| Extra | `_e` |
+
 ## TODO
 
-The current way we do conditional builds kinda sucks, because the conditions are `#ifdef` in source files, and the code is hard to read.
-Change that to the Makefile deciding with what to compile, and the headers being common between each context (mandatory, bonus, extra).
-This also has the benefit of avoiding compilation issues when switching context.
+Check back door parsing in normal context, I may have broken it with the new linking system
 
 ## Inspiration
 

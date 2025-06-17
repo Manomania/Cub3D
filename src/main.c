@@ -6,7 +6,7 @@
 /*   By: elagouch <elagouch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/09 16:06:00 by maximart          #+#    #+#             */
-/*   Updated: 2025/06/16 19:17:04 by elagouch         ###   ########.fr       */
+/*   Updated: 2025/06/17 14:03:27 by elagouch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,13 +16,8 @@
 #include "parsing.h"
 #include "player.h"
 #include "utils.h"
+#include "pproc.h"
 #include <limits.h>
-
-/*
-** `main_pproc.c`
-** Not worth using a header file
-*/
-void	handle_main_bonus_features(t_data *data);
 
 /*
 ** Initialize frame timing variables

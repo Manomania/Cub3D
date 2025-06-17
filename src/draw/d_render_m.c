@@ -1,29 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   p_map_check_pproc.c                                :+:      :+:    :+:   */
+/*   d_render_m.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: elagouch <elagouch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/06/16 16:58:02 by elagouch          #+#    #+#             */
-/*   Updated: 2025/06/16 16:59:49 by elagouch         ###   ########.fr       */
+/*   Created: 2025/06/16 14:07:51 by elagouch          #+#    #+#             */
+/*   Updated: 2025/06/17 14:38:17 by elagouch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdbool.h>
+#include "cub3d.h"
 
-#ifdef BONUS
-
-bool	invalid_char(char c)
+void	handle_render_bonus_features(t_data *data)
 {
-	return (c != '0' && c != '1' && c != 'N' && c != 'S'
-		&& c != 'E' && c != 'W' && c != ' ' && c != '\n' && c != 'D');
+	(void) data;
 }
-#else
 
-bool	invalid_char(char c)
+void	handle_render_extra_features(t_data *data)
 {
-	return (c != '0' && c != '1' && c != 'N' && c != 'S'
-		&& c != 'E' && c != 'W' && c != ' ' && c != '\n');
+	(void) data;
 }
-#endif

@@ -6,7 +6,7 @@
 /*   By: elagouch <elagouch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/28 12:05:19 by maximart          #+#    #+#             */
-/*   Updated: 2025/06/16 18:54:52 by elagouch         ###   ########.fr       */
+/*   Updated: 2025/06/17 16:37:45 by elagouch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,8 +33,8 @@
 # define YELLOW "\033[093m"
 # define CYAN "\033[36m"
 
-# define WIN_H 600
-# define WIN_W 800
+# define WIN_H 900
+# define WIN_W 1600
 
 # define FPS_COUNTER_TEXT_HEIGHT 20
 # define FPS_COUNTER_TEXT_WIDTH 80
@@ -289,15 +289,4 @@ typedef struct s_data
  */
 bool				check_args(int argc, char **argv);
 
-/**
- * @brief Finds the door at coords
- *
- * @param data App data
- * @param x X coordinate
- * @param y Y coordinate
- * @returns t_door* Door
- * @note This cannot be in cub3d_bonus.h because we need it for mandatory compilation
- */
-t_door	*get_door_at(t_data *data, int x, int y);
-
-#endif
+#endif // !CUB3D_H

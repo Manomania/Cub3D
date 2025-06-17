@@ -1,31 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main_pproc.c                                       :+:      :+:    :+:   */
+/*   l_mov_e.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: elagouch <elagouch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/06/16 14:01:13 by elagouch          #+#    #+#             */
-/*   Updated: 2025/06/16 19:17:14 by elagouch         ###   ########.fr       */
+/*   Created: 2025/06/17 14:43:13 by elagouch          #+#    #+#             */
+/*   Updated: 2025/06/17 16:05:35 by elagouch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
-#include "cub3d_bonus.h"
+#include "door_bonus.h"
 
-void	init_door_system(t_data *data);
-
-#ifdef BONUS
-
-void	handle_main_bonus_features(t_data *data)
+bool	is_valid_position(t_data *data, double x, double y)
 {
-	mouse_init(data->win_width, data->win_height);
-	init_door_system(data);
-}
-#else
+	int	map_x;
+	int	map_y;
 
-void	handle_main_bonus_features(t_data *data)
-{
-	(void)data;
+	map_x = (int)x;
+	map_y = (int)y;
+	if (map_x < 0 || map_y < 0 || !data->map[map_y] || !data->map[map_y][map_x])
+		return (false);
+	if (data->map[map_y][map_x] == '1')
+		return (false);
+	if (data->map[map_y][map_x] == 'D')
+		return (is_door_passable(data, map_x, map_y));
+	return (true);
 }
-#endif

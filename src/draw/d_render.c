@@ -6,7 +6,7 @@
 /*   By: elagouch <elagouch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/16 18:10:47 by elagouch          #+#    #+#             */
-/*   Updated: 2025/06/16 19:25:18 by elagouch         ###   ########.fr       */
+/*   Updated: 2025/06/17 13:40:22 by elagouch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,14 +14,7 @@
 #include "mlx.h"
 #include "player.h"
 #include "raycasting.h"
-#include "cub3d_bonus.h"
-
-/*
-** `d_render_pproc.c`
-** Not worth using a header file
-*/
-void	handle_render_bonus_features(t_data *data);
-void	handle_render_extra_features(t_data *data);
+#include "pproc.h"
 
 /*
 ** Rendering pipeline. Note: we memset the image to zero, idk if it's a good

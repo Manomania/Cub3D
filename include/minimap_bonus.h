@@ -6,7 +6,7 @@
 /*   By: maximart <maximart@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/27 16:31:07 by maximart          #+#    #+#             */
-/*   Updated: 2025/06/02 12:46:54 by maximart         ###   ########.fr       */
+/*   Updated: 2025/06/17 14:02:48 by elagouch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -210,4 +210,4 @@ void	init_steps(t_draw_params *params, int *step_x, int *step_y);
 void	init_ray_pos(t_data *data, double angle, double *ray_pos,
 			double *ray_dir);
 
-#endif
+#endif // !MINIMAP_BONUS_H

@@ -1,30 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   l_mlx_pproc.c                                      :+:      :+:    :+:   */
+/*   l_mlx_b.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: elagouch <elagouch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/06/16 13:48:31 by elagouch          #+#    #+#             */
-/*   Updated: 2025/06/16 19:12:53 by elagouch         ###   ########.fr       */
+/*   Created: 2025/06/17 14:16:42 by elagouch          #+#    #+#             */
+/*   Updated: 2025/06/17 14:32:16 by elagouch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
-#include "cub3d_bonus.h"
-#include "draw.h"
 #include "mlx.h"
 #include "player.h"
-
-/*
-** `l_mlx.c`
-** Not worth using a header file
-*/
-int		key_press(int keycode, t_data *data);
-int		key_release(int keycode, t_data *data);
-void	hook_destroy(t_data *data);
-
-#ifdef BONUS
+#include "draw.h"
+#include "mouse_bonus.h"
+#include "door_bonus.h"
 
 void	handle_mlx_bonus_features(t_data *data, int keycode)
 {
@@ -83,19 +74,3 @@ void	setup_mlx_hooks(t_data *data)
 	mlx_hook(data->win, ON_KEYUP, 1L << 1, key_release, data);
 	mouse_setup_hooks(data);
 }
-#else
-
-void	handle_mlx_bonus_features(t_data *data, int keycode)
-{
-	(void)data;
-	(void)keycode;
-}
-
-void	setup_mlx_hooks(t_data *data)
-{
-	mlx_loop_hook(data->mlx, (int (*)())render_frame, data);
-	mlx_hook(data->win, ON_DESTROY, 0, (int (*)())hook_destroy, data);
-	mlx_hook(data->win, ON_KEYDOWN, 1L << 0, key_press, data);
-	mlx_hook(data->win, ON_KEYUP, 1L << 1, key_release, data);
-}
-#endif

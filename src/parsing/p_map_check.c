@@ -6,17 +6,18 @@
 /*   By: maximart <maximart@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/23 09:01:38 by maximart          #+#    #+#             */
-/*   Updated: 2025/06/16 17:00:12 by elagouch         ###   ########.fr       */
+/*   Updated: 2025/06/17 14:51:50 by elagouch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parsing.h"
 #include "mem.h"
 
-/*
-** `p_map_check_pproc.c`
-*/
-bool	invalid_char(char c);
+static bool	invalid_char(char c)
+{
+	return (c != '0' && c != '1' && c != 'N' && c != 'S'
+		&& c != 'E' && c != 'W' && c != ' ' && c != '\n' && c != 'D');
+}
 
 static bool	find_player_position(t_data *data, int *start_x, int *start_y)
 {

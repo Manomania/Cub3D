@@ -6,7 +6,7 @@
 /*   By: elagouch <elagouch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/19 18:29:12 by elagouch          #+#    #+#             */
-/*   Updated: 2025/05/21 16:35:35 by elagouch         ###   ########.fr       */
+/*   Updated: 2025/06/17 13:42:53 by elagouch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,10 @@
 # define PARSING_H
 
 # include "cub3d.h"
+
+/*******************************************************************************
+ *                             Function Prototypes                             *
+ ******************************************************************************/
 
 /*
 ** p_color.c
@@ -199,4 +203,4 @@ bool	check_texture_completeness(t_data *data);
  */
 bool	check_color_completeness(t_data *data);
 
-#endif
+#endif // !PARSING_H

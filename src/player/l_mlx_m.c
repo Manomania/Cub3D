@@ -1,45 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   d_render_pproc.c                                   :+:      :+:    :+:   */
+/*   l_mlx_m.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: elagouch <elagouch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/06/16 14:07:51 by elagouch          #+#    #+#             */
-/*   Updated: 2025/06/16 19:25:26 by elagouch         ###   ########.fr       */
+/*   Created: 2025/06/16 13:48:31 by elagouch          #+#    #+#             */
+/*   Updated: 2025/06/17 14:41:17 by elagouch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
-#include "cub3d_bonus.h"
-#include "cub3d_extra.h"
+#include "draw.h"
+#include "mlx.h"
+#include "player.h"
 
-#ifdef BONUS
-
-void	handle_render_bonus_features(t_data *data)
-{
-	draw_minimap(data);
-	update_door_animations(data);
-}
-#else
-
-void	handle_render_bonus_features(t_data *data)
+void	handle_mlx_bonus_features(t_data *data, int keycode)
 {
 	(void)data;
+	(void)keycode;
 }
-#endif
 
-#ifdef EXTRA
-
-void	handle_render_extra_features(t_data *data)
+void	setup_mlx_hooks(t_data *data)
 {
-	update_fps_counter(data);
-	display_fps(data);
+	mlx_loop_hook(data->mlx, (int (*)())render_frame, data);
+	mlx_hook(data->win, ON_DESTROY, 0, (int (*)())hook_destroy, data);
+	mlx_hook(data->win, ON_KEYDOWN, 1L << 0, key_press, data);
+	mlx_hook(data->win, ON_KEYUP, 1L << 1, key_release, data);
 }
-#else
-
-void	handle_render_extra_features(t_data *data)
-{
-	(void)data;
-}
-#endif

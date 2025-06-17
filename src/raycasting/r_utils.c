@@ -6,11 +6,12 @@
 /*   By: maximart <maximart@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/16 13:38:33 by maximart          #+#    #+#             */
-/*   Updated: 2025/06/16 18:27:11 by elagouch         ###   ########.fr       */
+/*   Updated: 2025/06/17 14:09:35 by elagouch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "raycasting.h"
+#include "door_bonus.h"
 
 void	init_ray(t_ray *ray, t_player *player, double camera_x)
 {

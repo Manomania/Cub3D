@@ -1,19 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   t_texture_pproc.c                                  :+:      :+:    :+:   */
+/*   t_texture_b.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: elagouch <elagouch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/06/16 17:27:44 by elagouch          #+#    #+#             */
-/*   Updated: 2025/06/16 18:40:24 by elagouch         ###   ########.fr       */
+/*   Created: 2025/06/17 14:48:51 by elagouch          #+#    #+#             */
+/*   Updated: 2025/06/17 16:04:08 by elagouch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 #include "mlx.h"
-
-#ifdef BONUS
 
 bool	load_bonus_textures(t_data *data, char *door_path)
 {
@@ -59,21 +57,3 @@ t_texture	*get_wall_texture_bonus(t_data *data, t_textures *textures,
 	}
 	return (NULL);
 }
-#else
-
-bool	load_bonus_textures(t_data *data, char *door_path)
-{
-	(void) data;
-	(void) door_path;
-	return (false);
-}
-
-t_texture	*get_wall_texture_bonus(t_data *data, t_textures *textures,
-				t_ray *ray)
-{
-	(void) ray;
-	(void) data;
-	(void) textures;
-	return (NULL);
-}
-#endif

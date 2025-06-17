@@ -6,7 +6,7 @@
 /*   By: elagouch <elagouch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/16 18:36:18 by elagouch          #+#    #+#             */
-/*   Updated: 2025/06/16 19:11:56 by elagouch         ###   ########.fr       */
+/*   Updated: 2025/06/17 14:24:16 by elagouch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,10 @@ typedef enum e_keyboard
  *                             Function Prototypes                             *
  ******************************************************************************/
 
+/*
+** l_init.c
+*/
+
 /**
  * @brief Initializes the player structure from app state
  *
@@ -59,6 +63,10 @@ typedef enum e_keyboard
  *       segfault.
  */
 void	init_player(t_data *data);
+
+/*
+** l_mov.c
+*/
 
 /**
  * @brief Move the player
@@ -73,6 +81,10 @@ void	init_player(t_data *data);
  */
 void	move_player(t_data *data, t_player *player, char **map);
 
+/*
+** l_mlx_{m,b}.c
+*/
+
 /**
  * @brief Set the up mlx hooks
  *
@@ -80,4 +92,21 @@ void	move_player(t_data *data, t_player *player, char **map);
  */
 void	setup_mlx_hooks(t_data *data);
 
-#endif
+/*
+** l_mlx.c
+*/
+
+/*
+** MLX hook on key press
+*/
+int		key_press(int keycode, t_data *data);
+/*
+** MLX hook on key release
+*/
+int		key_release(int keycode, t_data *data);
+/*
+** MLX hook on app destroy
+*/
+void	hook_destroy(t_data *data);
+
+#endif // !PLAYER_H

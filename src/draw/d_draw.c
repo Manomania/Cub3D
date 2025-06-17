@@ -6,13 +6,13 @@
 /*   By: elagouch <elagouch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/16 16:31:43 by elagouch          #+#    #+#             */
-/*   Updated: 2025/06/16 19:33:10 by elagouch         ###   ########.fr       */
+/*   Updated: 2025/06/17 14:09:20 by elagouch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d_bonus.h"
 #include "draw.h"
 #include "texture.h"
+#include "door_bonus.h"
 
 static void	draw_line_pixels(t_data *data, t_ray *ray, t_texture *texture,
 		int x)

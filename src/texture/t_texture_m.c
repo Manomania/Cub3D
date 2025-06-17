@@ -1,22 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cub3d_extra.h                                      :+:      :+:    :+:   */
+/*   t_texture_m.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: elagouch <elagouch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/06/16 15:21:29 by elagouch          #+#    #+#             */
-/*   Updated: 2025/06/16 15:24:33 by elagouch         ###   ########.fr       */
+/*   Created: 2025/06/16 17:27:44 by elagouch          #+#    #+#             */
+/*   Updated: 2025/06/17 14:49:13 by elagouch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef CUB3D_EXTRA_H
-# define CUB3D_EXTRA_H
+#include "cub3d.h"
 
-# include "cub3d.h"
+bool	load_bonus_textures(t_data *data, char *door_path)
+{
+	(void) data;
+	(void) door_path;
+	return (false);
+}
 
-# ifdef EXTRA
-#  include "fps_extra.h"
-# endif
-
-#endif
+t_texture	*get_wall_texture_bonus(t_data *data, t_textures *textures,
+				t_ray *ray)
+{
+	(void) ray;
+	(void) data;
+	(void) textures;
+	return (NULL);
+}

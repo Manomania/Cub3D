@@ -6,7 +6,7 @@
 /*   By: elagouch <elagouch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/16 16:32:13 by elagouch          #+#    #+#             */
-/*   Updated: 2025/06/16 15:29:27 by elagouch         ###   ########.fr       */
+/*   Updated: 2025/06/17 13:43:06 by elagouch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,13 @@
 
 # include "cub3d.h"
 
-// *************************************************************************** #
-//                            Function Prototypes                              #
-// *************************************************************************** #
+/*******************************************************************************
+ *                             Function Prototypes                             *
+ ******************************************************************************/
+
+/*
+** d_shadow.c
+*/
 
 /**
  * @brief Apply darkness to color for y-sides (shadow effect)
@@ -27,6 +31,10 @@
  * @return t_color The adjusted color
  */
 t_color	apply_shadow(t_color color, int side);
+
+/*
+** d_math.c
+*/
 
 /**
  * @brief Calculate the x-coordinate on the texture
@@ -46,6 +54,10 @@ int		calculate_texture_x(double wall_x, t_texture *texture, t_ray *ray);
  * @return double The exact hit position on the wall (0-1)
  */
 double	calculate_wall_hit(t_data *data, t_ray *ray);
+
+/*
+** d_draw.c
+*/
 
 /**
  * @brief Draw a textured vertical line on the screen
@@ -87,6 +99,10 @@ void	draw_floor(t_data *data, int x, int end_y, t_color floor_color);
  */
 void	my_mlx_pixel_put(t_img *img, int x, int y, t_color color);
 
+/*
+** d_render.c
+*/
+
 /**
  * @brief Renders a frame. Duh.
  *
@@ -94,4 +110,4 @@ void	my_mlx_pixel_put(t_img *img, int x, int y, t_color color);
  */
 void	render_frame(t_data *data);
 
-#endif
+#endif // !DRAW_H

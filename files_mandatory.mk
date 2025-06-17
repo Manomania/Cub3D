@@ -1,9 +1,7 @@
-SRC_F_MANDATORY = main						\
-				main_pproc					\
+SRC_F_MANDATORY := main						\
 				draw/d_math					\
 				draw/d_draw					\
 				draw/d_render				\
-				draw/d_render_pproc			\
 				draw/d_shadow				\
 				memory/m_free				\
 				memory/m_utils				\
@@ -12,24 +10,27 @@ SRC_F_MANDATORY = main						\
 				parsing/p_file				\
 				parsing/p_map				\
 				parsing/p_map_check			\
-				parsing/p_map_check_pproc	\
 				parsing/p_flood_fill		\
 				parsing/p_map_utils			\
 				parsing/p_texture			\
 				parsing/p_validation		\
-				parsing/p_validation_pproc	\
 				player/l_init				\
 				player/l_mlx				\
-				player/l_mlx_pproc			\
 				player/l_mov				\
-				player/l_mov_pproc			\
 				player/l_mov_rot			\
 				raycasting/r_horizontal		\
 				raycasting/r_raycasting		\
 				raycasting/r_utils			\
 				raycasting/r_vertical		\
 				texture/t_texture			\
-				texture/t_texture_pproc		\
 				utils/u_path				\
-				utils/u_texture				\
-				utils/u_texture_pproc
+				utils/u_texture
+
+SRC_F_ONLY_MANDATORY := main_m				\
+				draw/d_render_m				\
+				door_bonus/i_system_m		\
+				parsing/p_validation_m		\
+				player/l_mlx_m				\
+				player/l_mov_m				\
+				texture/t_texture_m			\
+				utils/u_texture_m

@@ -12,12 +12,7 @@
 #include "cub3d.h"
 #include "mem.h"
 #include "player.h"
-
-/*
-** `l_mlx_pproc.c`
-** Not worth using a header file
-*/
-void	handle_mlx_bonus_features(t_data *data, int keycode);
+#include "pproc.h"
 
 void	hook_destroy(t_data *data)
 {
