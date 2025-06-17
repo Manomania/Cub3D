@@ -12,7 +12,7 @@
 
 #include <stdbool.h>
 
-#ifdef EXTRA
+#ifdef BONUS
 
 /*
 ** Check if a position is valid (not a wall)
