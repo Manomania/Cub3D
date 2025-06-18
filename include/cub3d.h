@@ -6,16 +6,16 @@
 /*   By: elagouch <elagouch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/28 12:05:19 by maximart          #+#    #+#             */
-/*   Updated: 2025/06/18 13:36:37 by elagouch         ###   ########.fr       */
+/*   Updated: 2025/06/18 14:15:18 by elagouch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef CUB3D_H
 # define CUB3D_H
 
-# include <stdbool.h>	// bool
-# include <stdint.h>	// uint8_t
-# include <sys/time.h>	// struct timeval
+# include <stdbool.h>  // bool
+# include <stdint.h>   // uint8_t
+# include <sys/time.h> // struct timeval
 
 /*******************************************************************************
  *                                    Macros                                   *
@@ -37,6 +37,9 @@
 # define BASE_MOVE_SPEED 5.0
 # define BASE_ROT_SPEED 3.0
 
+// float.h is forbidden
+# define DBL_MAX    1.7976931348623157E+308
+
 /*******************************************************************************
  *                                  Structures                                 *
  ******************************************************************************/
@@ -57,7 +60,7 @@ typedef enum e_parse_state
 	STATE_CONFIG,
 	STATE_MAP,
 	STATE_POST_MAP,
-}	t_parse_state;
+}					t_parse_state;
 
 /*
 ** Raycasting implementation using DDA algorithm
@@ -78,11 +81,11 @@ typedef struct s_ray
 	double			perp_wall_dist;
 
 	double			horizontal_x;
-	double  		horizontal_y;
-	double  		vertical_x;
-	double  		vertical_y;
-	double  		horizontal_dist;
-	double  		vertical_dist;
+	double			horizontal_y;
+	double			vertical_x;
+	double			vertical_y;
+	double			horizontal_dist;
+	double			vertical_dist;
 
 	// Step dirs are -1 or 1
 	int				step_x;
@@ -197,31 +200,32 @@ typedef union u_color
 
 typedef struct s_map_buffer
 {
-	char	**lines;
-	int		count;
-	int		capacity;
-	int		max_width;
-}	t_map_buffer;
+	char			**lines;
+	int				count;
+	int				capacity;
+	int				max_width;
+}					t_map_buffer;
 
 /*
 ** Door structs
 */
 typedef struct s_door
 {
-    int     x, y;
-    bool    open;
-    bool    opening;
-    bool    closing;
-    float   prog;
-}   t_door;
+	int				x;
+	int				y;
+	bool			open;
+	bool			opening;
+	bool			closing;
+	float			prog;
+}					t_door;
 
 typedef struct s_door_system
 {
-    t_door  *doors;
-    int     count;
-    int     capacity;
-    float   animation_speed;
-}   t_door_system;
+	t_door			*doors;
+	int				count;
+	int				capacity;
+	float			animation_speed;
+}					t_door_system;
 
 /*
 ** Global application data
@@ -263,15 +267,15 @@ typedef struct s_data
 	double			fps_timer;
 	double			time_accumulator;
 	// Misc
-	t_door_system door_sys;
+	t_door_system	door_sys;
 }					t_data;
 
 // This is very specific
 typedef struct s_double_int
 {
-	int *x;
-	int *y;
-} t_double_int;
+	int				*x;
+	int				*y;
+}					t_double_int;
 
 /*******************************************************************************
  *                             Function Prototypes                             *

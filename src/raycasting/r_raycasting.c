@@ -6,14 +6,13 @@
 /*   By: maximart <maximart@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/12 08:59:32 by maximart          #+#    #+#             */
-/*   Updated: 2025/06/18 13:41:07 by elagouch         ###   ########.fr       */
+/*   Updated: 2025/06/18 14:15:50 by elagouch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 #include "draw.h"
 #include "raycasting.h"
-#include <float.h>
 #include <math.h>
 
 static double	calculate_distance(double x1, double y1, double x2, double y2)

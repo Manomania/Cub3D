@@ -197,4 +197,4 @@ define	BUILD
 endef
 
 norm:
-	@norminette src libft include|grep Error
+	@bash -c "! norminette src libft include | grep Error"
