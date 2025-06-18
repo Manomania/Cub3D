@@ -6,7 +6,7 @@
 /*   By: elagouch <elagouch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/09 16:06:00 by maximart          #+#    #+#             */
-/*   Updated: 2025/06/17 18:09:58 by elagouch         ###   ########.fr       */
+/*   Updated: 2025/06/17 19:30:39 by elagouch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,34 +18,6 @@
 #include "utils.h"
 #include "pproc.h"
 #include <limits.h>
-
-/*
-** Initialize frame timing variables
-*/
-static void	init_fps(t_data *data)
-{
-	gettimeofday(&data->last_frame, NULL);
-	data->fps = 0.0;
-	data->frame_count = 0;
-	data->fps_timer = 0.0;
-}
-
-void	display_map(t_data *data)
-{
-	int	x;
-	int	y;
-
-	if (!data->map)
-		return ;
-	y = -1;
-	while (++y < data->map_height)
-	{
-		x = -1;
-		while (++x < data->map_width)
-			ft_putchar(data->map[y][x]);
-		ft_putchar('\n');
-	}
-}
 
 t_data	*init_data(void)
 {
@@ -59,18 +31,17 @@ t_data	*init_data(void)
 	data->color_c_found = false;
 	data->mlx = mlx_init();
 	if (!data->mlx)
-		return (free_ressource(data));
+		return (free_resources(&data));
 	data->win_width = WIN_W;
 	data->win_height = WIN_H;
 	data->win = mlx_new_window(data->mlx, data->win_width, data->win_height,
 			"cub3d");
 	if (!data->win)
-		return (free_ressource(data));
+		return (free_resources(&data));
 	data->img.img = mlx_new_image(data->mlx, data->win_width, data->win_height);
 	data->img.addr = mlx_get_data_addr(data->img.img, &data->img.bits_per_pixel,
 			&data->img.line_length, &data->img.endian);
-	display_map(data);
-	init_fps(data);
+	gettimeofday(&data->last_frame, NULL);
 	return (data);
 }
 
@@ -95,20 +66,25 @@ bool	check_error(int argc, char **argv)
 	return (false);
 }
 
-int main_color_resources(t_data *data)
+int	main_color_resources(t_data *data)
 {
 	if (!data->color_c_found)
 	{
 		ft_printf(RED "Error\nColor C is empty\n" RESET);
+		free_resources(&data);
 		return (1);
 	}
 	if (!data->color_f_found)
 	{
 		ft_printf(RED "Error\nColor F is empty\n" RESET);
+		free_resources(&data);
 		return (1);
 	}
 	if (load_game_textures(data))
+	{
+		free_resources(&data);
 		return (1);
+	}
 	return (0);
 }
 
@@ -126,13 +102,13 @@ int	main(int argc, char **argv)
 		|| validate_config_completeness(data) || check_map_validity(data)
 		|| main_color_resources(data))
 	{
-		free_ressource(data);
+		free_resources(&data);
 		return (1);
 	}
 	handle_main_bonus_features(data);
 	init_player(data);
 	setup_mlx_hooks(data);
 	mlx_loop(data->mlx);
-	free_ressource(data);
+	free_resources(&data);
 	return (0);
 }

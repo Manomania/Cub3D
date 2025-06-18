@@ -1,6 +1,7 @@
 SRC_F_MANDATORY := main						\
 				draw/d_math					\
 				draw/d_draw					\
+				draw/d_draw2				\
 				draw/d_render				\
 				memory/m_free				\
 				memory/m_utils				\

@@ -6,7 +6,7 @@
 /*   By: elagouch <elagouch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/19 15:57:52 by elagouch          #+#    #+#             */
-/*   Updated: 2025/06/17 13:41:50 by elagouch         ###   ########.fr       */
+/*   Updated: 2025/06/17 19:31:31 by elagouch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,10 +27,10 @@
 /**
  * @brief Final clearing function
  *
- * @param data Data to be cleared
+ * @param data* Pointer to data to be cleared
  * @return void* New value for parameter
  */
-void	*free_ressource(t_data *data);
+void	*free_resources(t_data **data);
 
 /**
  * @brief Frees the map

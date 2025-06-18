@@ -6,7 +6,7 @@
 /*   By: elagouch <elagouch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/23 13:37:20 by elagouch          #+#    #+#             */
-/*   Updated: 2025/06/17 13:44:26 by elagouch         ###   ########.fr       */
+/*   Updated: 2025/06/17 19:16:41 by elagouch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,5 +44,6 @@ char	*resolve_path(const char *base_path, const char *relative_path);
  * @return false On success
  */
 bool	load_game_textures(t_data *data);
+bool	load_game_textures_bonus(t_data *data);
 
 #endif // !UTILS_H

@@ -6,18 +6,12 @@
 /*   By: maximart <maximart@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/23 09:01:38 by maximart          #+#    #+#             */
-/*   Updated: 2025/06/17 14:51:50 by elagouch         ###   ########.fr       */
+/*   Updated: 2025/06/17 18:59:02 by elagouch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parsing.h"
 #include "mem.h"
-
-static bool	invalid_char(char c)
-{
-	return (c != '0' && c != '1' && c != 'N' && c != 'S'
-		&& c != 'E' && c != 'W' && c != ' ' && c != '\n' && c != 'D');
-}
 
 static bool	find_player_position(t_data *data, int *start_x, int *start_y)
 {
@@ -82,7 +76,8 @@ static bool	check_invalid_characters(t_data *data)
 		while (data->map[y][x])
 		{
 			c = data->map[y][x];
-			if (invalid_char(c))
+			if (c != '0' && c != '1' && c != 'N' && c != 'S' && c != 'E'
+				&& c != 'W' && c != ' ' && c != '\n' && c != 'D')
 			{
 				data->error_detected = true;
 				ft_printf(RED "Error\nInvalid '%c' in map\n" RESET, c);

@@ -6,7 +6,7 @@
 /*   By: elagouch <elagouch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/17 14:36:51 by elagouch          #+#    #+#             */
-/*   Updated: 2025/06/17 14:37:51 by elagouch         ###   ########.fr       */
+/*   Updated: 2025/06/17 18:56:04 by elagouch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,4 +26,3 @@ void	handle_render_extra_features(t_data *data)
 	update_fps_counter(data);
 	display_fps(data);
 }
-
