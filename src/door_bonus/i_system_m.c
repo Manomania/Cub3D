@@ -6,11 +6,12 @@
 /*   By: elagouch <elagouch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/17 14:11:33 by elagouch          #+#    #+#             */
-/*   Updated: 2025/06/18 13:29:36 by elagouch         ###   ########.fr       */
+/*   Updated: 2025/06/18 14:28:12 by elagouch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
+#include <unistd.h>
 
 t_door	*get_door_at(t_data *data, int x, int y)
 {

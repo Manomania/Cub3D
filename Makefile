@@ -8,7 +8,7 @@ NAME_BONUS			=	cub3d_bonus
 HEADER				=	$(INC_DIR)cub3d.h
 CC 					= 	cc
 CFLAGS 				= 	-Wall -Wextra -Werror
-CFLAGS 				+= 	-g3 -O2
+# CFLAGS 				+= -g3	-O2
 MLX_FLAGS			=	-L$(MLX_DIR) -l:libmlx_Linux.a -lXext -lX11 -lm
 AR					=	ar rcs
 RM					=	rm -f
@@ -122,7 +122,7 @@ $(LIBFT):
 $(MLX):
 							@$(MAKE) --silent -C $(MLX_DIR)
 
-$(OBJ_DIR)%.o: 			$(SRC_DIR)%.c $(HEADER)
+$(OBJ_DIR)%.o: 			$(SRC_DIR)%.c $(HEADER) | Makefile
 							@mkdir -p $(dir $@)
 							@$(CC) $(CFLAGS) -I$(INC_DIR) -I$(LIBFT_DIR)$(INC_DIR) -I$(MLX_DIR) -c $< -o $@
 							$(call PROGRESS_BAR_PERCENTAGE)
