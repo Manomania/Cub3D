@@ -6,12 +6,13 @@
 /*   By: elagouch <elagouch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/19 15:57:10 by elagouch          #+#    #+#             */
-/*   Updated: 2025/06/16 19:16:39 by elagouch         ###   ########.fr       */
+/*   Updated: 2025/06/18 13:38:32 by elagouch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "mem.h"
 #include "mlx.h"
+#include <stdlib.h>
 
 void	free_door_system(t_data *data);
 
@@ -77,25 +78,29 @@ static void	free_paths(t_data *data)
 		free(data->map_file_path);
 }
 
-void	*free_ressource(t_data *data)
+void	*free_resources(t_data **data)
 {
-	if (!data)
+	t_data	*d;
+
+	if (!data || !*data)
 		return (NULL);
-	if (data->map)
+	d = *data;
+	if (d->map)
 	{
-		free_map(data);
-		data->map = NULL;
+		free_map(d);
+		d->map = NULL;
 	}
-	free_paths(data);
-	free_textures(data);
-	free_door_system(data);
-	if (data->img.img)
-		mlx_destroy_image(data->mlx, data->img.img);
-	if (data->win)
-		mlx_destroy_window(data->mlx, data->win);
-	if (data->mlx)
-		mlx_destroy_display(data->mlx);
-	free(data->mlx);
-	free(data);
+	free_paths(d);
+	free_textures(d);
+	free_door_system(d);
+	if (d->img.img)
+		mlx_destroy_image(d->mlx, d->img.img);
+	if (d->win)
+		mlx_destroy_window(d->mlx, d->win);
+	if (d->mlx)
+		mlx_destroy_display(d->mlx);
+	free(d->mlx);
+	free(d);
+	*data = NULL;
 	return (NULL);
 }

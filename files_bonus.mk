@@ -1,5 +1,6 @@
 SRC_F_BONUS := main_b						\
 			door_bonus/i_system_b			\
+			door_bonus/i_system_b2			\
 			minimap_bonus/n_draw			\
 			minimap_bonus/n_draw_utils		\
 			minimap_bonus/n_grid			\
@@ -14,5 +15,7 @@ SRC_F_BONUS := main_b						\
 			player/l_mlx_b					\
 			player/l_mov_b					\
 			texture/t_texture_b				\
+			utils/u_map_chars_b				\
 			utils/u_texture_b
+
 SRC_F_ONLY_BONUS := draw/d_render_b

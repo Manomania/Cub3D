@@ -6,14 +6,14 @@
 /*   By: elagouch <elagouch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/16 15:28:33 by elagouch          #+#    #+#             */
-/*   Updated: 2025/06/17 13:30:35 by elagouch         ###   ########.fr       */
+/*   Updated: 2025/06/18 13:32:58 by elagouch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FPS_EXTRA_H
 # define FPS_EXTRA_H
 
-#include "cub3d.h"
+# include "cub3d.h"
 
 /*******************************************************************************
  *                             Function Prototypes                             *

@@ -1,11 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*   l_mlx.c                                           :+:      :+:    :+:   */
+/*                                                        :::      ::::::::   */
+/*   l_mlx.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: elagouch <elagouch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/20 18:03:34 by elagouch          #+#    #+#             */
-/*   Updated: 2025/06/16 18:00:00 by elagouch         ###   ########.fr       */
+/*   Updated: 2025/06/18 13:40:10 by elagouch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -13,10 +14,11 @@
 #include "mem.h"
 #include "player.h"
 #include "pproc.h"
+#include <stdlib.h>
 
 void	hook_destroy(t_data *data)
 {
-	free_ressource(data);
+	free_resources(&data);
 	exit(EXIT_SUCCESS);
 }
 

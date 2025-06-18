@@ -6,12 +6,13 @@
 /*   By: elagouch <elagouch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/17 17:57:14 by maximart          #+#    #+#             */
-/*   Updated: 2025/06/17 17:26:34 by elagouch         ###   ########.fr       */
+/*   Updated: 2025/06/18 12:13:25 by elagouch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 #include "parsing.h"
+#include "utils.h"
 
 static bool	is_config_line(char *line)
 {
@@ -40,7 +41,7 @@ bool	looks_like_map_line(char *line)
 		return (false);
 	while (*tmp && *tmp != '\n')
 	{
-		if (ft_strchr(MAP_CHARS, *tmp))
+		if (ft_strchr(map_chars(), *tmp))
 			return (true);
 		tmp++;
 	}

@@ -6,7 +6,7 @@
 /*   By: elagouch <elagouch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/16 16:40:53 by elagouch          #+#    #+#             */
-/*   Updated: 2025/06/17 14:02:20 by elagouch         ###   ########.fr       */
+/*   Updated: 2025/06/18 13:31:49 by elagouch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,7 +80,8 @@ void	cast_grid_ray(t_data *data, t_ray *ray, int x);
 void	calculate_line_height(t_ray *ray, int screen_height);
 
 /**
- * @brief Checks if the cell should be considered a "blank space" (floor), or anything solid.
+ * @brief Checks if the cell should be considered a "blank space" (floor), or
+ * anything solid.
  *
  * @param data App data
  * @param x X codinate

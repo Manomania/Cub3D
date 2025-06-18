@@ -1,6 +1,7 @@
 SRC_F_MANDATORY := main						\
 				draw/d_math					\
 				draw/d_draw					\
+				draw/d_draw2				\
 				draw/d_render				\
 				memory/m_free				\
 				memory/m_utils				\
@@ -28,9 +29,11 @@ SRC_F_MANDATORY := main						\
 SRC_F_ONLY_MANDATORY := main_m				\
 				draw/d_render_m				\
 				door_bonus/i_system_m		\
+				door_bonus/i_system_m2		\
 				parsing/p_map_m				\
 				parsing/p_validation_m		\
 				player/l_mlx_m				\
 				player/l_mov_m				\
 				texture/t_texture_m			\
+				utils/u_map_chars_m			\
 				utils/u_texture_m

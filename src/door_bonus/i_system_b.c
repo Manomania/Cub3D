@@ -6,25 +6,43 @@
 /*   By: elagouch <elagouch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/16 19:00:20 by elagouch          #+#    #+#             */
-/*   Updated: 2025/06/17 14:11:24 by elagouch         ###   ########.fr       */
+/*   Updated: 2025/06/18 13:42:23 by elagouch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
+#include "libft.h"
+
+static void	init_door_system_loop(t_data *data, int x, int y)
+{
+	if (data->map[y][x] == 'D')
+	{
+		if (data->door_sys.count < data->door_sys.capacity)
+		{
+			data->door_sys.doors[data->door_sys.count].x = x;
+			data->door_sys.doors[data->door_sys.count].y = y;
+			data->door_sys.doors[data->door_sys.count].open = false;
+			data->door_sys.doors[data->door_sys.count].opening = false;
+			data->door_sys.doors[data->door_sys.count].closing = false;
+			data->door_sys.doors[data->door_sys.count].prog = 0.0f;
+			data->door_sys.count++;
+		}
+	}
+}
 
 void	init_door_system(t_data *data)
 {
 	int	x;
 	int	y;
 
-	data->door_system.door_capacity = 100;
-	data->door_system.door_count = 0;
-	data->door_system.animation_speed = 3.0f;
-	data->door_system.doors = ft_calloc(data->door_system.door_capacity,
+	data->door_sys.capacity = 100;
+	data->door_sys.animation_speed = 3.0f;
+	data->door_sys.doors = ft_calloc(data->door_sys.capacity,
 			sizeof(t_door));
-	if (!data->door_system.doors)
+	if (!data->door_sys.doors)
 	{
-		ft_printf(RED "Error\nFailed to allocate memory for door system\n" RESET);
+		ft_printf(RED "Error\nFailed to allocate memory for door system\n"
+			RESET);
 		return ;
 	}
 	y = -1;
@@ -33,21 +51,19 @@ void	init_door_system(t_data *data)
 		x = -1;
 		while (++x < data->map_width && data->map[y]
 			&& x < (int)ft_strlen(data->map[y]))
-		{
-			if (data->map[y][x] == 'D')
-			{
-				if (data->door_system.door_count < data->door_system.door_capacity)
-				{
-					data->door_system.doors[data->door_system.door_count].x = x;
-					data->door_system.doors[data->door_system.door_count].y = y;
-					data->door_system.doors[data->door_system.door_count].is_open = false;
-					data->door_system.doors[data->door_system.door_count].is_opening = false;
-					data->door_system.doors[data->door_system.door_count].is_closing = false;
-					data->door_system.doors[data->door_system.door_count].open_progress = 0.0f;
-					data->door_system.door_count++;
-				}
-			}
-		}
+			init_door_system_loop(data, x, y);
+	}
+}
+
+static void	update_door_animations_else(t_data *data, t_door *door)
+{
+	door->prog -= data->door_sys.animation_speed
+		* data->delta_time;
+	if (door->prog <= 0.0f)
+	{
+		door->prog = 0.0f;
+		door->closing = false;
+		door->open = false;
 	}
 }
 
@@ -57,85 +73,32 @@ void	update_door_animations(t_data *data)
 	t_door	*door;
 
 	i = -1;
-	while (++i < data->door_system.door_count)
+	while (++i < data->door_sys.count)
 	{
-		door = &data->door_system.doors[i];
-		if (door->is_opening)
+		door = &data->door_sys.doors[i];
+		if (door->opening)
 		{
-			door->open_progress += data->door_system.animation_speed
+			door->prog += data->door_sys.animation_speed
 				* data->delta_time;
-			if (door->open_progress >= 1.0f)
+			if (door->prog >= 1.0f)
 			{
-				door->open_progress = 1.0f;
-				door->is_opening = false;
-				door->is_open = true;
+				door->prog = 1.0f;
+				door->opening = false;
+				door->open = true;
 			}
 		}
-		else if (door->is_closing)
-		{
-			door->open_progress -= data->door_system.animation_speed
-				* data->delta_time;
-			if (door->open_progress <= 0.0f)
-			{
-				door->open_progress = 0.0f;
-				door->is_closing = false;
-				door->is_open = false;
-			}
-		}
+		else if (door->closing)
+			update_door_animations_else(data, door);
 	}
-}
-
-t_door	*get_door_at(t_data *data, int x, int y)
-{
-	int	i;
-
-	i = -1;
-	while (++i < data->door_system.door_count)
-	{
-		if (data->door_system.doors[i].x == x && data->door_system.doors[i].y == y)
-			return (&data->door_system.doors[i]);
-	}
-	return (NULL);
-}
-
-void	toggle_door(t_data *data, int x, int y)
-{
-	t_door	*door;
-
-	door = get_door_at(data, x, y);
-	if (!door)
-		return ;
-	if (door->is_open || door->is_opening)
-	{
-		door->is_open = false;
-		door->is_opening = false;
-		door->is_closing = true;
-	}
-	else if (!door->is_open || door->is_closing)
-	{
-		door->is_open = false;
-		door->is_closing = false;
-		door->is_opening = true;
-	}
-}
-
-bool	is_door_passable(t_data *data, int x, int y)
-{
-	t_door	*door;
-
-	door = get_door_at(data, x, y);
-	if (!door)
-		return (false);
-	return (door->open_progress > 0.7f);
 }
 
 void	free_door_system(t_data *data)
 {
-	if (data->door_system.doors)
+	if (data->door_sys.doors)
 	{
-		free(data->door_system.doors);
-		data->door_system.doors = NULL;
+		free(data->door_sys.doors);
+		data->door_sys.doors = NULL;
 	}
-	data->door_system.door_count = 0;
-	data->door_system.door_capacity = 0;
+	data->door_sys.count = 0;
+	data->door_sys.capacity = 0;
 }

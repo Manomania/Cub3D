@@ -6,12 +6,12 @@
 /*   By: maximart <maximart@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/27 18:38:03 by maximart          #+#    #+#             */
-/*   Updated: 2025/05/27 18:38:03 by maximart         ###   ########.fr       */
+/*   Updated: 2025/06/18 13:43:16 by elagouch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "libft.h"
 #include "minimap_bonus.h"
-#include "draw.h"
 
 static bool	is_wall_at_map_pos(t_data *data, int map_x, int map_y)
 {

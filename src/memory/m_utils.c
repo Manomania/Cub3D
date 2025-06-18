@@ -6,10 +6,11 @@
 /*   By: elagouch <elagouch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/16 17:59:05 by maximart          #+#    #+#             */
-/*   Updated: 2025/05/21 16:36:24 by elagouch         ###   ########.fr       */
+/*   Updated: 2025/06/18 13:38:46 by elagouch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "libft.h"
 #include "mem.h"
 
 bool	init_map_buffer(t_map_buffer *buffer)

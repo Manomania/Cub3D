@@ -1,24 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   p_map_m.c                                          :+:      :+:    :+:   */
+/*   i_system_m2.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: elagouch <elagouch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/06/17 17:25:49 by elagouch          #+#    #+#             */
-/*   Updated: 2025/06/18 14:28:41 by elagouch         ###   ########.fr       */
+/*   Created: 2025/06/18 13:29:31 by elagouch          #+#    #+#             */
+/*   Updated: 2025/06/18 13:29:45 by elagouch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
-#include <stdbool.h>
+#include "cub3d.h"
 
-bool	config_line_condition(char *trimmed)
+void	free_door_system(t_data *data)
 {
-	return (!ft_strncmp(trimmed, "NO ", 3)
-		|| !ft_strncmp(trimmed, "SO ", 3)
-		|| !ft_strncmp(trimmed, "WE ", 3)
-		|| !ft_strncmp(trimmed, "EA ", 3)
-		|| !ft_strncmp(trimmed, "F ", 2)
-		|| !ft_strncmp(trimmed, "C ", 2));
+	(void) data;
+}
+
+void	init_door_system(t_data *data)
+{
+	(void) data;
+}
+
+void	update_door_animations(t_data *data)
+{
+	(void) data;
 }

@@ -6,11 +6,12 @@
 /*   By: elagouch <elagouch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/17 14:54:20 by elagouch          #+#    #+#             */
-/*   Updated: 2025/06/17 14:54:29 by elagouch         ###   ########.fr       */
+/*   Updated: 2025/06/18 13:44:28 by elagouch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
+#include "libft.h"
 
 bool	check_bonus_textures(t_data *data)
 {

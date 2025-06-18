@@ -6,12 +6,14 @@
 /*   By: maximart <maximart@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/02 13:47:37 by maximart          #+#    #+#             */
-/*   Updated: 2025/06/02 13:47:37 by maximart         ###   ########.fr       */
+/*   Updated: 2025/06/18 13:43:45 by elagouch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "mouse_bonus.h"
 #include "mlx.h"
+#include <math.h>
+#include <stdlib.h>
 
 static void	mouse_recenter(t_data *data)
 {

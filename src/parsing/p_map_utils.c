@@ -6,10 +6,11 @@
 /*   By: maximart <maximart@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/23 10:20:23 by maximart          #+#    #+#             */
-/*   Updated: 2025/05/23 10:20:23 by maximart         ###   ########.fr       */
+/*   Updated: 2025/06/18 13:39:48 by elagouch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "libft.h"
 #include "parsing.h"
 
 bool	expand_buffer(t_map_buffer *buffer)

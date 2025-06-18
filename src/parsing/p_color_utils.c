@@ -6,10 +6,11 @@
 /*   By: elagouch <elagouch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/21 15:39:34 by maximart          #+#    #+#             */
-/*   Updated: 2025/05/21 16:57:40 by elagouch         ###   ########.fr       */
+/*   Updated: 2025/06/18 13:39:11 by elagouch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "libft.h"
 #include "parsing.h"
 
 static bool	check_comma_count(t_data *data, int count_comma)
