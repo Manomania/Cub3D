@@ -24,6 +24,55 @@ static bool	check_text_duplicate(t_data *data, const char *cardinal, char *exist
 	return (false);
 }
 
+static bool	parse_texture_no_so(t_data *data, char *path, const char *cardinal)
+{
+	if (ft_strcmp(cardinal, "NO ") == 0)
+	{
+		if (check_text_duplicate(data, cardinal, data->texture_n))
+			return (true);
+		data->texture_n = ft_strtrim(path, "\n");
+		return (true);
+	}
+	if (ft_strcmp(cardinal, "SO ") == 0)
+	{
+		if (check_text_duplicate(data, cardinal, data->texture_s))
+			return (true);
+		data->texture_s = ft_strtrim(path, "\n");
+		return (true);
+	}
+	return (false);
+}
+
+static bool	parse_texture_we_ea(t_data *data, char *path, const char *cardinal)
+{
+	if (ft_strcmp(cardinal, "WE ") == 0)
+	{
+		if (check_text_duplicate(data, cardinal, data->texture_w))
+			return (true);
+		data->texture_w = ft_strtrim(path, "\n");
+		return (true);
+	}
+	if (ft_strcmp(cardinal, "EA ") == 0)
+	{
+		if (check_text_duplicate(data, cardinal, data->texture_e))
+			return (true);
+		data->texture_e = ft_strtrim(path, "\n");
+		return (true);
+	}
+	return (false);
+}
+
+static bool	parse_texture_door(t_data *data, char *path, const char *cardinal)
+{
+	if (ft_strcmp(cardinal, "D ") == 0)
+	{
+		if (check_text_duplicate(data, cardinal, data->texture_door))
+			return (true);
+		data->texture_door = ft_strtrim(path, "\n");
+		return (true);
+	}
+	return (false);
+}
 
 bool	parse_texture_path(t_data *data, char *line, const char *cardinal)
 {
@@ -38,36 +87,12 @@ bool	parse_texture_path(t_data *data, char *line, const char *cardinal)
 		path = skip + 2;
 		while (*path && (*path == ' ' || *path == '\t'))
 			path++;
-		if (ft_strcmp(cardinal, "NO ") == 0)
-		{
-			if (check_text_duplicate(data, cardinal, data->texture_n))
-				return (false);
-			data->texture_n = ft_strtrim(path, "\n");
-		}
-		else if (ft_strcmp(cardinal, "SO ") == 0)
-		{
-			if (check_text_duplicate(data, cardinal, data->texture_s))
-				return (false);
-			data->texture_s = ft_strtrim(path, "\n");
-		}
-		else if (ft_strcmp(cardinal, "WE ") == 0)
-		{
-			if (check_text_duplicate(data, cardinal, data->texture_w))
-				return (false);
-			data->texture_w = ft_strtrim(path, "\n");
-		}
-		else if (ft_strcmp(cardinal, "EA ") == 0)
-		{
-			if (check_text_duplicate(data, cardinal, data->texture_e))
-				return (false);
-			data->texture_e = ft_strtrim(path, "\n");
-		}
-		else if (ft_strcmp(cardinal, "D ") == 0)
-		{
-			if (check_text_duplicate(data, cardinal, data->texture_door))
-				return (false);
-			data->texture_door = ft_strtrim(path, "\n");
-		}
+		if (parse_texture_no_so(data, path, cardinal))
+			return (false);
+		if (parse_texture_we_ea(data, path, cardinal))
+			return (false);
+		if (parse_texture_door(data, path, cardinal))
+			return (false);
 		return (false);
 	}
 	return (true);
