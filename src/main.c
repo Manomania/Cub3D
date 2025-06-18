@@ -100,20 +100,15 @@ int main_color_resources(t_data *data)
 	if (!data->color_c_found)
 	{
 		ft_printf(RED "Error\nColor C is empty\n" RESET);
-		free_ressource(data);
 		return (1);
 	}
 	if (!data->color_f_found)
 	{
 		ft_printf(RED "Error\nColor F is empty\n" RESET);
-		free_ressource(data);
 		return (1);
 	}
 	if (load_game_textures(data))
-	{
-		free_ressource(data);
 		return (1);
-	}
 	return (0);
 }
 
@@ -128,12 +123,12 @@ int	main(int argc, char **argv)
 		return (1);
 	data->map_file_path = ft_strdup(argv[1]);
 	if (!data->map_file_path || read_file(data, argv[1])
-		|| validate_config_completeness(data) || check_map_validity(data))
+		|| validate_config_completeness(data) || check_map_validity(data)
+		|| main_color_resources(data))
 	{
 		free_ressource(data);
 		return (1);
 	}
-	main_color_resources(data);
 	handle_main_bonus_features(data);
 	init_player(data);
 	setup_mlx_hooks(data);
