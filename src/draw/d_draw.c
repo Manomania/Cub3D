@@ -6,12 +6,13 @@
 /*   By: elagouch <elagouch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/16 16:31:43 by elagouch          #+#    #+#             */
-/*   Updated: 2025/06/17 18:58:04 by elagouch         ###   ########.fr       */
+/*   Updated: 2025/06/18 13:37:59 by elagouch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "door_bonus.h"
 #include "draw.h"
+#include "libft.h"
 #include "texture.h"
 
 static void	draw_line_pixels(t_data *data, t_ray *ray, t_texture *texture,
@@ -75,7 +76,7 @@ void	draw_textured_line(t_data *data, t_ray *ray, int x)
 		door = get_door_at(data, map_x, map_y);
 		if (door)
 		{
-			door_offset = (int)(door->open_progress * ray->line_height);
+			door_offset = (int)(door->prog * ray->line_height);
 			ray->draw_start += door_offset;
 			if (ray->draw_start > ray->draw_end)
 				ray->draw_start = ray->draw_end;

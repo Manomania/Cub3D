@@ -6,7 +6,7 @@
 /*   By: elagouch <elagouch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/20 18:03:34 by elagouch          #+#    #+#             */
-/*   Updated: 2025/06/17 19:14:29 by elagouch         ###   ########.fr       */
+/*   Updated: 2025/06/18 13:40:10 by elagouch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 #include "mem.h"
 #include "player.h"
 #include "pproc.h"
+#include <stdlib.h>
 
 void	hook_destroy(t_data *data)
 {

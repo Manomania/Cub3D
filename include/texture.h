@@ -6,7 +6,7 @@
 /*   By: elagouch <elagouch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/16 15:22:00 by elagouch          #+#    #+#             */
-/*   Updated: 2025/06/17 13:44:07 by elagouch         ###   ########.fr       */
+/*   Updated: 2025/06/18 13:32:05 by elagouch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ bool		load_textures(t_textures *textures, void *mlx_ptr, char *paths[4]);
  * @param door_path Door path
  * @returns bool Whether it failed or not
  */
-bool	load_bonus_textures(t_data *data, char *door_path);
+bool		load_bonus_textures(t_data *data, char *door_path);
 
 /**
  * @brief Resolves paths of textures
@@ -68,6 +68,6 @@ bool	load_bonus_textures(t_data *data, char *door_path);
  * @param data App data
  * @param map_path Map path
  */
-char	**resolve_texture_paths(t_data *data, const char *map_path);
+char		**resolve_texture_paths(t_data *data, const char *map_path);
 
 #endif // !TEXTURE_H

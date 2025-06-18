@@ -6,12 +6,13 @@
 /*   By: maximart <maximart@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/27 18:37:19 by maximart          #+#    #+#             */
-/*   Updated: 2025/06/17 17:51:54 by elagouch         ###   ########.fr       */
+/*   Updated: 2025/06/18 13:42:47 by elagouch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minimap_bonus.h"
 #include "draw.h"
+#include <stdlib.h>
 
 void	clamp_rect_bounds(t_data *data, t_draw_params *params)
 {

@@ -6,11 +6,12 @@
 /*   By: elagouch <elagouch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/19 16:04:42 by elagouch          #+#    #+#             */
-/*   Updated: 2025/06/16 14:53:02 by elagouch         ###   ########.fr       */
+/*   Updated: 2025/06/18 13:36:55 by elagouch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "draw.h"
+#include <math.h>
 
 double	calculate_wall_hit(t_data *data, t_ray *ray)
 {

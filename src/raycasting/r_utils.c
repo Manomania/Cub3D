@@ -6,10 +6,11 @@
 /*   By: maximart <maximart@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/16 13:38:33 by maximart          #+#    #+#             */
-/*   Updated: 2025/06/17 17:56:37 by elagouch         ###   ########.fr       */
+/*   Updated: 2025/06/18 13:41:18 by elagouch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "libft.h"
 #include "raycasting.h"
 #include "door_bonus.h"
 
@@ -58,7 +59,7 @@ bool	is_valid_and_walkable(t_data *data, int x, int y)
 	if (data->map[y][x] == 'D')
 	{
 		door = get_door_at(data, x, y);
-		if (door && door->open_progress >= 1.0f)
+		if (door && door->prog >= 1.0f)
 			return (true);
 		return (false);
 	}

@@ -6,11 +6,12 @@
 /*   By: elagouch <elagouch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/17 14:16:42 by elagouch          #+#    #+#             */
-/*   Updated: 2025/06/17 19:13:22 by elagouch         ###   ########.fr       */
+/*   Updated: 2025/06/18 13:44:39 by elagouch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
+#include "libft.h"
 #include "mlx.h"
 #include "player.h"
 #include "draw.h"

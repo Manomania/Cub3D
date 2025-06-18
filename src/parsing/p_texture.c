@@ -13,7 +13,8 @@
 #include "libft.h"
 #include "parsing.h"
 
-static bool	check_text_duplicate(t_data *data, const char *cardinal, char *exist)
+static bool	check_text_duplicate(t_data *data, const char *cardinal,
+								char *exist)
 {
 	if (exist)
 	{

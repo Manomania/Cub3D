@@ -6,11 +6,12 @@
 /*   By: elagouch <elagouch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/16 14:50:16 by elagouch          #+#    #+#             */
-/*   Updated: 2025/06/16 14:51:51 by elagouch         ###   ########.fr       */
+/*   Updated: 2025/06/18 13:40:28 by elagouch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
+#include <math.h>
 
 void	rotate_l(t_player *player)
 {

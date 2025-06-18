@@ -6,21 +6,16 @@
 /*   By: elagouch <elagouch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/28 12:05:19 by maximart          #+#    #+#             */
-/*   Updated: 2025/06/18 12:11:14 by elagouch         ###   ########.fr       */
+/*   Updated: 2025/06/18 13:36:37 by elagouch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef CUB3D_H
 # define CUB3D_H
 
-# include "libft.h"
-
-# include <float.h>
-# include <math.h>
-# include <stdbool.h>
-# include <stdio.h>
-# include <stdlib.h>
-# include <sys/time.h>
+# include <stdbool.h>	// bool
+# include <stdint.h>	// uint8_t
+# include <sys/time.h>	// struct timeval
 
 /*******************************************************************************
  *                                    Macros                                   *
@@ -214,17 +209,17 @@ typedef struct s_map_buffer
 typedef struct s_door
 {
     int     x, y;
-    bool    is_open;
-    bool    is_opening;
-    bool    is_closing;
-    float   open_progress;
+    bool    open;
+    bool    opening;
+    bool    closing;
+    float   prog;
 }   t_door;
 
 typedef struct s_door_system
 {
     t_door  *doors;
-    int     door_count;
-    int     door_capacity;
+    int     count;
+    int     capacity;
     float   animation_speed;
 }   t_door_system;
 
@@ -268,7 +263,7 @@ typedef struct s_data
 	double			fps_timer;
 	double			time_accumulator;
 	// Misc
-	t_door_system door_system;
+	t_door_system door_sys;
 }					t_data;
 
 // This is very specific

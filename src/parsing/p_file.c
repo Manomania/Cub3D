@@ -6,10 +6,11 @@
 /*   By: maximart <elagouch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/16 21:44:41 by maximart          #+#    #+#             */
-/*   Updated: 2025/06/17 17:15:08 by elagouch         ###   ########.fr       */
+/*   Updated: 2025/06/18 13:39:24 by elagouch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "libft.h"
 #include "parsing.h"
 #include "mem.h"
 

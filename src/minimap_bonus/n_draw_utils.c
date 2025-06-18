@@ -6,11 +6,12 @@
 /*   By: maximart <maximart@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/02 12:34:56 by maximart          #+#    #+#             */
-/*   Updated: 2025/06/02 12:34:56 by maximart         ###   ########.fr       */
+/*   Updated: 2025/06/18 13:43:01 by elagouch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minimap_bonus.h"
+#include <math.h>
 
 static void	draw_single_fov_line(t_data *data, t_draw_params *params,
 		int end_x, int end_y)

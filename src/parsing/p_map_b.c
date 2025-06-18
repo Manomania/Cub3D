@@ -6,11 +6,12 @@
 /*   By: elagouch <elagouch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/17 17:25:49 by elagouch          #+#    #+#             */
-/*   Updated: 2025/06/17 18:58:19 by elagouch         ###   ########.fr       */
+/*   Updated: 2025/06/18 13:44:07 by elagouch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
+#include "libft.h"
+#include <stdbool.h>
 
 bool	config_line_condition(char *trimmed)
 {

@@ -6,12 +6,13 @@
 /*   By: elagouch <elagouch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/19 15:57:10 by elagouch          #+#    #+#             */
-/*   Updated: 2025/06/17 19:30:14 by elagouch         ###   ########.fr       */
+/*   Updated: 2025/06/18 13:38:32 by elagouch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "mem.h"
 #include "mlx.h"
+#include <stdlib.h>
 
 void	free_door_system(t_data *data);
 

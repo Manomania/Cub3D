@@ -6,11 +6,13 @@
 /*   By: maximart <maximart@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/16 13:33:39 by maximart          #+#    #+#             */
-/*   Updated: 2025/06/16 13:35:46 by maximart         ###   ########.fr       */
+/*   Updated: 2025/06/18 13:40:48 by elagouch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "raycasting.h"
+#include <float.h>
+#include <math.h>
 
 static void	calculate_horizontal_steps(double angle, double *step_x,
 		double *step_y)

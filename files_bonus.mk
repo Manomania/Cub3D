@@ -1,5 +1,6 @@
 SRC_F_BONUS := main_b						\
 			door_bonus/i_system_b			\
+			door_bonus/i_system_b2			\
 			minimap_bonus/n_draw			\
 			minimap_bonus/n_draw_utils		\
 			minimap_bonus/n_grid			\

@@ -6,12 +6,12 @@
 /*   By: maximart <maximart@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/27 18:38:26 by maximart          #+#    #+#             */
-/*   Updated: 2025/05/27 18:38:26 by maximart         ###   ########.fr       */
+/*   Updated: 2025/06/18 13:43:28 by elagouch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minimap_bonus.h"
-#include "draw.h"
+#include <math.h>
 
 bool	check_fov_bounds(t_draw_params *params, int screen_x, int screen_y)
 {

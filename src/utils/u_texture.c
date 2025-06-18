@@ -6,7 +6,7 @@
 /*   By: elagouch <elagouch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/23 13:39:02 by elagouch          #+#    #+#             */
-/*   Updated: 2025/06/17 19:24:47 by elagouch         ###   ########.fr       */
+/*   Updated: 2025/06/18 13:42:11 by elagouch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,10 @@
 */
 
 #include "cub3d.h"
+#include "libft.h"
 #include "texture.h"
 #include "utils.h"
+#include <stdlib.h>
 
 /*
 ** Free array of resolved texture paths

@@ -6,14 +6,14 @@
 /*   By: elagouch <elagouch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/17 13:24:47 by elagouch          #+#    #+#             */
-/*   Updated: 2025/06/17 14:01:59 by elagouch         ###   ########.fr       */
+/*   Updated: 2025/06/18 13:32:48 by elagouch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef DOOR_BONUS_H
 # define DOOR_BONUS_H
 
-#include "cub3d.h"
+# include "cub3d.h"
 
 /*******************************************************************************
  *                             Function Prototypes                             *
@@ -30,7 +30,8 @@
  * @param x X coordinate
  * @param y Y coordinate
  * @returns t_door* Door
- * @note This cannot be in cub3d_bonus.h because we need it for mandatory compilation
+ * @note This cannot be in cub3d_bonus.h because we need it for mandatory
+ * compilation
  */
 t_door	*get_door_at(t_data *data, int x, int y);
 
@@ -65,4 +66,3 @@ void	toggle_door(t_data *data, int x, int y);
 void	update_door_animations(t_data *data);
 
 #endif // !DOOR_BONUS_H
-

@@ -6,11 +6,12 @@
 /*   By: elagouch <elagouch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/16 18:10:47 by elagouch          #+#    #+#             */
-/*   Updated: 2025/06/17 13:40:22 by elagouch         ###   ########.fr       */
+/*   Updated: 2025/06/18 13:38:19 by elagouch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "draw.h"
+#include "libft.h"
 #include "mlx.h"
 #include "player.h"
 #include "raycasting.h"

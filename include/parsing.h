@@ -6,7 +6,7 @@
 /*   By: elagouch <elagouch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/19 18:29:12 by elagouch          #+#    #+#             */
-/*   Updated: 2025/06/17 17:28:02 by elagouch         ###   ########.fr       */
+/*   Updated: 2025/06/18 13:33:10 by elagouch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -113,7 +113,7 @@ bool	fill_map(t_data *data, int fd);
  * @param trimmed String to check
  * @returns bool Whether it's a config line or not
  */
-bool config_line_condition(char *trimmed);
+bool	config_line_condition(char *trimmed);
 
 /*
 ** p_map_check.c

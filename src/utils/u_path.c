@@ -6,11 +6,12 @@
 /*   By: elagouch <elagouch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/23 13:37:43 by elagouch          #+#    #+#             */
-/*   Updated: 2025/05/23 13:38:25 by elagouch         ###   ########.fr       */
+/*   Updated: 2025/06/18 13:41:46 by elagouch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
+#include "libft.h"
 #include "utils.h"
 #include <unistd.h>
 
