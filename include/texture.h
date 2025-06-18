@@ -55,10 +55,19 @@ bool		load_textures(t_textures *textures, void *mlx_ptr, char *paths[4]);
 
 /**
  * @brief Loads bonus textures only
+ *
  * @param data App data
  * @param door_path Door path
  * @returns bool Whether it failed or not
  */
 bool	load_bonus_textures(t_data *data, char *door_path);
+
+/**
+ * @brief Resolves paths of textures
+ *
+ * @param data App data
+ * @param map_path Map path
+ */
+char	**resolve_texture_paths(t_data *data, const char *map_path);
 
 #endif // !TEXTURE_H

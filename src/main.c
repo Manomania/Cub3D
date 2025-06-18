@@ -71,20 +71,15 @@ int	main_color_resources(t_data *data)
 	if (!data->color_c_found)
 	{
 		ft_printf(RED "Error\nColor C is empty\n" RESET);
-		free_resources(&data);
 		return (1);
 	}
 	if (!data->color_f_found)
 	{
 		ft_printf(RED "Error\nColor F is empty\n" RESET);
-		free_resources(&data);
 		return (1);
 	}
 	if (load_game_textures(data))
-	{
-		free_resources(&data);
 		return (1);
-	}
 	return (0);
 }
 

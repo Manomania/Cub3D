@@ -19,25 +19,6 @@
 #include "utils.h"
 
 /*
-** Resolve all texture paths relative to the map file
-*/
-static char	**resolve_texture_paths(t_data *data, const char *map_path)
-{
-	char	**resolved_paths;
-
-	resolved_paths = ft_calloc(6, sizeof(char *));
-	if (!resolved_paths)
-		return (NULL);
-	resolved_paths[0] = resolve_path(map_path, data->texture_n);
-	resolved_paths[1] = resolve_path(map_path, data->texture_e);
-	resolved_paths[2] = resolve_path(map_path, data->texture_s);
-	resolved_paths[3] = resolve_path(map_path, data->texture_w);
-	if (BUILD_BONUS)
-		resolved_paths[4] = resolve_path(map_path, data->texture_door);
-	return (resolved_paths);
-}
-
-/*
 ** Free array of resolved texture paths
 */
 static bool	free_resolved_paths(char **paths)
@@ -47,7 +28,7 @@ static bool	free_resolved_paths(char **paths)
 	if (!paths)
 		return (true);
 	i = 0;
-	while (i < 4)
+	while (i < 5)
 	{
 		if (paths[i])
 			free(paths[i]);

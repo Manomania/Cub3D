@@ -34,4 +34,5 @@ SRC_F_ONLY_MANDATORY := main_m				\
 				player/l_mlx_m				\
 				player/l_mov_m				\
 				texture/t_texture_m			\
+				utils/u_map_chars_m			\
 				utils/u_texture_m

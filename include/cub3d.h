@@ -6,7 +6,7 @@
 /*   By: elagouch <elagouch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/28 12:05:19 by maximart          #+#    #+#             */
-/*   Updated: 2025/06/17 19:12:45 by elagouch         ###   ########.fr       */
+/*   Updated: 2025/06/18 12:11:14 by elagouch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,14 +41,6 @@
 
 # define BASE_MOVE_SPEED 5.0
 # define BASE_ROT_SPEED 3.0
-
-# ifdef BONUS
-#  define BUILD_BONUS 0
-#  define MAP_CHARS "01NSEWD \t"
-# else
-#  define BUILD_BONUS 1
-#  define MAP_CHARS "01NSEW \t"
-# endif
 
 /*******************************************************************************
  *                                  Structures                                 *

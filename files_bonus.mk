@@ -14,5 +14,7 @@ SRC_F_BONUS := main_b						\
 			player/l_mlx_b					\
 			player/l_mov_b					\
 			texture/t_texture_b				\
+			utils/u_map_chars_b				\
 			utils/u_texture_b
+
 SRC_F_ONLY_BONUS := draw/d_render_b
