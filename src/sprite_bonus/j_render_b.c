@@ -6,7 +6,7 @@
 /*   By: elagouch <elagouch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/20 12:41:05 by elagouch          #+#    #+#             */
-/*   Updated: 2025/06/20 14:02:26 by elagouch         ###   ########.fr       */
+/*   Updated: 2025/06/20 15:57:16 by elagouch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -118,7 +118,7 @@ static void	draw_sprite_column(t_data *data, t_sprite_render *render,
 			d = (y) * 256 - data->win_height * 128 + render->sprite_height * 128;
 			tex_y = ((d * texture->height) / render->sprite_height) / 256;
 			color = get_pixel_color(texture, tex_x, tex_y);
-			if ((color.val & 0x00FFFFFF) != 0)
+			if ((color.val & 0x00FFFFFF) != 0x00FF00FF && (color.val & 0x00FFFFFF) != 0)
 				my_mlx_pixel_put(&data->img, stripe, y, color);
 		}
 	}
