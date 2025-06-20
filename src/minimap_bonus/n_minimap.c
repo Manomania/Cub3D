@@ -10,8 +10,8 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minimap_bonus.h"
 #include "draw.h"
+#include "minimap_bonus.h"
 
 static void	init_draw_params(t_draw_params *params, t_data *data)
 {

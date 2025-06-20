@@ -6,13 +6,13 @@
 /*   By: maximart <elagouch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/16 21:44:41 by maximart          #+#    #+#             */
-/*   Updated: 2025/06/18 13:39:24 by elagouch         ###   ########.fr       */
+/*   Updated: 2025/06/20 19:34:00 by elagouch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-#include "parsing.h"
 #include "mem.h"
+#include "parsing.h"
 
 bool	process_config_line(t_data *data, char *line)
 {
@@ -29,6 +29,8 @@ bool	process_config_line(t_data *data, char *line)
 	if (!parse_color_line(data, line, "F "))
 		return (false);
 	if (!parse_color_line(data, line, "C "))
+		return (false);
+	if (!parse_texture_path(data, line, "P "))
 		return (false);
 	return (true);
 }
@@ -61,9 +63,9 @@ static int	read_file_content(int fd, t_data *data, t_map_buffer *buffer)
 
 int	read_file(t_data *data, const char *file)
 {
-	int				fd;
 	t_map_buffer	map_buffer;
 	int				result;
+	int				fd;
 
 	fd = open(file, O_RDONLY);
 	if (fd < 0)

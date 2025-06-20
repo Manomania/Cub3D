@@ -6,7 +6,7 @@
 /*   By: elagouch <elagouch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/17 17:57:14 by maximart          #+#    #+#             */
-/*   Updated: 2025/06/18 12:13:25 by elagouch         ###   ########.fr       */
+/*   Updated: 2025/06/20 19:33:27 by elagouch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,8 +48,8 @@ bool	looks_like_map_line(char *line)
 	return (false);
 }
 
-bool	process_single_line(t_data *data, char *line,
-			bool *map_section_started, t_map_buffer *buffer)
+bool	process_single_line(t_data *data, char *line, bool *map_section_started,
+		t_map_buffer *buffer)
 {
 	if (!*map_section_started)
 	{

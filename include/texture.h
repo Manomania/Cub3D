@@ -6,7 +6,7 @@
 /*   By: elagouch <elagouch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/16 15:22:00 by elagouch          #+#    #+#             */
-/*   Updated: 2025/06/18 13:32:05 by elagouch         ###   ########.fr       */
+/*   Updated: 2025/06/20 19:56:25 by elagouch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,9 @@
 /*******************************************************************************
  *                             Function Prototypes                             *
  ******************************************************************************/
+
+bool		check_text_duplicate(t_data *data, const char *cardinal,
+				char *exist);
 
 /**
  * @brief Get RGB color from image data at a specific screen position
@@ -61,6 +64,9 @@ bool		load_textures(t_textures *textures, void *mlx_ptr, char *paths[4]);
  * @returns bool Whether it failed or not
  */
 bool		load_bonus_textures(t_data *data, char *door_path);
+
+bool		parse_texture_no_so(t_data *data, char *path, const char *cardinal);
+bool		parse_texture_we_ea(t_data *data, char *path, const char *cardinal);
 
 /**
  * @brief Resolves paths of textures

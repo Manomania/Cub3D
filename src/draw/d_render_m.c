@@ -14,10 +14,10 @@
 
 void	handle_render_bonus_features(t_data *data)
 {
-	(void) data;
+	(void)data;
 }
 
 void	handle_render_extra_features(t_data *data)
 {
-	(void) data;
+	(void)data;
 }

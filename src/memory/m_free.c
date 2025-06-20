@@ -6,15 +6,14 @@
 /*   By: elagouch <elagouch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/19 15:57:10 by elagouch          #+#    #+#             */
-/*   Updated: 2025/06/18 13:38:32 by elagouch         ###   ########.fr       */
+/*   Updated: 2025/06/20 19:32:40 by elagouch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "mem.h"
 #include "mlx.h"
+#include "sprite_bonus.h"
 #include <stdlib.h>
-
-void	free_door_system(t_data *data);
 
 void	free_map(t_data *data)
 {
@@ -76,6 +75,8 @@ static void	free_paths(t_data *data)
 		free(data->texture_door);
 	if (data->map_file_path)
 		free(data->map_file_path);
+	if (data->texture_sprite)
+		free(data->texture_sprite);
 }
 
 void	*free_resources(t_data **data)
@@ -86,19 +87,20 @@ void	*free_resources(t_data **data)
 		return (NULL);
 	d = *data;
 	if (d->map)
-	{
 		free_map(d);
-		d->map = NULL;
-	}
+	d->map = NULL;
 	free_paths(d);
 	free_textures(d);
 	free_door_system(d);
+	free_sprite_system(d);
 	if (d->img.img)
 		mlx_destroy_image(d->mlx, d->img.img);
 	if (d->win)
 		mlx_destroy_window(d->mlx, d->win);
 	if (d->mlx)
 		mlx_destroy_display(d->mlx);
+	if (d->z_buffer)
+		free(d->z_buffer);
 	free(d->mlx);
 	free(d);
 	*data = NULL;

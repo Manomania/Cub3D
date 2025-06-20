@@ -6,11 +6,18 @@
 /*   By: elagouch <elagouch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/18 12:10:00 by elagouch          #+#    #+#             */
-/*   Updated: 2025/06/18 12:14:50 by elagouch         ###   ########.fr       */
+/*   Updated: 2025/06/20 19:38:32 by elagouch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+/*
+** 0		- Void
+** 1		- Wall
+** N/S/E/W	- Player
+** D		- Door
+** P		- Animated sprite
+*/
 const char	*map_chars(void)
 {
-	return ("01NSEWD \t\n");
+	return ("01NSEWDP \t\n");
 }

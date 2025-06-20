@@ -13,8 +13,8 @@
 #include "minimap_bonus.h"
 #include <math.h>
 
-static void	draw_single_fov_line(t_data *data, t_draw_params *params,
-		int end_x, int end_y)
+static void	draw_single_fov_line(t_data *data, t_draw_params *params, int end_x,
+		int end_y)
 {
 	params->x = params->player_screen[0];
 	params->y = params->player_screen[1];

@@ -10,8 +10,8 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minimap_bonus.h"
 #include "draw.h"
+#include "minimap_bonus.h"
 #include <stdlib.h>
 
 void	clamp_rect_bounds(t_data *data, t_draw_params *params)
@@ -22,8 +22,7 @@ void	clamp_rect_bounds(t_data *data, t_draw_params *params)
 		params->height = data->win_height - params->y;
 }
 
-static void	init_line_params(t_draw_params *params, int *dx, int *dy,
-		int *step)
+static void	init_line_params(t_draw_params *params, int *dx, int *dy, int *step)
 {
 	*dx = abs(params->width - params->x);
 	*dy = abs(params->height - params->y);
@@ -38,8 +37,8 @@ static void	init_line_params(t_draw_params *params, int *dx, int *dy,
 	params->start_x = *dx - *dy;
 }
 
-static void	draw_line_pixels(t_data *data, t_draw_params *params,
-			int dx, int dy)
+static void	draw_line_pixels(t_data *data, t_draw_params *params, int dx,
+		int dy)
 {
 	int	err2;
 	int	step_x;

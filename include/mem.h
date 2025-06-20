@@ -6,7 +6,7 @@
 /*   By: elagouch <elagouch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/19 15:57:52 by elagouch          #+#    #+#             */
-/*   Updated: 2025/06/17 19:31:31 by elagouch         ###   ########.fr       */
+/*   Updated: 2025/06/20 19:54:40 by elagouch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,10 +25,17 @@
  ******************************************************************************/
 
 /**
+ * @brief Frees the door system, duh.
+ *
+ * @param data App data
+ */
+void	free_door_system(t_data *data);
+
+/**
  * @brief Final clearing function
  *
- * @param data* Pointer to data to be cleared
- * @return void* New value for parameter
+ * @param data Pointer to data to be cleared
+ * @return void New value for parameter
  */
 void	*free_resources(t_data **data);
 

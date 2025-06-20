@@ -24,13 +24,12 @@ bool	load_bonus_textures(t_data *data, char *door_path)
 		return (true);
 	data->textures.door.addr = mlx_get_data_addr(data->textures.door.img,
 			&data->textures.door.bits_per_pixel,
-			&data->textures.door.line_length,
-			&data->textures.door.endian);
+			&data->textures.door.line_length, &data->textures.door.endian);
 	return (false);
 }
 
 t_texture	*get_wall_texture_bonus(t_data *data, t_textures *textures,
-				t_ray *ray)
+		t_ray *ray)
 {
 	int	map_x;
 	int	map_y;
@@ -45,9 +44,9 @@ t_texture	*get_wall_texture_bonus(t_data *data, t_textures *textures,
 		map_x = (int)ray->horizontal_x;
 		map_y = (int)ray->horizontal_y;
 	}
-	if (map_y >= 0 && map_y < data->map_height
-		&& map_x >= 0 && map_x < data->map_width
-		&& data->map[map_y] && map_x < (int)ft_strlen(data->map[map_y]))
+	if (map_y >= 0 && map_y < data->map_height && map_x >= 0
+		&& map_x < data->map_width && data->map[map_y]
+		&& map_x < (int)ft_strlen(data->map[map_y]))
 	{
 		if (data->map[map_y][map_x] == 'D')
 			return (&textures->door);

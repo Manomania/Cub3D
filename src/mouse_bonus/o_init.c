@@ -10,8 +10,8 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "mouse_bonus.h"
 #include "mlx.h"
+#include "mouse_bonus.h"
 
 static t_mouse	g_mouse;
 

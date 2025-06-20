@@ -14,6 +14,6 @@
 
 bool	check_bonus_textures(t_data *data)
 {
-	(void) data;
+	(void)data;
 	return (false);
 }

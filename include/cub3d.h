@@ -6,7 +6,7 @@
 /*   By: elagouch <elagouch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/28 12:05:19 by maximart          #+#    #+#             */
-/*   Updated: 2025/06/18 14:15:18 by elagouch         ###   ########.fr       */
+/*   Updated: 2025/06/20 19:55:14 by elagouch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,8 +28,12 @@
 # define YELLOW "\033[093m"
 # define CYAN "\033[36m"
 
-# define WIN_H 720
-# define WIN_W 1280
+// Valgrind mode :-)
+# define WIN_H 480
+# define WIN_W 640
+
+// # define WIN_H 720
+// # define WIN_W 1280
 
 # define FPS_COUNTER_TEXT_HEIGHT 20
 # define FPS_COUNTER_TEXT_WIDTH 80
@@ -37,11 +41,14 @@
 # define BASE_MOVE_SPEED 5.0
 # define BASE_ROT_SPEED 3.0
 
+# define MAX_SPRITE_FRAMES 8
+# define SPRITE_SCALE 0.7
+
 // float.h is forbidden
 # define DBL_MAX    1.7976931348623157E+308
 
 /*******************************************************************************
- *                                  Structures                                 *
+ *                                    Enums                                    *
  ******************************************************************************/
 
 typedef enum e_hit_sides
@@ -61,6 +68,10 @@ typedef enum e_parse_state
 	STATE_MAP,
 	STATE_POST_MAP,
 }					t_parse_state;
+
+/*******************************************************************************
+ *                                  Structures                                 *
+ ******************************************************************************/
 
 /*
 ** Raycasting implementation using DDA algorithm
@@ -228,6 +239,37 @@ typedef struct s_door_system
 }					t_door_system;
 
 /*
+** Sprite structs
+*/
+typedef struct s_sprite_animation
+{
+	t_texture	frames[MAX_SPRITE_FRAMES];
+	int			frame_count;
+	float		frame_duration;
+	float		current_time;
+	int			current_frame;
+	bool		loop;
+}	t_sprite_animation;
+
+typedef struct s_sprite
+{
+	double				x;
+	double				y;
+	t_sprite_animation	animation;
+	bool				active;
+	double				distance;
+	float				scale;
+}	t_sprite;
+
+typedef struct s_sprite_system
+{
+	t_sprite	*sprites;
+	int			count;
+	int			capacity;
+	int			*render_order;
+}	t_sprite_system;
+
+/*
 ** Global application data
 */
 typedef struct s_data
@@ -241,6 +283,7 @@ typedef struct s_data
 	char			*texture_e;
 	char			*texture_w;
 	char			*texture_door;
+	char			*texture_sprite;
 	// MLX stuff
 	t_img			img;
 	void			*mlx;
@@ -266,8 +309,10 @@ typedef struct s_data
 	int				frame_count;
 	double			fps_timer;
 	double			time_accumulator;
-	// Misc
+	// Bonus/extra
 	t_door_system	door_sys;
+	t_sprite_system	sprite_sys;
+	double			*z_buffer;
 }					t_data;
 
 // This is very specific
