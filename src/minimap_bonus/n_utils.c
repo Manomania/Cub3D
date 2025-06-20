@@ -15,9 +15,8 @@
 
 bool	check_fov_bounds(t_draw_params *params, int screen_x, int screen_y)
 {
-	if (screen_x < params->minimap_x
-		|| screen_x >= params->minimap_x + MINIMAP_SIZE
-		|| screen_y < params->minimap_y
+	if (screen_x < params->minimap_x || screen_x >= params->minimap_x
+		+ MINIMAP_SIZE || screen_y < params->minimap_y
 		|| screen_y >= params->minimap_y + MINIMAP_SIZE)
 		return (true);
 	return (false);

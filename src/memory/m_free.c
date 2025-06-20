@@ -6,7 +6,7 @@
 /*   By: elagouch <elagouch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/19 15:57:10 by elagouch          #+#    #+#             */
-/*   Updated: 2025/06/20 18:48:08 by elagouch         ###   ########.fr       */
+/*   Updated: 2025/06/20 19:32:40 by elagouch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,6 @@
 #include "mlx.h"
 #include "sprite_bonus.h"
 #include <stdlib.h>
-
-void	free_door_system(t_data *data);
 
 void	free_map(t_data *data)
 {
@@ -89,10 +87,8 @@ void	*free_resources(t_data **data)
 		return (NULL);
 	d = *data;
 	if (d->map)
-	{
 		free_map(d);
-		d->map = NULL;
-	}
+	d->map = NULL;
 	free_paths(d);
 	free_textures(d);
 	free_door_system(d);

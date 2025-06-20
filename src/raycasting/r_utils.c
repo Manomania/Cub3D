@@ -10,9 +10,9 @@
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "door_bonus.h"
 #include "libft.h"
 #include "raycasting.h"
-#include "door_bonus.h"
 
 void	init_ray(t_ray *ray, t_player *player, double camera_x)
 {

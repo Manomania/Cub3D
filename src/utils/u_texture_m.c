@@ -17,7 +17,7 @@
 
 bool	load_game_textures_bonus(t_data *data)
 {
-	(void) data;
+	(void)data;
 	return (false);
 }
 

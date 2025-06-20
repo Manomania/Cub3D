@@ -6,58 +6,20 @@
 /*   By: elagouch <elagouch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/16 21:46:09 by maximart          #+#    #+#             */
-/*   Updated: 2025/06/20 15:34:39 by elagouch         ###   ########.fr       */
+/*   Updated: 2025/06/20 19:38:21 by elagouch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
+#include "texture.h"
 #include "parsing.h"
 
-static bool	check_text_duplicate(t_data *data, const char *cardinal,
-								char *exist)
+bool	check_text_duplicate(t_data *data, const char *cardinal, char *exist)
 {
 	if (exist)
 	{
 		data->error_detected = true;
-		ft_printf(RED"Error\nDuplicate texture for %s\n"RESET, cardinal);
-		return (true);
-	}
-	return (false);
-}
-
-static bool	parse_texture_no_so(t_data *data, char *path, const char *cardinal)
-{
-	if (ft_strcmp(cardinal, "NO ") == 0)
-	{
-		if (check_text_duplicate(data, cardinal, data->texture_n))
-			return (true);
-		data->texture_n = ft_strtrim(path, "\n");
-		return (true);
-	}
-	if (ft_strcmp(cardinal, "SO ") == 0)
-	{
-		if (check_text_duplicate(data, cardinal, data->texture_s))
-			return (true);
-		data->texture_s = ft_strtrim(path, "\n");
-		return (true);
-	}
-	return (false);
-}
-
-static bool	parse_texture_we_ea(t_data *data, char *path, const char *cardinal)
-{
-	if (ft_strcmp(cardinal, "WE ") == 0)
-	{
-		if (check_text_duplicate(data, cardinal, data->texture_w))
-			return (true);
-		data->texture_w = ft_strtrim(path, "\n");
-		return (true);
-	}
-	if (ft_strcmp(cardinal, "EA ") == 0)
-	{
-		if (check_text_duplicate(data, cardinal, data->texture_e))
-			return (true);
-		data->texture_e = ft_strtrim(path, "\n");
+		ft_printf(RED "Error\nDuplicate texture for %s\n" RESET, cardinal);
 		return (true);
 	}
 	return (false);

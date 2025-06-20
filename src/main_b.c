@@ -11,9 +11,9 @@
 /* ************************************************************************** */
 
 #include "cub3d.h"
-#include "pproc.h"
-#include "mouse_bonus.h"
 #include "door_bonus.h"
+#include "mouse_bonus.h"
+#include "pproc.h"
 #include "sprite_bonus.h"
 
 void	handle_main_bonus_features(t_data *data)

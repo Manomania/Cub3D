@@ -15,17 +15,17 @@
 
 t_door	*get_door_at(t_data *data, int x, int y)
 {
-	(void) data;
-	(void) x;
-	(void) y;
+	(void)data;
+	(void)x;
+	(void)y;
 	return (NULL);
 }
 
 void	toggle_door(t_data *data, int x, int y)
 {
-	(void) data;
-	(void) x;
-	(void) y;
+	(void)data;
+	(void)x;
+	(void)y;
 }
 
 /*
@@ -33,8 +33,8 @@ void	toggle_door(t_data *data, int x, int y)
 */
 bool	is_door_passable(t_data *data, int x, int y)
 {
-	(void) data;
-	(void) x;
-	(void) y;
+	(void)data;
+	(void)x;
+	(void)y;
 	return (false);
 }

@@ -6,7 +6,7 @@
 /*   By: elagouch <elagouch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/20 12:40:35 by elagouch          #+#    #+#             */
-/*   Updated: 2025/06/20 18:37:02 by elagouch         ###   ########.fr       */
+/*   Updated: 2025/06/20 19:53:50 by elagouch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ t_texture	*get_sprite_texture(t_sprite *sprite)
 	}
 	if (sprite->animation.current_frame >= sprite->animation.frame_count)
 	{
-		printf("Frame out of bounds: current=%d, count=%d\n", 
+		printf("Frame out of bounds: current=%d, count=%d\n",
 			sprite->animation.current_frame, sprite->animation.frame_count);
 		return (NULL);
 	}
@@ -36,7 +36,7 @@ t_texture	*get_sprite_texture(t_sprite *sprite)
 */
 bool	is_sprite_visible(t_data *data, t_sprite *sprite)
 {
-	(void) data;
-	(void) sprite;
+	(void)data;
+	(void)sprite;
 	return (true);
 }

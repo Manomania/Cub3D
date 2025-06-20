@@ -10,8 +10,8 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "mouse_bonus.h"
 #include "mlx.h"
+#include "mouse_bonus.h"
 #include <math.h>
 #include <stdlib.h>
 
@@ -65,8 +65,7 @@ static void	mouse_rotate_camera(t_player *player, double delta_x)
 	player->dir_x = player->dir_x * cos_angle - player->dir_y * sin_angle;
 	player->dir_y = old_dir_x * sin_angle + player->dir_y * cos_angle;
 	old_plane_x = player->plane_x;
-	player->plane_x = player->plane_x * cos_angle - player->plane_y
-		* sin_angle;
+	player->plane_x = player->plane_x * cos_angle - player->plane_y * sin_angle;
 	player->plane_y = old_plane_x * sin_angle + player->plane_y * cos_angle;
 }
 

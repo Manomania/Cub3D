@@ -11,19 +11,19 @@
 /* ************************************************************************** */
 
 #include "cub3d.h"
+#include "door_bonus.h"
+#include "draw.h"
 #include "libft.h"
 #include "mlx.h"
-#include "player.h"
-#include "draw.h"
 #include "mouse_bonus.h"
-#include "door_bonus.h"
+#include "player.h"
 
 void	handle_mlx_bonus_features_loop(struct s_double_int player, t_data *data)
 {
-	int		dx;
-	int		dy;
-	int		check_x;
-	int		check_y;
+	int	dx;
+	int	dy;
+	int	check_x;
+	int	check_y;
 
 	dy = -2;
 	while (++dy <= 1)
@@ -33,10 +33,9 @@ void	handle_mlx_bonus_features_loop(struct s_double_int player, t_data *data)
 		{
 			check_x = *player.x + dx;
 			check_y = *player.y + dy;
-			if (check_x >= 0 && check_x < data->map_width
-				&& check_y >= 0 && check_y < data->map_height
-				&& data->map[check_y] && check_x
-				< (int)ft_strlen(data->map[check_y])
+			if (check_x >= 0 && check_x < data->map_width && check_y >= 0
+				&& check_y < data->map_height && data->map[check_y]
+				&& check_x < (int)ft_strlen(data->map[check_y])
 				&& data->map[check_y][check_x] == 'D')
 			{
 				toggle_door(data, check_x, check_y);
@@ -61,9 +60,9 @@ void	handle_mlx_bonus_features(t_data *data, int keycode)
 		check_dist = 1.8;
 		frnt_x = (int)(data->player.pos_x + data->player.dir_x * check_dist);
 		frnt_y = (int)(data->player.pos_y - data->player.dir_y * check_dist);
-		if (frnt_x >= 0 && frnt_x < data->map_width
-			&& frnt_y >= 0 && frnt_y < data->map_height
-			&& data->map[frnt_y] && frnt_x < (int)ft_strlen(data->map[frnt_y])
+		if (frnt_x >= 0 && frnt_x < data->map_width && frnt_y >= 0
+			&& frnt_y < data->map_height && data->map[frnt_y]
+			&& frnt_x < (int)ft_strlen(data->map[frnt_y])
 			&& data->map[frnt_y][frnt_x] == 'D')
 		{
 			toggle_door(data, frnt_x, frnt_y);

@@ -6,7 +6,7 @@
 /*   By: elagouch <elagouch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/16 19:00:20 by elagouch          #+#    #+#             */
-/*   Updated: 2025/06/18 13:42:23 by elagouch         ###   ########.fr       */
+/*   Updated: 2025/06/20 19:39:12 by elagouch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,8 +37,7 @@ void	init_door_system(t_data *data)
 
 	data->door_sys.capacity = 100;
 	data->door_sys.animation_speed = 3.0f;
-	data->door_sys.doors = ft_calloc(data->door_sys.capacity,
-			sizeof(t_door));
+	data->door_sys.doors = ft_calloc(data->door_sys.capacity, sizeof(t_door));
 	if (!data->door_sys.doors)
 	{
 		ft_printf(RED "Error\nFailed to allocate memory for door system\n"
@@ -57,8 +56,7 @@ void	init_door_system(t_data *data)
 
 static void	update_door_animations_else(t_data *data, t_door *door)
 {
-	door->prog -= data->door_sys.animation_speed
-		* data->delta_time;
+	door->prog -= data->door_sys.animation_speed * data->delta_time;
 	if (door->prog <= 0.0f)
 	{
 		door->prog = 0.0f;
@@ -78,8 +76,7 @@ void	update_door_animations(t_data *data)
 		door = &data->door_sys.doors[i];
 		if (door->opening)
 		{
-			door->prog += data->door_sys.animation_speed
-				* data->delta_time;
+			door->prog += data->door_sys.animation_speed * data->delta_time;
 			if (door->prog >= 1.0f)
 			{
 				door->prog = 1.0f;

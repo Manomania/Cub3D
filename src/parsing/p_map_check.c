@@ -11,8 +11,8 @@
 /* ************************************************************************** */
 
 #include "libft.h"
-#include "parsing.h"
 #include "mem.h"
+#include "parsing.h"
 #include "utils.h"
 
 static bool	find_player_position(t_data *data, int *start_x, int *start_y)
@@ -26,8 +26,8 @@ static bool	find_player_position(t_data *data, int *start_x, int *start_y)
 		x = 0;
 		while (x < data->map_width && data->map[y][x])
 		{
-			if (data->map[y][x] == 'N' || data->map[y][x] == 'S' ||
-				data->map[y][x] == 'E' || data->map[y][x] == 'W')
+			if (data->map[y][x] == 'N' || data->map[y][x] == 'S'
+				|| data->map[y][x] == 'E' || data->map[y][x] == 'W')
 			{
 				*start_x = x;
 				*start_y = y;

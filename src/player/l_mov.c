@@ -15,9 +15,9 @@
 /*
 ** `l_mov_rot.c`
 */
-void	rotate_l(t_player *player);
-void	rotate_r(t_player *player);
-bool	is_valid_position(t_data *data, double x, double y);
+void		rotate_l(t_player *player);
+void		rotate_r(t_player *player);
+bool		is_valid_position(t_data *data, double x, double y);
 
 /*
 ** Move forward/backward along the direction vector

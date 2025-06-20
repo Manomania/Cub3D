@@ -42,8 +42,8 @@ static void	set_initial_horizontal_pos(t_data *data, t_ray *ray, double angle)
 	ray->horizontal_x = player_x + (player_y - ray->horizontal_y) / tan(angle);
 }
 
-static void	step_until_horizontal_wall(t_data *data, t_ray *ray,
-		double step_x, double step_y)
+static void	step_until_horizontal_wall(t_data *data, t_ray *ray, double step_x,
+		double step_y)
 {
 	int	map_x;
 	int	map_y;

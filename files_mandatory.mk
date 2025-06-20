@@ -13,6 +13,7 @@ SRC_F_MANDATORY := main						\
 				parsing/p_flood_fill		\
 				parsing/p_map_utils			\
 				parsing/p_texture			\
+				parsing/p_texture_cardinal	\
 				parsing/p_validation		\
 				player/l_init				\
 				player/l_mlx				\

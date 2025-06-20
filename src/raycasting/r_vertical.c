@@ -42,8 +42,8 @@ static void	set_initial_vertical_pos(t_data *data, t_ray *ray, double angle)
 	ray->vertical_y = player_y + (player_x - ray->vertical_x) * tan(angle);
 }
 
-static void	step_until_vertical_wall(t_data *data, t_ray *ray,
-		double step_x, double step_y)
+static void	step_until_vertical_wall(t_data *data, t_ray *ray, double step_x,
+		double step_y)
 {
 	int	map_x;
 	int	map_y;

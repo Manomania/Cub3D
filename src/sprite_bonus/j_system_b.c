@@ -6,16 +6,14 @@
 /*   By: elagouch <elagouch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/20 12:41:53 by elagouch          #+#    #+#             */
-/*   Updated: 2025/06/20 17:12:13 by elagouch         ###   ########.fr       */
+/*   Updated: 2025/06/20 19:52:03 by elagouch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
-#include "sprite_bonus.h"
 #include "libft.h"
 #include "mlx.h"
-#include "utils.h"
-#include <stdio.h>
+#include "sprite_bonus.h"
 
 bool	add_sprite(t_data *data, double x, double y)
 {
@@ -98,10 +96,8 @@ void	free_sprite_system(t_data *data)
 		data->sprite_sys.sprites = NULL;
 	}
 	if (data->sprite_sys.render_order)
-	{
 		free(data->sprite_sys.render_order);
-		data->sprite_sys.render_order = NULL;
-	}
+	data->sprite_sys.render_order = NULL;
 	data->sprite_sys.count = 0;
 	data->sprite_sys.capacity = 0;
 }

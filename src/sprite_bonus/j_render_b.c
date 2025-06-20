@@ -6,61 +6,15 @@
 /*   By: elagouch <elagouch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/20 12:41:05 by elagouch          #+#    #+#             */
-/*   Updated: 2025/06/20 19:18:07 by elagouch         ###   ########.fr       */
+/*   Updated: 2025/06/20 19:53:32 by elagouch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
-#include "sprite_bonus.h"
 #include "draw.h"
+#include "sprite_bonus.h"
 #include "texture.h"
-#include <stdio.h>
 #include <stdlib.h>
-
-static void	calculate_sprite_distances(t_data *data)
-{
-	int		i;
-	double	dx;
-	double	dy;
-
-	i = -1;
-	while (++i < data->sprite_sys.count)
-	{
-		if (data->sprite_sys.sprites[i].active)
-		{
-			dx = data->player.pos_x - data->sprite_sys.sprites[i].x;
-			dy = data->player.pos_y - data->sprite_sys.sprites[i].y;
-			data->sprite_sys.sprites[i].distance = dx * dx + dy * dy;
-		}
-	}
-}
-
-void	sort_sprites_by_distance(t_data *data)
-{
-	int	i;
-	int	j;
-	int	temp;
-
-	calculate_sprite_distances(data);
-	i = -1;
-	while (++i < data->sprite_sys.count)
-		data->sprite_sys.render_order[i] = i;
-	i = -1;
-	while (++i < data->sprite_sys.count - 1)
-	{
-		j = i;
-		while (++j < data->sprite_sys.count)
-		{
-			if (data->sprite_sys.sprites[data->sprite_sys.render_order[i]].distance
-				< data->sprite_sys.sprites[data->sprite_sys.render_order[j]].distance)
-			{
-				temp = data->sprite_sys.render_order[i];
-				data->sprite_sys.render_order[i] = data->sprite_sys.render_order[j];
-				data->sprite_sys.render_order[j] = temp;
-			}
-		}
-	}
-}
 
 static void	calculate_sprite_transform(t_data *data, t_sprite *sprite,
 		t_sprite_render *render)
@@ -73,17 +27,21 @@ static void	calculate_sprite_transform(t_data *data, t_sprite *sprite,
 			* render->sprite_x - data->player.dir_x * render->sprite_y);
 	render->transform_y = render->inv_det * (-data->player.plane_y
 			* render->sprite_x + data->player.plane_x * render->sprite_y);
-	render->sprite_screen_x = (int)((data->win_width / 2)
-			* (1 - render->transform_x / render->transform_y));
+	render->sprite_screen_x = (int)((data->win_width / 2) * (1
+				- render->transform_x / render->transform_y));
 }
 
 static void	calculate_sprite_dimensions(t_data *data, t_sprite *sprite,
 		t_sprite_render *render)
 {
-	int full_scale_height = abs((int)(data->win_height / render->transform_y));
+	int	full_scale_height;
+	int	full_scale_center_y;
+	int	full_scale_bottom;
+
+	full_scale_height = abs((int)(data->win_height / render->transform_y));
 	render->sprite_height = full_scale_height * sprite->scale;
-	int full_scale_center_y = data->win_height / 2;
-	int full_scale_bottom = full_scale_center_y + (full_scale_height / 2);
+	full_scale_center_y = data->win_height / 2;
+	full_scale_bottom = full_scale_center_y + (full_scale_height / 2);
 	render->draw_end_y = full_scale_bottom;
 	render->draw_start_y = render->draw_end_y - render->sprite_height;
 	if (render->draw_start_y < 0)
@@ -121,9 +79,11 @@ static void	draw_sprite_column(t_data *data, t_sprite_render *render,
 			y = render->draw_start_y - 1;
 			while (++y < render->draw_end_y)
 			{
-				tex_y = ((y - render->draw_start_y) * texture->height) / render->sprite_height;
+				tex_y = ((y - render->draw_start_y) * texture->height)
+					/ render->sprite_height;
 				color = get_pixel_color(texture, tex_x, tex_y);
-				if ((color.val & 0x00FFFFFF) != 0x00FF00FF && (color.val & 0x00FFFFFF) != 0)
+				if ((color.val & 0x00FFFFFF) != 0x00FF00FF
+					&& (color.val & 0x00FFFFFF) != 0)
 					my_mlx_pixel_put(&data->img, stripe, y, color);
 			}
 		}

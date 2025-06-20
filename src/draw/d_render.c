@@ -6,7 +6,7 @@
 /*   By: elagouch <elagouch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/16 18:10:47 by elagouch          #+#    #+#             */
-/*   Updated: 2025/06/20 17:10:59 by elagouch         ###   ########.fr       */
+/*   Updated: 2025/06/20 19:25:13 by elagouch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 #include "libft.h"
 #include "mlx.h"
 #include "player.h"
-#include "raycasting.h"
 #include "pproc.h"
+#include "raycasting.h"
 #include "sprite_bonus.h"
 
 /*

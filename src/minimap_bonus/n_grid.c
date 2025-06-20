@@ -10,15 +10,15 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minimap_bonus.h"
 #include "draw.h"
+#include "minimap_bonus.h"
 
 static bool	check_grid_bounds(t_draw_params *params)
 {
 	if (params->x + params->cell_size > params->minimap_x
-		&& params->x < params->minimap_x + MINIMAP_SIZE
-		&& params->y + params->cell_size > params->minimap_y
-		&& params->y < params->minimap_y + MINIMAP_SIZE)
+		&& params->x < params->minimap_x + MINIMAP_SIZE && params->y
+		+ params->cell_size > params->minimap_y && params->y < params->minimap_y
+		+ MINIMAP_SIZE)
 		return (true);
 	return (false);
 }
@@ -51,8 +51,8 @@ static void	draw_grid_cell(t_data *data, t_draw_params *params, char cell)
 	}
 }
 
-static void	process_grid_cell(t_data *data, t_draw_params *params,
-		int map_x, int map_y)
+static void	process_grid_cell(t_data *data, t_draw_params *params, int map_x,
+		int map_y)
 {
 	params->x = params->minimap_x + (map_x * params->cell_size)
 		- params->start_x;
