@@ -23,7 +23,12 @@ static void	mouse_recenter(t_data *data)
 
 	mouse = mouse_get_state();
 	if (!mouse->is_active)
+	{
+		mlx_mouse_show(data->mlx, data->win);
 		return ;
+	}
+	else
+		mlx_mouse_hide(data->mlx, data->win);
 	center_x = (int)(data->win_width * 0.5);
 	center_y = (int)(data->win_height * 0.5);
 	mlx_mouse_move(data->mlx, data->win, center_x, center_y);
