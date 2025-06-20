@@ -6,7 +6,7 @@
 /*   By: elagouch <elagouch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/19 15:57:10 by elagouch          #+#    #+#             */
-/*   Updated: 2025/06/20 15:25:43 by elagouch         ###   ########.fr       */
+/*   Updated: 2025/06/20 18:48:08 by elagouch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,6 +103,8 @@ void	*free_resources(t_data **data)
 		mlx_destroy_window(d->mlx, d->win);
 	if (d->mlx)
 		mlx_destroy_display(d->mlx);
+	if (d->z_buffer)
+		free(d->z_buffer);
 	free(d->mlx);
 	free(d);
 	*data = NULL;

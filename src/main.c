@@ -6,7 +6,7 @@
 /*   By: elagouch <elagouch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/09 16:06:00 by maximart          #+#    #+#             */
-/*   Updated: 2025/06/18 13:35:44 by elagouch         ###   ########.fr       */
+/*   Updated: 2025/06/20 18:48:18 by elagouch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,8 +35,11 @@ t_data	*init_data(void)
 		return (free_resources(&data));
 	data->win_width = WIN_W;
 	data->win_height = WIN_H;
+	data->z_buffer = ft_calloc(data->win_width, sizeof(double));
+    if (!data->z_buffer)
+		return (free_resources(&data));
 	data->win = mlx_new_window(data->mlx, data->win_width, data->win_height,
-			"cub3d");
+		"cub3d");
 	if (!data->win)
 		return (free_resources(&data));
 	data->img.img = mlx_new_image(data->mlx, data->win_width, data->win_height);

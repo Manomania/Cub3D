@@ -6,7 +6,7 @@
 /*   By: elagouch <elagouch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/20 12:41:05 by elagouch          #+#    #+#             */
-/*   Updated: 2025/06/20 16:11:16 by elagouch         ###   ########.fr       */
+/*   Updated: 2025/06/20 19:18:07 by elagouch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 #include "sprite_bonus.h"
 #include "draw.h"
 #include "texture.h"
+#include <stdio.h>
 #include <stdlib.h>
 
 static void	calculate_sprite_distances(t_data *data)
@@ -79,12 +80,14 @@ static void	calculate_sprite_transform(t_data *data, t_sprite *sprite,
 static void	calculate_sprite_dimensions(t_data *data, t_sprite *sprite,
 		t_sprite_render *render)
 {
-	render->sprite_height = abs((int)(data->win_height
-				/ render->transform_y)) * sprite->scale;
-	render->draw_start_y = -render->sprite_height / 2 + data->win_height / 2;
+	int full_scale_height = abs((int)(data->win_height / render->transform_y));
+	render->sprite_height = full_scale_height * sprite->scale;
+	int full_scale_center_y = data->win_height / 2;
+	int full_scale_bottom = full_scale_center_y + (full_scale_height / 2);
+	render->draw_end_y = full_scale_bottom;
+	render->draw_start_y = render->draw_end_y - render->sprite_height;
 	if (render->draw_start_y < 0)
 		render->draw_start_y = 0;
-	render->draw_end_y = render->sprite_height / 2 + data->win_height / 2;
 	if (render->draw_end_y >= data->win_height)
 		render->draw_end_y = data->win_height - 1;
 	render->sprite_width = abs((int)(data->win_height / render->transform_y))
@@ -97,6 +100,9 @@ static void	calculate_sprite_dimensions(t_data *data, t_sprite *sprite,
 		render->draw_end_x = data->win_width - 1;
 }
 
+/*
+** Note: this is now aware of the z-buffer info given by grid_raycasting
+*/
 static void	draw_sprite_column(t_data *data, t_sprite_render *render,
 		t_texture *texture, int stripe)
 {
@@ -104,22 +110,22 @@ static void	draw_sprite_column(t_data *data, t_sprite_render *render,
 	int		tex_x;
 	int		tex_y;
 	t_color	color;
-	int		d;
 
 	tex_x = (int)(256 * (stripe - (-render->sprite_width / 2
 					+ render->sprite_screen_x)) * texture->width
 			/ render->sprite_width) / 256;
-	if (render->transform_y > 0 && stripe > 0 && stripe < data->win_width
-		&& render->transform_y < data->player.pos_x + data->player.pos_y)
+	if (render->transform_y > 0 && stripe >= 0 && stripe < data->win_width)
 	{
-		y = render->draw_start_y - 1;
-		while (++y < render->draw_end_y)
+		if (render->transform_y < data->z_buffer[stripe])
 		{
-			d = (y) * 256 - data->win_height * 128 + render->sprite_height * 128;
-			tex_y = ((d * texture->height) / render->sprite_height) / 256;
-			color = get_pixel_color(texture, tex_x, tex_y);
-			if ((color.val & 0x00FFFFFF) != 0x00FF00FF && (color.val & 0x00FFFFFF) != 0)
-				my_mlx_pixel_put(&data->img, stripe, y, color);
+			y = render->draw_start_y - 1;
+			while (++y < render->draw_end_y)
+			{
+				tex_y = ((y - render->draw_start_y) * texture->height) / render->sprite_height;
+				color = get_pixel_color(texture, tex_x, tex_y);
+				if ((color.val & 0x00FFFFFF) != 0x00FF00FF && (color.val & 0x00FFFFFF) != 0)
+					my_mlx_pixel_put(&data->img, stripe, y, color);
+			}
 		}
 	}
 }

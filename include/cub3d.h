@@ -6,7 +6,7 @@
 /*   By: elagouch <elagouch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/28 12:05:19 by maximart          #+#    #+#             */
-/*   Updated: 2025/06/20 16:38:14 by elagouch         ###   ########.fr       */
+/*   Updated: 2025/06/20 19:14:19 by elagouch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -309,9 +309,10 @@ typedef struct s_data
 	int				frame_count;
 	double			fps_timer;
 	double			time_accumulator;
-	// Misc
+	// Bonus/extra
 	t_door_system	door_sys;
 	t_sprite_system	sprite_sys;
+    double          *z_buffer;
 }					t_data;
 
 // This is very specific

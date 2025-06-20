@@ -6,7 +6,7 @@
 /*   By: maximart <maximart@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/12 08:59:32 by maximart          #+#    #+#             */
-/*   Updated: 2025/06/18 14:15:50 by elagouch         ###   ########.fr       */
+/*   Updated: 2025/06/20 18:49:07 by elagouch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,6 +86,7 @@ void	grid_raycasting(t_data *data)
 	while (x < data->win_width)
 	{
 		cast_grid_ray(data, &ray, x);
+		data->z_buffer[x] = ray.perp_wall_dist;
 		draw_ceiling(data, x, ray.draw_start, data->ceil_color);
 		draw_textured_line(data, &ray, x);
 		draw_floor(data, x, ray.draw_end, data->floor_color);
