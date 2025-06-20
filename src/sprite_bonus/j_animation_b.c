@@ -6,7 +6,7 @@
 /*   By: elagouch <elagouch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/20 12:40:20 by elagouch          #+#    #+#             */
-/*   Updated: 2025/06/20 18:34:52 by elagouch         ###   ########.fr       */
+/*   Updated: 2025/06/20 18:38:52 by elagouch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,14 +104,10 @@ void	update_sprite_animation(t_sprite *sprite, double delta_time)
 	{
 		sprite->animation.current_time = 0.0f;
 		sprite->animation.current_frame++;
-		printf("Advancing to frame %d\n", sprite->animation.current_frame);
 		if (sprite->animation.current_frame >= sprite->animation.frame_count)
 		{
 			if (sprite->animation.loop)
-			{
 				sprite->animation.current_frame = 0;
-				printf("Looping back to frame 0\n");
-			}
 			else
 				sprite->animation.current_frame = sprite->animation.frame_count - 1;
 		}
