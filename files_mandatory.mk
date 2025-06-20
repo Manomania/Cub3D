@@ -30,6 +30,7 @@ SRC_F_ONLY_MANDATORY := main_m				\
 				draw/d_render_m				\
 				door_bonus/i_system_m		\
 				door_bonus/i_system_m2		\
+				sprite_bonus/j_system_m		\
 				parsing/p_map_m				\
 				parsing/p_validation_m		\
 				player/l_mlx_m				\

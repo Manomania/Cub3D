@@ -6,7 +6,7 @@
 /*   By: elagouch <elagouch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/16 21:46:09 by maximart          #+#    #+#             */
-/*   Updated: 2025/06/17 17:24:06 by elagouch         ###   ########.fr       */
+/*   Updated: 2025/06/20 15:34:39 by elagouch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,6 +75,18 @@ static bool	parse_texture_door(t_data *data, char *path, const char *cardinal)
 	return (false);
 }
 
+static bool	parse_texture_sprite(t_data *data, char *path, const char *cardinal)
+{
+	if (ft_strcmp(cardinal, "P ") == 0)
+	{
+		if (check_text_duplicate(data, cardinal, data->texture_sprite))
+			return (true);
+		data->texture_sprite = ft_strtrim(path, "\n");
+		return (true);
+	}
+	return (false);
+}
+
 bool	parse_texture_path(t_data *data, char *line, const char *cardinal)
 {
 	char	*skip;
@@ -93,6 +105,8 @@ bool	parse_texture_path(t_data *data, char *line, const char *cardinal)
 		if (parse_texture_we_ea(data, path, cardinal))
 			return (false);
 		if (parse_texture_door(data, path, cardinal))
+			return (false);
+		if (parse_texture_sprite(data, path, cardinal))
 			return (false);
 		return (false);
 	}

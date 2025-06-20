@@ -1,0 +1,18 @@
+WE ../../textures/tpk_tech_1c.xpm
+NO ../../textures/tpk_tech_1c.xpm
+SO ../../textures/tpk_tech_1c.xpm
+EA ../../textures/tpk_tech_1c.xpm
+D ../../textures/tpk_door_1a.xpm
+P ../../textures/tpk_sprite_barrel_warn.xpm
+C 150,0,0
+F 0,0,0
+
+111111111 111111111
+100000001 100000001
+1000P0001 1000P0001
+1000000011100000001
+1000E0000D0000P0001
+1000000011100000001
+100000001 100000001
+100000001 100000001
+111111111 111111111

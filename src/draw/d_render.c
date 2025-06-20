@@ -16,6 +16,7 @@
 #include "player.h"
 #include "raycasting.h"
 #include "pproc.h"
+#include "sprite_bonus.h"
 
 /*
 ** Rendering pipeline. Note: we memset the image to zero, idk if it's a good
@@ -41,6 +42,7 @@ void	render_frame(t_data *data)
 	ft_memset(data->img.addr, 0, data->win_width * data->win_height
 		* (data->img.bits_per_pixel / 8));
 	grid_raycasting(data);
+	render_sprites(data);
 	handle_render_bonus_features(data);
 	mlx_put_image_to_window(data->mlx, data->win, data->img.img, 0, 0);
 	handle_render_extra_features(data);

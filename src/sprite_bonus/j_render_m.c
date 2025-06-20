@@ -1,23 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   u_map_chars_b.c                                    :+:      :+:    :+:   */
+/*   j_render_m.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: elagouch <elagouch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/06/18 12:10:00 by elagouch          #+#    #+#             */
-/*   Updated: 2025/06/20 15:26:27 by elagouch         ###   ########.fr       */
+/*   Created: 2025/06/20 12:42:29 by elagouch          #+#    #+#             */
+/*   Updated: 2025/06/20 12:43:14 by elagouch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-/*
-** 0		- Void
-** 1		- Wall
-** N/S/E/W	- Player
-** D		- Door
-** P		- Animated sprite
-*/
-const char	*map_chars(void)
+#include "cub3d.h"
+
+void	render_sprites(t_data *data)
 {
-	return ("01NSEWDP \t\n");
+	(void) data;
+}
+
+void	sort_sprites_by_distance(t_data *data)
+{
+	(void) data;
 }

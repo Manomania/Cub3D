@@ -6,7 +6,7 @@
 /*   By: elagouch <elagouch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/17 14:54:20 by elagouch          #+#    #+#             */
-/*   Updated: 2025/06/18 13:44:28 by elagouch         ###   ########.fr       */
+/*   Updated: 2025/06/20 15:31:39 by elagouch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,11 @@ bool	check_bonus_textures(t_data *data)
 	if (!data->texture_door)
 	{
 		ft_printf(RED "Error\nMissing door texture (D)\n" RESET);
+		return (true);
+	}
+	if (!data->texture_sprite)
+	{
+		ft_printf(RED "Error\nMissing sprite texture (P)\n" RESET);
 		return (true);
 	}
 	return (false);
