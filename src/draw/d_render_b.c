@@ -6,13 +6,14 @@
 /*   By: elagouch <elagouch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/17 14:35:40 by elagouch          #+#    #+#             */
-/*   Updated: 2025/06/17 14:38:07 by elagouch         ###   ########.fr       */
+/*   Updated: 2025/06/20 17:12:05 by elagouch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 #include "door_bonus.h"
 #include "minimap_bonus.h"
+#include "sprite_bonus.h"
 
 void	handle_render_bonus_features(t_data *data)
 {

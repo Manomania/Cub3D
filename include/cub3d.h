@@ -6,7 +6,7 @@
 /*   By: elagouch <elagouch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/28 12:05:19 by maximart          #+#    #+#             */
-/*   Updated: 2025/06/20 15:20:40 by elagouch         ###   ########.fr       */
+/*   Updated: 2025/06/20 16:38:14 by elagouch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@
 # define BASE_ROT_SPEED 3.0
 
 # define MAX_SPRITE_FRAMES 8
-# define SPRITE_SCALE 1.0
+# define SPRITE_SCALE 0.5
 
 // float.h is forbidden
 # define DBL_MAX    1.7976931348623157E+308

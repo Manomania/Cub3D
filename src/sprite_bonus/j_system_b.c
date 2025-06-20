@@ -6,7 +6,7 @@
 /*   By: elagouch <elagouch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/20 12:41:53 by elagouch          #+#    #+#             */
-/*   Updated: 2025/06/20 15:30:19 by elagouch         ###   ########.fr       */
+/*   Updated: 2025/06/20 17:12:13 by elagouch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 #include "libft.h"
 #include "mlx.h"
 #include "utils.h"
+#include <stdio.h>
 
 bool	add_sprite(t_data *data, double x, double y)
 {
@@ -113,7 +114,9 @@ void	update_sprite_animations(t_data *data)
 	while (++i < data->sprite_sys.count)
 	{
 		if (data->sprite_sys.sprites[i].active)
+		{
 			update_sprite_animation(&data->sprite_sys.sprites[i],
 				data->delta_time);
+		}
 	}
 }
