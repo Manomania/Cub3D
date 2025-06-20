@@ -6,7 +6,7 @@
 /*   By: elagouch <elagouch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/20 12:41:05 by elagouch          #+#    #+#             */
-/*   Updated: 2025/06/20 15:57:16 by elagouch         ###   ########.fr       */
+/*   Updated: 2025/06/20 16:11:16 by elagouch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,7 @@ static void	calculate_sprite_transform(t_data *data, t_sprite *sprite,
 		t_sprite_render *render)
 {
 	render->sprite_x = sprite->x - data->player.pos_x;
-	render->sprite_y = sprite->y - data->player.pos_y;
+	render->sprite_y = data->player.pos_y - sprite->y;
 	render->inv_det = 1.0 / (data->player.plane_x * data->player.dir_y
 			- data->player.dir_x * data->player.plane_y);
 	render->transform_x = render->inv_det * (data->player.dir_y
@@ -73,7 +73,7 @@ static void	calculate_sprite_transform(t_data *data, t_sprite *sprite,
 	render->transform_y = render->inv_det * (-data->player.plane_y
 			* render->sprite_x + data->player.plane_x * render->sprite_y);
 	render->sprite_screen_x = (int)((data->win_width / 2)
-			* (1 + render->transform_x / render->transform_y));
+			* (1 - render->transform_x / render->transform_y));
 }
 
 static void	calculate_sprite_dimensions(t_data *data, t_sprite *sprite,
