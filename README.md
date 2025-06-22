@@ -50,10 +50,6 @@ and are given a prefix for their subject, and a suffix for their context (mandat
 | Bonus | `_b` |
 | Extra | `_e` |
 
-## TODO
-
-Check back door parsing in normal context, I may have broken it with the new linking system
-
 ## Inspiration
 
 **This project was inspired by these awesome videos !** They helped us understand the many concepts of graphical 2.5D and 3D rendering, so check them out !
